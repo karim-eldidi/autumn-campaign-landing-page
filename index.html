@@ -27,6 +27,7 @@
     </section>
 
     <section class="week" id="week">
+      <svg class="week__journey" aria-hidden="true" preserveAspectRatio="none"><path></path></svg>
       <div class="week__intro">
         <p class="eyebrow">One membership around your life</p>
         <h2>A week that does both.</h2>
@@ -35,11 +36,11 @@
         <p class="mechanics">Find a venue <span>→</span> Book or check in</p>
       </div>
       <div class="week__grid" aria-label="Five activities across one possible week">
-        <article><img src="assets/about-strength.jpg" alt="Strength training"><b>Mon · Strength</b></article>
-        <article><img src="assets/about-yoga.jpg" alt="Yoga"><b>Wed · Yoga</b></article>
-        <article><img src="assets/about-hiit.jpg" alt="Gym training"><b>Fri · Gym</b></article>
-        <article><img src="assets/about-swimming.jpg" alt="Swimming"><b>Sat · Swim</b></article>
-        <article><img src="assets/about-wellness.jpg" alt="Sauna and recovery"><b>Sun · Sauna</b></article>
+        <article data-journey-stop="1"><img src="assets/about-strength.jpg" alt="Strength training"><b>Mon · Strength</b></article>
+        <article data-journey-stop="2"><img src="assets/about-yoga.jpg" alt="Yoga"><b>Wed · Yoga</b></article>
+        <article data-journey-stop="3"><img src="assets/about-hiit.jpg" alt="Gym training"><b>Fri · Gym</b></article>
+        <article data-journey-stop="4"><img src="assets/about-swimming.jpg" alt="Swimming"><b>Sat · Swim</b></article>
+        <article data-journey-stop="5"><img src="assets/about-wellness.jpg" alt="Sauna and recovery"><b>Sun · Sauna</b></article>
         <p class="week__end">Your week.<br>Your mix.</p>
       </div>
     </section>
@@ -49,10 +50,19 @@
         <div><p class="eyebrow eyebrow--light">Berlin</p><h2>Train and recover near you.</h2></div>
         <p>Real Urban Sports Club partner venues for both sides of your week.</p>
       </div>
+      <div class="venue-filter" aria-label="Choose an area of Berlin">
+        <button class="is-active" type="button" data-area="all" aria-pressed="true">All Berlin</button>
+        <button type="button" data-area="kreuzberg" aria-pressed="false">Kreuzberg</button>
+        <button type="button" data-area="neukoelln" aria-pressed="false">Neukölln</button>
+        <button type="button" data-area="mitte" aria-pressed="false">Mitte</button>
+      </div>
       <div class="venues__grid">
-        <article class="venue"><img src="assets/venue-boulderklub.jpg" alt="BOULDERKLUB Kreuzberg"><div><p>Bouldering & training</p><h3>BOULDERKLUB Kreuzberg</h3><span>Kreuzberg</span></div></article>
-        <article class="venue"><img src="assets/venue-stadtbad.jpg" alt="Stadtbad Neukölln"><div><p>Swimming & sauna</p><h3>Stadtbad Neukölln</h3><span>Neukölln</span></div></article>
-        <article class="venue"><img src="assets/hero-sauna.jpg" alt="Sauna and recovery"><div><p>Sauna & recovery</p><h3>LIQUIDROM</h3><span>Kreuzberg</span></div></article>
+        <article class="venue" data-venue-area="kreuzberg"><img src="assets/venue-boulderklub.jpg" alt="BOULDERKLUB Kreuzberg"><div><p>Bouldering & training</p><h3>BOULDERKLUB Kreuzberg</h3><span>Kreuzberg</span></div></article>
+        <article class="venue" data-venue-area="kreuzberg"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2FvenueHome_1024x576_qk9djxuobemxalgecbx1_1710844223524229.png?generation=1751984997213163&amp;alt=media" alt="LIQUIDROM"><div><p>Sauna & recovery</p><h3>LIQUIDROM</h3><span>Kreuzberg</span></div></article>
+        <article class="venue" data-venue-area="neukoelln"><img src="assets/venue-stadtbad.jpg" alt="Stadtbad Neukölln"><div><p>Swimming & sauna</p><h3>Stadtbad Neukölln</h3><span>Neukölln</span></div></article>
+        <article class="venue" data-venue-area="neukoelln"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2FvenueHome_1024x576_Berlin%20Neue%20Welt%20(6)_1667394290563246_admin.jpg?generation=1751980018330406&amp;alt=media" alt="Holmes Place Neue Welt"><div><p>Gym, swimming & sauna</p><h3>Holmes Place Neue Welt</h3><span>Neukölln</span></div></article>
+        <article class="venue" data-venue-area="mitte"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2Foriginal_1024x576_Berlin%20Gendarmenmarkt_1667393985223825_admin.png?generation=1751980015800686&amp;alt=media" alt="Holmes Place Gendarmenmarkt"><div><p>Gym, swimming & sauna</p><h3>Holmes Place Gendarmenmarkt</h3><span>Mitte</span></div></article>
+        <article class="venue" data-venue-area="mitte"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2FvenueHome_1024x576_tt5ij0wt6fk9gddwbmvn_1781696306479583.png?generation=1781696307799422&amp;alt=media" alt="ANTI SPA"><div><p>Sauna & recovery</p><h3>ANTI SPA</h3><span>Mitte</span></div></article>
       </div>
     </section>
 
@@ -65,5 +75,6 @@
       <a class="button" href="#week">Find my membership <span aria-hidden="true">→</span></a>
     </section>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
