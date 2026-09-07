@@ -127,11 +127,6 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .venue-end-card p{max-width:22ch;margin:12px 0;color:#343638;line-height:1.4;font-size:13.5px}
 .venue-end-card b{display:grid;place-items:center;width:40px;height:40px;margin-top:8px;border-radius:50%;background:#111;color:#fff;font-size:18px}
 
-/* Outbound USC Blue Button Bridge */
-.venues__more{display:flex;justify-content:center;margin-top:24px}
-.button--usc-blue{background:#2e70ce;color:#fff;border:1px solid #2457a0;box-shadow:0 6px 18px rgba(46,112,206,.28);min-height:48px;padding:0 26px;border-radius:8px;font-size:14.5px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .18s ease}
-.button--usc-blue:hover{background:#2457a0;transform:translateY(-2px);box-shadow:0 10px 24px rgba(46,112,206,.38)}
-
 /* Find My Fit Membership Plans Section */
 .membership-plans{padding:clamp(60px,7vw,104px) clamp(20px,5vw,72px);background:#f7f4ec;color:#0b0d0e}
 .plans-container{max-width:1120px;margin:0 auto}
@@ -241,13 +236,13 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .week__journey path,.week.is-drawn .week__journey path{stroke-dashoffset:0;transition:none}
   
   .venues{padding:clamp(48px,6vw,72px) 16px}
-  .venues__header-action{display:none}
+  .venues__header{flex-direction:column;align-items:flex-start;gap:14px}
+  .venues__header-action{align-self:flex-start;font-size:13px;padding:7px 14px}
   .venue-carousel-wrap{padding:12px;border-radius:14px}
   .venues__grid{gap:12px;padding:2px}
   .venues__grid>.venue,.venue-end-card{flex:0 0 72vw;max-width:280px;min-width:220px}
   .venue-toolbar__nav{display:none}
   
-  .button--usc-blue{width:100%}
   .plans-advisor-banner{flex-direction:column;align-items:flex-start}
 }
 

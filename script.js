@@ -265,7 +265,6 @@ function updateCityUI() {
 const categoryOptions = document.querySelector('#category-options');
 const venueGrid = document.querySelector('#venue-grid');
 const cityLabel = document.querySelector('#venue-city-label');
-const moreVenues = document.querySelector('#more-venues');
 const moreVenuesHeader = document.querySelector('#more-venues-header');
 
 function renderCategoryFilters() {
@@ -355,10 +354,6 @@ function selectCity(key) {
   selectedCity = key;
   const city = CITY_VENUES[key];
   if (cityLabel) cityLabel.textContent = city.name;
-  if (moreVenues) {
-    moreVenues.href = city.directoryUrl;
-    moreVenues.innerHTML = `Browse all ${city.name} venues <span aria-hidden="true">↗</span>`;
-  }
   if (moreVenuesHeader) {
     moreVenuesHeader.href = city.directoryUrl;
     moreVenuesHeader.innerHTML = `Browse all ${city.name} venues <span aria-hidden="true">↗</span>`;
