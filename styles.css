@@ -155,7 +155,7 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tiers__lede{margin:0;font-size:clamp(14.5px,1.15vw,16.5px);line-height:1.45;color:#a4acb2;max-width:48ch}
 
 /* Term switch — centered above cards */
-.term-switch-wrap{display:flex;justify-content:flex-start;margin:0 0 24px}
+.term-switch-wrap{display:flex;justify-content:center;margin:0 0 28px}
 .term-switch{display:inline-flex;gap:2px;padding:4px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
 .term-switch__btn{border:none;background:transparent;padding:9px 18px;border-radius:9px;font:inherit;font-size:13px;font-weight:700;color:#9aa2a8;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background .16s ease,color .16s ease}
 .term-switch__btn:hover{color:#fff}
