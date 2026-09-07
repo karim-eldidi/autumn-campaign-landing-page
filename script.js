@@ -357,11 +357,11 @@ function selectCity(key) {
   if (cityLabel) cityLabel.textContent = city.name;
   if (moreVenues) {
     moreVenues.href = city.directoryUrl;
-    moreVenues.innerHTML = `Explore all ${city.name} venues <span aria-hidden="true">↗</span>`;
+    moreVenues.innerHTML = `Browse all ${city.name} venues <span aria-hidden="true">↗</span>`;
   }
   if (moreVenuesHeader) {
     moreVenuesHeader.href = city.directoryUrl;
-    moreVenuesHeader.innerHTML = `Explore all ${city.name} venues <span aria-hidden="true">↗</span>`;
+    moreVenuesHeader.innerHTML = `Browse all ${city.name} venues <span aria-hidden="true">↗</span>`;
   }
   updateCityUI();
   renderVenues();
