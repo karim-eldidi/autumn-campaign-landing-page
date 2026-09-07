@@ -73,7 +73,10 @@ function layoutJourney() {
     const wrap=next&&wraps(tile,next)?wrapRoute(tile,next):null;
     const enter=pending?pending.enter:anchor(tile,{x:previous.x,y:previous.y});
     const leave=wrap?wrap.leave:anchor(tile,{x:onward.cx,y:onward.cy});
-    points.push(...(pending?pending.via:between(previous,enter)),enter); nodes.push(enter);
+    const firstCorridor=!stacked&&index===0&&previous.axis==='h'&&enter.axis==='h'
+      ? [{x:Math.max(previous.x+24,enter.x-46),y:previous.y},{x:Math.max(previous.x+24,enter.x-46),y:enter.y}]
+      : between(previous,enter);
+    points.push(...(pending?pending.via:firstCorridor),enter); nodes.push(enter);
     if (leave.x!==enter.x || leave.y!==enter.y) points.push(leave);
     previous=leave; pending=wrap;
   });
