@@ -6,23 +6,46 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Urban Sports Club Autumn 2026 campaign landing-page concept.">
   <title>Gym. And sauna. | Urban Sports Club</title>
-  <link rel="stylesheet" href="styles.css?v=week-retouch">
+  <link rel="stylesheet" href="styles.css?v=autumn-v2">
 </head>
 <body>
   <header class="nav">
-    <span class="wordmark">Urban Sports Club</span>
-    <span class="place" id="nav-city">Berlin</span>
+    <a class="nav__brand" href="#" aria-label="Urban Sports Club">
+      <span class="wordmark">Urban Sports Club</span>
+    </a>
+    <div class="nav__controls">
+      <div class="nav-dropdown" id="nav-city-dropdown">
+        <button class="nav-dropdown__btn" id="nav-city-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select city">
+          <span class="nav-dropdown__icon">📍</span>
+          <span class="nav-dropdown__text" id="nav-city-text">Berlin</span>
+          <span class="nav-dropdown__chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown__menu" id="nav-city-menu" role="menu"></div>
+      </div>
+
+      <div class="nav-dropdown" id="nav-lang-dropdown">
+        <button class="nav-dropdown__btn" id="nav-lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+          <span class="nav-dropdown__icon">🌐</span>
+          <span class="nav-dropdown__text" id="nav-lang-text">EN</span>
+          <span class="nav-dropdown__chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown__menu nav-dropdown__menu--right" id="nav-lang-menu" role="menu">
+          <button class="nav-dropdown__item is-active" type="button" data-lang="en" role="menuitem">English (EN)</button>
+          <button class="nav-dropdown__item" type="button" data-lang="de" role="menuitem">Deutsch (DE)</button>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="hero">
       <img src="assets/campaign-gym-sauna.png" alt="The same member training at the gym and recovering in a sauna">
       <div class="hero__shade"></div>
       <div class="hero__copy">
         <p class="eyebrow eyebrow--light">50+ sports. One membership.</p>
         <h1><span>GYM.</span> <mark>AND</mark> <span>SAUNA.</span></h1>
         <p class="hero__line">Train. Recover. Same membership.</p>
-        <a class="button" href="#membership">Choose membership <span aria-hidden="true">→</span></a>
+        <a class="button button--hero" href="#week">Learn more <span aria-hidden="true">↓</span></a>
       </div>
     </section>
 
@@ -45,33 +68,79 @@
       </div>
     </section>
 
-    <section class="venues">
-      <div class="venues__head">
-        <div><p class="eyebrow eyebrow--light" id="venue-city-label">Berlin</p><h2>Train and recover near you.</h2></div>
-        <p>Explore a verified selection of Urban Sports Club partner venues.</p>
+    <section class="venues" id="venues">
+      <div class="venues__header">
+        <p class="eyebrow eyebrow--light">Discover Partner Venues</p>
+        <h2>Top studios, saunas & pools in <span class="venues__city-highlight" id="venue-city-label">Berlin</span>.</h2>
+        <p class="venues__subtitle">Switch between high-energy workouts and deep relaxation across 10,000+ partner locations with one membership.</p>
       </div>
-      <div class="city-picker" aria-labelledby="city-picker-label"><div><p id="city-picker-label">Choose your city</p><div class="city-picker__options" id="city-options"></div></div><button class="detect-location" type="button" id="detect-location"><span aria-hidden="true">⌖</span> Use my location</button></div>
-      <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
-      <div class="venue-filter" id="area-options" aria-label="Choose an area"></div>
+
+      <div class="venues__toolbar">
+        <div class="venues__city-bar">
+          <div class="city-selector-inline">
+            <span class="city-selector-inline__label">City:</span>
+            <div class="city-selector-inline__options" id="city-options"></div>
+          </div>
+          <button class="detect-location" type="button" id="detect-location"><span aria-hidden="true">⌖</span> Use my location</button>
+        </div>
+        <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
+        
+        <div class="category-filter" id="category-options" aria-label="Filter by sport category"></div>
+      </div>
+
       <div class="venue-carousel">
         <button class="venue-carousel__nav venue-carousel__nav--prev" type="button" data-scroll-venues="prev" aria-label="Previous venues">←</button>
         <div class="venues__grid" id="venue-grid" role="region" aria-label="Venue inspiration" tabindex="0"></div>
         <button class="venue-carousel__nav venue-carousel__nav--next" type="button" data-scroll-venues="next" aria-label="Next venues">→</button>
       </div>
-      <div class="venues__more"><a class="button button--light" id="more-venues" target="_blank" rel="noopener">See more venues in Berlin <span aria-hidden="true">↗</span></a></div>
+      <div class="venues__more">
+        <a class="button button--usc-blue" id="more-venues" target="_blank" rel="noopener">See more venues in Berlin <span aria-hidden="true">↗</span></a>
+      </div>
       <p class="venue-note">Venue information and photography sourced from the linked Urban Sports Club venue pages. Availability and membership limits can change—check the venue page before visiting.</p>
     </section>
 
-    <section class="membership" id="membership">
-      <div>
-        <p class="eyebrow">Gym. And sauna.</p>
-        <h2>One membership for both.</h2>
-        <p>Find the membership that covers the places you want to use.</p>
+    <section class="membership-plans" id="membership">
+      <div class="plans-container">
+        <div class="plans-header">
+          <p class="eyebrow">Memberships & Pricing</p>
+          <h2>One membership for both.</h2>
+          <p class="plans-header__subtitle">Train hard, recover fully. Choose the monthly or 12-month plan that fits your lifestyle.</p>
+          
+          <div class="billing-toggle-wrap">
+            <div class="billing-toggle" role="radiogroup" aria-label="Billing frequency">
+              <button class="billing-toggle__btn is-active" type="button" data-term="annual" aria-checked="true" role="radio">
+                12 Months <span class="billing-toggle__badge">Save up to 15%</span>
+              </button>
+              <button class="billing-toggle__btn" type="button" data-term="monthly" aria-checked="false" role="radio">
+                Flexible Monthly
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="plans-grid" id="plans-grid"></div>
+
+        <div class="plans-trust">
+          <div class="trust-item"><span class="trust-icon">✓</span> <span>Pause anytime</span></div>
+          <div class="trust-item"><span class="trust-icon">✓</span> <span>No hidden fees</span></div>
+          <div class="trust-item"><span class="trust-icon">✓</span> <span>50+ sports & wellbeing apps</span></div>
+          <div class="trust-item"><span class="trust-icon">✓</span> <span>Valid across 7+ countries</span></div>
+        </div>
       </div>
-      <a class="button" href="#week">Find my membership <span aria-hidden="true">→</span></a>
     </section>
   </main>
-  <script src="venues.js?v=week-retouch"></script>
-  <script src="script.js?v=week-retouch"></script>
+
+  <div class="sticky-bottom-bar" id="sticky-bottom-bar" aria-hidden="true">
+    <div class="sticky-bottom-bar__content">
+      <div class="sticky-bottom-bar__copy">
+        <strong>Gym & sauna in one pass</strong>
+        <span>From €29/mo · Pause anytime</span>
+      </div>
+      <a class="button button--sticky" href="#membership">Choose plan <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <script src="venues.js?v=autumn-v2"></script>
+  <script src="script.js?v=autumn-v2"></script>
 </body>
 </html>
