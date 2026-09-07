@@ -510,9 +510,13 @@ const stickyBottomBar = document.querySelector('#sticky-bottom-bar');
 
 function setupStickyBar() {
   if (!stickyBottomBar) return;
+  const bottomCta = document.querySelector('.membership-cta');
+  const footer = document.querySelector('.site-footer');
 
-  const handleScroll = () => {
-    if (window.scrollY > 80) {
+  let atBottom = false;
+
+  const updateBar = () => {
+    if (window.scrollY > 120 && !atBottom) {
       stickyBottomBar.classList.add('is-visible');
       stickyBottomBar.setAttribute('aria-hidden', 'false');
     } else {
@@ -521,8 +525,18 @@ function setupStickyBar() {
     }
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      atBottom = entries.some(e => e.isIntersecting);
+      updateBar();
+    }, { threshold: 0.05 });
+
+    if (bottomCta) observer.observe(bottomCta);
+    if (footer) observer.observe(footer);
+  }
+
+  window.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
 }
 
 /* --- Init --- */
