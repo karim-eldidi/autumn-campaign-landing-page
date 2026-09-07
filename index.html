@@ -53,7 +53,11 @@
       <div class="city-picker" aria-labelledby="city-picker-label"><div><p id="city-picker-label">Choose your city</p><div class="city-picker__options" id="city-options"></div></div><button class="detect-location" type="button" id="detect-location"><span aria-hidden="true">⌖</span> Use my location</button></div>
       <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
       <div class="venue-filter" id="area-options" aria-label="Choose an area"></div>
-      <div class="venues__grid" id="venue-grid"></div>
+      <div class="venue-carousel">
+        <button class="venue-carousel__nav venue-carousel__nav--prev" type="button" data-scroll-venues="prev" aria-label="Previous venues">←</button>
+        <div class="venues__grid" id="venue-grid" role="region" aria-label="Venue inspiration" tabindex="0"></div>
+        <button class="venue-carousel__nav venue-carousel__nav--next" type="button" data-scroll-venues="next" aria-label="Next venues">→</button>
+      </div>
       <div class="venues__more"><a class="button button--light" id="more-venues" target="_blank" rel="noopener">See more venues in Berlin <span aria-hidden="true">↗</span></a></div>
       <p class="venue-note">Venue information and photography sourced from the linked Urban Sports Club venue pages. Availability and membership limits can change—check the venue page before visiting.</p>
     </section>

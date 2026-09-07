@@ -132,7 +132,14 @@ function renderVenues() {
     const copy=document.createElement('div'), type=document.createElement('p'), name=document.createElement('h3'), area=document.createElement('span');
     type.textContent=venue.type; name.textContent=venue.name; area.textContent=venue.area;
     copy.append(type,name,area); card.append(img,copy); return card;
-  }));
+  }), (() => {
+    const card=document.createElement('a'); card.className='venue-end-card'; card.href='#membership';
+    const kicker=document.createElement('span'); kicker.textContent='Seen enough?';
+    const title=document.createElement('strong'); title.textContent='Find my fit';
+    const copy=document.createElement('p'); copy.textContent='Turn the places you like into the right membership.';
+    const arrow=document.createElement('b'); arrow.textContent='→';
+    card.append(kicker,title,copy,arrow); return card;
+  })());
 }
 
 function selectCity(key) {
@@ -160,3 +167,8 @@ document.querySelector('#detect-location')?.addEventListener('click', () => {
 });
 
 selectCity(selectedCity);
+
+document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEventListener('click', () => {
+  const direction=button.dataset.scrollVenues==='next'?1:-1;
+  venueGrid.scrollBy({left:direction*Math.max(280,venueGrid.clientWidth*.72),behavior:'smooth'});
+}));
