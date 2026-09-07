@@ -127,11 +127,11 @@ function renderVenues() {
   const city=CITY_VENUES[selectedCity];
   const venues=city.venues.filter(venue=>selectedArea==='all'||venue.area===selectedArea);
   venueGrid.replaceChildren(...venues.map(venue => {
-    const card=document.createElement('a'); card.className='venue'; card.href=venue.sourceUrl; card.target='_blank'; card.rel='noopener';
+    const card=document.createElement('article'); card.className='venue';
     const img=document.createElement('img'); img.src=venue.image; img.alt=venue.name; img.loading='lazy';
-    const copy=document.createElement('div'), type=document.createElement('p'), name=document.createElement('h3'), address=document.createElement('span'), source=document.createElement('small');
-    type.textContent=venue.type; name.textContent=venue.name; address.textContent=`${venue.area} · ${venue.address}`; source.textContent='View verified venue ↗';
-    copy.append(type,name,address,source); card.append(img,copy); return card;
+    const copy=document.createElement('div'), type=document.createElement('p'), name=document.createElement('h3'), area=document.createElement('span');
+    type.textContent=venue.type; name.textContent=venue.name; area.textContent=venue.area;
+    copy.append(type,name,area); card.append(img,copy); return card;
   }));
 }
 
