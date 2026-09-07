@@ -162,6 +162,7 @@ const cityParam = (urlParams.get('city') || '').toLowerCase();
 let selectedCity = (cityParam && CITY_VENUES[cityParam]) ? cityParam : 'berlin';
 let selectedCategory = 'all';
 let selectedBillingTerm = 'annual'; // 'annual' | 'monthly'
+let selectedPlanId = 'classic';
 
 /* --- Header & Venue City Dropdowns & Language Popover --- */
 const navCityDropdown = document.querySelector('#nav-city-dropdown');
@@ -415,6 +416,7 @@ document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEv
 const tiersRail = document.querySelector('#tiers-rail');
 const termButtons = document.querySelectorAll('.term-switch__btn');
 const planContinue = document.querySelector('#plan-continue');
+const selectedPlanSummary = document.querySelector('#selected-plan-summary');
 
 const PRICING_URL = 'https://urbansportsclub.com/en/prices';
 
@@ -456,9 +458,11 @@ function renderTiers() {
   const term = selectedBillingTerm;
 
   tiersRail.replaceChildren(...USC_PLANS.map(plan => {
-    const card = document.createElement('article');
-    card.className = `tier-card${plan.popular ? ' tier-card--pick' : ''}`;
-    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month.`);
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = `tier-card${plan.id === selectedPlanId ? ' is-selected' : ''}`;
+    card.setAttribute('aria-pressed', String(plan.id === selectedPlanId));
+    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month. Select this plan.`);
 
     const specs = (plan.tierInfo || '').split('·').map(s => s.trim()).filter(Boolean).slice(0, 2);
 
@@ -476,10 +480,18 @@ function renderTiers() {
       <ul class="tier-card__specs">
         ${specs.map(spec => `<li>${iconForSpec(spec)}<span>${capitalise(spec)}</span></li>`).join('')}
       </ul>
+      <span class="tier-card__select" aria-hidden="true">${plan.id === selectedPlanId ? 'Selected' : 'Select'}</span>
     `;
+    card.addEventListener('click', () => {
+      selectedPlanId = plan.id;
+      renderTiers();
+    });
     return card;
   }));
 
+  const selectedPlan = USC_PLANS.find(plan => plan.id === selectedPlanId) || USC_PLANS[1];
+  const selectedPrice = priceForTerm(selectedPlan, term);
+  if (selectedPlanSummary) selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · ${TERM_COPY[term].replace(/<[^>]+>/g, '')}`;
   if (planContinue) {
     planContinue.href = pricingUrl();
   }
