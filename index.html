@@ -117,7 +117,6 @@
 
     <section class="tiers" id="membership">
       <div class="tiers__inner">
-        <!-- Header: numeral anchors the left, the copy column carries the full hierarchy -->
         <div class="tiers__head">
           <div class="tiers__anchor">
             <span class="tiers__numeral" aria-hidden="true">4</span>
@@ -127,17 +126,20 @@
             <p class="tiers__eyebrow">Membership for every routine</p>
             <h2>Choose how you<br>want to move.</h2>
             <p class="tiers__lede">From once a week to daily movement and recovery. Gym and sauna are in every one of them.</p>
-            <div class="term-switch" role="radiogroup" aria-label="Membership duration">
-              <button class="term-switch__btn" type="button" data-term="monthly" role="radio" aria-checked="false">Monthly</button>
-              <button class="term-switch__btn is-active" type="button" data-term="annual" role="radio" aria-checked="true">12 months <i>&minus;15%</i></button>
-              <button class="term-switch__btn" type="button" data-term="biennial" role="radio" aria-checked="false">24 months <i>&minus;20%</i></button>
-            </div>
-            <p class="tiers__fine">Every membership includes online classes, video on demand and pausing anytime.</p>
           </div>
         </div>
 
-        <div class="tiers__rail" id="tiers-rail" role="region" aria-label="Membership options" tabindex="0"></div>
+        <div class="tiers__rail-wrap">
+          <div class="tiers__rail" id="tiers-rail" role="region" aria-label="Membership options" tabindex="0"></div>
+        </div>
 
+        <div class="term-switch-wrap">
+          <div class="term-switch" role="radiogroup" aria-label="Membership duration">
+            <button class="term-switch__btn" type="button" data-term="monthly" role="radio" aria-checked="false">Monthly</button>
+            <button class="term-switch__btn is-active" type="button" data-term="annual" role="radio" aria-checked="true">12 months <i>&minus;15%</i></button>
+            <button class="term-switch__btn" type="button" data-term="biennial" role="radio" aria-checked="false">24 months <i>&minus;20%</i></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -161,8 +163,8 @@
     </div>
   </div>
 
-  <script src="venues.js?v=autumn-v5"></script>
-  <script src="script.js?v=autumn-v5"></script>
+  <script src="venues.js?v=autumn-v6"></script>
+  <script src="script.js?v=autumn-v6"></script>
 </body>
 </html>
 

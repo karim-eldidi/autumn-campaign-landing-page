@@ -137,43 +137,38 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .button--usc-blue:hover{background:#2457a0;transform:translateY(-1px);box-shadow:0 8px 20px rgba(46,112,206,.38)}
 
 /* ============================================================
-   Membership tiers — numeral anchor + card rail
-   Hierarchy: 1) yellow numeral  2) headline  3) cards  4) controls/links
+/* ============================================================
+   Membership tiers — numeral anchor + card rail + bottom term switcher
    ============================================================ */
-.tiers{position:relative;padding:clamp(64px,7.5vw,116px) clamp(20px,5vw,72px) clamp(56px,6vw,92px);background:#0b0d0e;color:#fff;border-top:1px solid rgba(255,255,255,.07)}
+.tiers{position:relative;padding:clamp(60px,7.5vw,100px) clamp(20px,5vw,72px);background:#0b0d0e;color:#fff;border-top:1px solid rgba(255,255,255,.07)}
 .tiers__inner{max-width:1240px;margin:0 auto}
 
-/* Header — two columns on one shared bottom baseline */
-.tiers__head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,5vw,76px);align-items:start;padding-bottom:clamp(24px,3vw,40px)}
-.tiers__anchor{display:flex;flex-direction:column;align-self:end}
-.tiers__eyebrow{margin:0 0 14px;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;font-weight:800;color:#868e95}
-.tiers__numeral{font-size:clamp(120px,15.4vw,236px);line-height:.74;font-weight:900;letter-spacing:-.075em;color:#fedb00}
-.tiers__numeral-label{margin-top:22px;text-transform:uppercase;letter-spacing:.14em;font-size:11.5px;font-weight:800;color:#fff}
-.tiers__copy{justify-self:end;max-width:52ch}
-.tiers h2{margin:0;font-size:clamp(29px,3.3vw,46px);line-height:1.02;letter-spacing:-.038em;font-weight:900}
-.tiers__lede{margin:16px 0 0;font-size:clamp(15px,1.15vw,17.5px);line-height:1.45;color:#a4acb2;max-width:46ch}
+/* Header — tight lockup of numeral "4" and copy block */
+.tiers__head{display:flex;align-items:flex-start;gap:clamp(24px,3.6vw,44px);max-width:860px;margin-bottom:36px}
+.tiers__anchor{display:flex;flex-direction:column;align-items:flex-start;flex-shrink:0}
+.tiers__eyebrow{margin:0 0 10px;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;font-weight:800;color:#868e95}
+.tiers__numeral{font-size:clamp(96px,10vw,144px);line-height:.8;font-weight:900;letter-spacing:-.075em;color:#fedb00}
+.tiers__numeral-label{margin-top:12px;text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800;color:#fff}
+.tiers__copy{max-width:560px}
+.tiers h2{margin:0 0 12px;font-size:clamp(30px,3.4vw,46px);line-height:1.04;letter-spacing:-.038em;font-weight:900}
+.tiers__lede{margin:0;font-size:clamp(14.5px,1.15vw,16.5px);line-height:1.45;color:#a4acb2;max-width:48ch}
 
-/* Term switch — part of the headline column's hierarchy, not a separate band */
-.term-switch{display:inline-flex;gap:2px;margin-top:26px;padding:3px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
-.term-switch__btn{border:none;background:transparent;padding:8px 15px;border-radius:8px;font:inherit;font-size:13px;font-weight:700;color:#9aa2a8;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background .16s ease,color .16s ease}
+/* Term switch — centered below cards on desktop */
+.term-switch-wrap{display:flex;justify-content:center;margin-top:32px}
+.term-switch{display:inline-flex;gap:2px;padding:4px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.term-switch__btn{border:none;background:transparent;padding:9px 18px;border-radius:9px;font:inherit;font-size:13px;font-weight:700;color:#9aa2a8;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background .16s ease,color .16s ease}
 .term-switch__btn:hover{color:#fff}
 .term-switch__btn i{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.02em;color:#fedb00}
-.term-switch__btn.is-active{background:#fff;color:#0b0d0e}
+.term-switch__btn.is-active{background:#fff;color:#0b0d0e;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .term-switch__btn.is-active i{color:#2457a0}
-.tiers__fine{margin:16px 0 0;font-size:12.5px;line-height:1.45;color:#6f777d;max-width:44ch}
 
-/* Rail — fills on desktop, scrolls below */
-.tiers__rail{display:flex;align-items:stretch;gap:clamp(10px,1.1vw,16px);margin-left:clamp(0px,3.2vw,40px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:16px 4px 10px}
-.tiers__rail>*:nth-child(1){margin:0 0 20px}
-.tiers__rail>*:nth-child(2){margin:16px 0 4px}
-.tiers__rail>*:nth-child(3){margin:4px 0 16px}
-.tiers__rail>*:nth-child(4){margin:20px 0 0}
-.tiers__rail>*:nth-child(5){margin:8px 0 12px}
+/* Rail — perfectly aligned horizontal baseline across all cards */
+.tiers__rail-wrap{position:relative}
+.tiers__rail{display:flex;align-items:stretch;gap:clamp(12px,1.2vw,16px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px 4px 14px}
 .tiers__rail::-webkit-scrollbar{display:none}
 
 /* Card — fixed rows so dividers and CTAs align across all four */
-.tier-card{flex:0 0 clamp(218px,18.2vw,236px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);transition:transform .18s ease,box-shadow .18s ease}
-.tier-card{text-decoration:none;color:#0b0d0e}
+.tier-card{flex:0 0 clamp(220px,18.4vw,238px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);transition:transform .18s ease,box-shadow .18s ease;text-decoration:none}
 .tier-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(0,0,0,.46)}
 .tier-card__go{position:absolute;right:16px;top:20px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#2e70ce;color:#fff;font-size:14px;font-weight:900;opacity:0;transform:translateX(-4px);transition:opacity .16s ease,transform .16s ease}
 .tier-card:hover .tier-card__go{opacity:1;transform:translateX(0)}
@@ -270,15 +265,24 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .venues__footer-copy{justify-content:center;font-size:12.5px}
   .button--usc-blue{width:100%;justify-content:center;min-height:46px}
   
-  .tiers{padding:54px 16px 44px}
-  .tiers__numeral{font-size:clamp(84px,23vw,124px)}
-  .tiers h2{font-size:clamp(27px,7.6vw,36px)}
-  .term-switch{margin-top:22px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start}
+  .tiers{padding:44px 16px 36px}
+  .tiers__inner{display:flex;flex-direction:column}
+  .tiers__head{flex-direction:column;gap:12px;margin-bottom:0}
+  .tiers__anchor{align-items:flex-start}
+  .tiers__numeral{font-size:clamp(76px,19vw,96px);line-height:.85}
+  .tiers__numeral-label{margin-top:8px;font-size:10.5px}
+  .tiers__copy{margin-top:4px}
+  .tiers h2{font-size:clamp(26px,7.2vw,34px);margin:6px 0 10px}
+  .tiers__lede{font-size:14px;line-height:1.4}
+  
+  .term-switch-wrap{order:2;margin:18px 0 16px;justify-content:flex-start}
+  .term-switch{overflow-x:auto;scrollbar-width:none;max-width:100%}
   .term-switch::-webkit-scrollbar{display:none}
-  .tiers__rail{padding:16px 2px 8px;margin-left:0}
-  .tiers__rail>*:nth-child(1),.tiers__rail>*:nth-child(2),.tiers__rail>*:nth-child(3),.tiers__rail>*:nth-child(4),.tiers__rail>*:nth-child(5){margin:0}
-  .tiers__numeral-label{margin-top:15px}
-  .tiers__rail>.tier-card{flex:0 0 76vw;max-width:300px}
+  .term-switch__btn{padding:8px 14px;font-size:12.5px}
+  
+  .tiers__rail-wrap{order:3}
+  .tiers__rail{padding:8px 2px 8px;margin-left:0;gap:12px}
+  .tiers__rail>.tier-card{flex:0 0 70vw;max-width:270px;min-width:225px}
   
   .membership-cta{flex-direction:column;align-items:flex-start;gap:24px;padding:48px 20px}
   .membership-cta .button--dark{width:100%;justify-content:center}
