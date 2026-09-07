@@ -266,6 +266,7 @@ const categoryOptions = document.querySelector('#category-options');
 const venueGrid = document.querySelector('#venue-grid');
 const cityLabel = document.querySelector('#venue-city-label');
 const moreVenues = document.querySelector('#more-venues');
+const moreVenuesHeader = document.querySelector('#more-venues-header');
 
 function renderCategoryFilters() {
   if (!categoryOptions) return;
@@ -340,9 +341,9 @@ function renderVenues() {
   const kicker = document.createElement('span');
   kicker.textContent = 'Seen enough?';
   const title = document.createElement('strong');
-  title.textContent = 'Find my fit';
+  title.textContent = 'See memberships';
   const copy = document.createElement('p');
-  copy.textContent = 'Turn the places you like into the right membership.';
+  copy.textContent = 'Choose the right plan for your routine.';
   const arrow = document.createElement('b');
   arrow.textContent = '→';
   endCard.append(kicker, title, copy, arrow);
@@ -357,6 +358,10 @@ function selectCity(key) {
   if (moreVenues) {
     moreVenues.href = city.directoryUrl;
     moreVenues.innerHTML = `Explore all ${city.name} venues <span aria-hidden="true">↗</span>`;
+  }
+  if (moreVenuesHeader) {
+    moreVenuesHeader.href = city.directoryUrl;
+    moreVenuesHeader.innerHTML = `Explore all ${city.name} venues <span aria-hidden="true">↗</span>`;
   }
   updateCityUI();
   renderVenues();
