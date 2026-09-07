@@ -155,7 +155,7 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tiers__lede{margin:0;font-size:clamp(14.5px,1.15vw,16.5px);line-height:1.45;color:#a4acb2;max-width:48ch}
 
 /* Term switch — centered above cards */
-.term-switch-wrap{display:flex;justify-content:center;margin:0 0 24px}
+.term-switch-wrap{display:flex;justify-content:flex-start;margin:0 0 24px}
 .term-switch{display:inline-flex;gap:2px;padding:4px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
 .term-switch__btn{border:none;background:transparent;padding:9px 18px;border-radius:9px;font:inherit;font-size:13px;font-weight:700;color:#9aa2a8;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background .16s ease,color .16s ease}
 .term-switch__btn:hover{color:#fff}
@@ -169,36 +169,36 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tiers__rail::-webkit-scrollbar{display:none}
 .tiers-scroll-hint{display:none}
 
-/* Selectable Cards */
-.tier-card{flex:0 0 clamp(220px,18.4vw,238px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);cursor:pointer;user-select:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;border:2.5px solid transparent}
-.tier-card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.46)}
-.tier-card.is-selected{border-color:#fedb00;box-shadow:0 16px 44px rgba(254,219,0,.32);background:#fff}
+/* Card — fixed rows so dividers and CTAs align across all four */
+.tier-card{flex:0 0 clamp(220px,18.4vw,238px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);transition:transform .18s ease,box-shadow .18s ease;text-decoration:none}
+.tier-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(0,0,0,.46)}
+.tier-card__go{position:absolute;right:16px;top:20px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#2e70ce;color:#fff;font-size:14px;font-weight:900;opacity:0;transform:translateX(-4px);transition:opacity .16s ease,transform .16s ease}
+.tier-card:hover .tier-card__go{opacity:1;transform:translateX(0)}
+.tier-card--pick .tier-card__go{top:24px}
+.tier-card:hover .tier-card__name{text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:#fedb00;text-underline-offset:3px}
 
-.tier-card__select-pill{position:absolute;top:16px;right:16px;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:800;background:rgba(11,13,14,.08);color:#5d666d;letter-spacing:.02em;transition:all .15s ease}
-.tier-card.is-selected .tier-card__select-pill{background:#0b0d0e;color:#fedb00}
-
-/* The recommendation card */
+/* The recommendation is the only card that differs */
 .tier-card--pick{background:#fff;box-shadow:0 16px 42px rgba(0,0,0,.46)}
-.tier-card--pick::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;border-radius:14px 14px 0 0;background:#fedb00}
+.tier-card--pick::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;border-radius:16px 16px 0 0;background:#fedb00}
 .tier-card__badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:4px 12px;border-radius:999px;background:#0b0d0e;color:#fedb00;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
 
 .tier-card__name{margin:0;font-size:19.5px;font-weight:900;letter-spacing:-.028em}
 .tier-card__for{margin:3px 0 0;min-height:19px;font-size:13px;font-weight:600;color:#5d666d}
 
-/* Price block */
+/* Price is the anchor, and it sits high in the card */
 .tier-card__price{display:flex;align-items:baseline;gap:7px;margin-top:18px}
 .tier-card__amount{font-size:clamp(34px,3.3vw,42px);font-weight:900;letter-spacing:-.05em;line-height:1;color:#2e70ce}
 .tier-card__per{font-size:13.5px;font-weight:700;color:#5d666d}
 .tier-card__billed{margin:7px 0 0;min-height:17px;font-size:11.5px;font-weight:700;color:#5d666d}
 .tier-card__billed b{color:#2457a0;font-weight:800}
 
-/* Monochrome specs */
+/* Monochrome specs — yellow stays the only accent */
 .tier-card__specs{list-style:none;margin:17px 0 0;padding:17px 0 0;border-top:1px solid rgba(11,13,14,.12);display:flex;flex-direction:column;gap:10px}
 .tier-card__specs li{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:#2b3237}
 .tier-card__specs svg{flex:0 0 16px;color:#2e70ce}
 
-/* 5th card in the rail: compare card */
-.tier-card--cta{flex:0 0 clamp(204px,17vw,222px);display:grid;grid-template-rows:1fr auto;padding:0;overflow:hidden;background:#f2eee3;text-decoration:none;color:#0b0d0e;border:2.5px solid transparent}
+/* Last card in the rail: the single CTA, and the yellow-campaign → blue-site handover */
+.tier-card--cta{flex:0 0 clamp(204px,17vw,222px);display:grid;grid-template-rows:1fr auto;padding:0;overflow:hidden;background:#f2eee3;text-decoration:none;color:#0b0d0e}
 .tier-card--cta:hover{transform:translateY(-3px)}
 .tier-card__cta-body{padding:22px 20px 20px}
 .tier-card__cta-kicker{margin:0 0 10px;text-transform:uppercase;letter-spacing:.09em;font-size:10.5px;font-weight:900;color:#2e70ce}
@@ -208,13 +208,6 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tier-card__cta-action span{color:#fedb00;font-size:17px;transition:transform .16s ease}
 .tier-card--cta:hover .tier-card__cta-action{background:#2457a0}
 .tier-card--cta:hover .tier-card__cta-action span{transform:translateX(4px)}
-
-/* Decisive CTA Dock below membership cards */
-.tiers__action-dock{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
-.button--tiers-cta{background:#fedb00;color:#0b0d0e;min-height:54px;padding:0 36px;font-size:16px;font-weight:800;border-radius:10px;box-shadow:0 8px 24px rgba(254,219,0,.3);transition:all .18s ease;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
-.button--tiers-cta:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,255,255,.3)}
-.tiers__compare-link{color:#9aa2a8;font-size:13.5px;font-weight:700;text-decoration:none;transition:color .15s ease}
-.tiers__compare-link:hover{color:#fff;text-decoration:underline}
 
 
 /* Bottom Yellow CTA Banner */

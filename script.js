@@ -413,8 +413,6 @@ document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEv
 /* --- Membership tiers: numeral anchor + card rail --- */
 const tiersRail = document.querySelector('#tiers-rail');
 const termButtons = document.querySelectorAll('.term-switch__btn');
-const tiersSelectedCta = document.querySelector('#tiers-selected-cta');
-let selectedPlanId = 'classic';
 
 const PRICING_URL = 'https://urbansportsclub.com/en/prices';
 
@@ -447,46 +445,22 @@ function capitalise(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-function updatePlanActionDock() {
-  const plan = USC_PLANS.find(p => p.id === selectedPlanId) || USC_PLANS[1];
-  if (tiersSelectedCta) {
-    tiersSelectedCta.innerHTML = `Continue with ${plan.name} <span aria-hidden="true">→</span>`;
-    tiersSelectedCta.href = `https://urbansportsclub.com/en/prices?plan=${plan.id}`;
-  }
-}
-
 function renderTiers() {
   if (!tiersRail) return;
   const term = selectedBillingTerm;
 
   tiersRail.replaceChildren(...USC_PLANS.map(plan => {
-    const isSelected = plan.id === selectedPlanId;
-    const card = document.createElement('div');
-    card.className = `tier-card${plan.popular ? ' tier-card--pick' : ''}${isSelected ? ' is-selected' : ''}`;
-    card.setAttribute('role', 'button');
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-pressed', String(isSelected));
-    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month.`);
-
-    const selectPlan = () => {
-      selectedPlanId = plan.id;
-      renderTiers();
-      updatePlanActionDock();
-    };
-
-    card.addEventListener('click', selectPlan);
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        selectPlan();
-      }
-    });
+    const card = document.createElement('a');
+    card.className = `tier-card${plan.popular ? ' tier-card--pick' : ''}`;
+    card.href = `${PRICING_URL}?plan=${plan.id}`;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month. See it on the pricing page.`);
 
     const specs = (plan.tierInfo || '').split('·').map(s => s.trim()).filter(Boolean).slice(0, 2);
 
     card.innerHTML = `
       ${plan.popular && plan.badge ? `<span class="tier-card__badge">${plan.badge}</span>` : ''}
-      <span class="tier-card__select-pill">${isSelected ? '✓ Selected' : 'Select'}</span>
       <div>
         <h3 class="tier-card__name">${plan.name}</h3>
         <p class="tier-card__for">${plan.headline}</p>
@@ -499,11 +473,12 @@ function renderTiers() {
       <ul class="tier-card__specs">
         ${specs.map(spec => `<li>${iconForSpec(spec)}<span>${capitalise(spec)}</span></li>`).join('')}
       </ul>
+      <span class="tier-card__go" aria-hidden="true">&rarr;</span>
     `;
     return card;
   }));
 
-  // 5th card: Compare every membership
+  // Last card in the rail: explore all memberships
   const ctaCard = document.createElement('a');
   ctaCard.className = 'tier-card tier-card--cta';
   ctaCard.href = PRICING_URL;
@@ -515,11 +490,9 @@ function renderTiers() {
       <h3 class="tier-card__cta-title">Compare every membership.</h3>
       <p class="tier-card__cta-copy">See prices, visits and benefits side by side.</p>
     </div>
-    <div class="tier-card__cta-action">Compare all <span aria-hidden="true">&rarr;</span></div>
+    <div class="tier-card__cta-action">Explore memberships <span aria-hidden="true">&rarr;</span></div>
   `;
   tiersRail.appendChild(ctaCard);
-
-  updatePlanActionDock();
 }
 
 function setupTermSwitch() {
