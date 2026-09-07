@@ -166,6 +166,7 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tiers__rail-wrap{position:relative}
 .tiers__rail{display:flex;align-items:stretch;gap:clamp(12px,1.2vw,16px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px 4px 14px}
 .tiers__rail::-webkit-scrollbar{display:none}
+.tiers-scroll-hint{display:none}
 
 /* Card — fixed rows so dividers and CTAs align across all four */
 .tier-card{flex:0 0 clamp(220px,18.4vw,238px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);transition:transform .18s ease,box-shadow .18s ease;text-decoration:none}
@@ -275,14 +276,40 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .tiers h2{font-size:clamp(26px,7.2vw,34px);margin:6px 0 10px}
   .tiers__lede{font-size:14px;line-height:1.4}
   
-  .term-switch-wrap{order:2;margin:18px 0 16px;justify-content:flex-start}
+  .term-switch-wrap{order:2;margin:18px 0 16px;justify-content:center;width:100%}
   .term-switch{overflow-x:auto;scrollbar-width:none;max-width:100%}
   .term-switch::-webkit-scrollbar{display:none}
   .term-switch__btn{padding:8px 14px;font-size:12.5px}
   
-  .tiers__rail-wrap{order:3}
+  .tiers__rail-wrap{order:3;position:relative}
   .tiers__rail{padding:8px 2px 8px;margin-left:0;gap:12px}
-  .tiers__rail>.tier-card{flex:0 0 70vw;max-width:270px;min-width:225px}
+  .tiers__rail>.tier-card{flex:0 0 58vw;max-width:235px;min-width:190px}
+  
+  .tiers-scroll-hint{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:absolute;
+    right:2px;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#fedb00;
+    color:#0b0d0e;
+    border:none;
+    box-shadow:0 4px 14px rgba(0,0,0,.6);
+    z-index:10;
+    cursor:pointer;
+    transition:opacity .25s ease,transform .25s ease;
+  }
+  .tiers-scroll-hint svg{width:16px;height:16px}
+  .tiers-scroll-hint.is-hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-50%) scale(.8);
+  }
   
   .membership-cta{flex-direction:column;align-items:flex-start;gap:24px;padding:48px 20px}
   .membership-cta .button--dark{width:100%;justify-content:center}
@@ -300,11 +327,17 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   
   .nav__controls{gap:6px}
   .nav-dropdown__btn{padding:6px 10px;font-size:12.5px}
-  .tier-card{padding:20px 17px 20px}
+  .tier-card{padding:18px 15px 18px}
   .tier-card--cta{padding:0}
-  .tier-card__cta-body{padding:20px 17px 18px}
-  .tier-card__cta-action{padding:17px}
-  .tier-card__amount{font-size:36px}
+  .tier-card__cta-body{padding:18px 15px 16px}
+  .tier-card__cta-action{padding:15px}
+  .tier-card__amount{font-size:32px}
+  .tier-card__name{font-size:18px}
+  .tier-card__for{font-size:12px}
+  .tier-card__specs{margin-top:14px;padding-top:14px;gap:8px}
+  .tier-card__specs li{font-size:12px;gap:8px}
+  .tier-card__specs svg{flex:0 0 14px;height:14px}
+  .tiers__rail>.tier-card{flex:0 0 60vw;max-width:218px;min-width:180px}
   .week__grid{gap:8px}
   .week__grid b{top:6px;left:6px;padding:4px 6px;font-size:8px}
   .week__end{font-size:13px}

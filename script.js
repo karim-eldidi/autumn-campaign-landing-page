@@ -481,6 +481,26 @@ function setupTermSwitch() {
   });
 }
 
+/* --- Tiers Scroll Hint Button (Mobile) --- */
+const tiersScrollBtn = document.querySelector('#tiers-scroll-btn');
+
+function setupTiersScrollHint() {
+  if (!tiersRail || !tiersScrollBtn) return;
+
+  const updateHintVisibility = () => {
+    const maxScroll = tiersRail.scrollWidth - tiersRail.clientWidth;
+    const isAtEnd = maxScroll <= 10 || (tiersRail.scrollLeft >= maxScroll - 15);
+    tiersScrollBtn.classList.toggle('is-hidden', isAtEnd);
+  };
+
+  tiersScrollBtn.addEventListener('click', () => {
+    tiersRail.scrollBy({ left: Math.max(220, tiersRail.clientWidth * 0.65), behavior: 'smooth' });
+  });
+
+  tiersRail.addEventListener('scroll', updateHintVisibility, { passive: true });
+  window.addEventListener('resize', updateHintVisibility, { passive: true });
+  updateHintVisibility();
+}
 
 /* --- Sticky Mobile Bottom Bar Observer --- */
 const stickyBottomBar = document.querySelector('#sticky-bottom-bar');
@@ -508,6 +528,7 @@ renderCategoryFilters();
 selectCity(selectedCity);
 setupTermSwitch();
 renderTiers();
+setupTiersScrollHint();
 setupStickyBar();
 
 
