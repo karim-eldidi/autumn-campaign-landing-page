@@ -45,6 +45,20 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .button--hero{background:#f6df79;color:#0b0d0e;box-shadow:0 8px 26px rgba(0,0,0,.35)}
 .button--hero:hover{background:#fedb00;color:#0b0d0e}
 
+/* Compact partner trust strip — deliberately non-clickable to avoid extra exits. */
+.partner-strip{display:flex;align-items:center;gap:clamp(28px,4vw,64px);min-height:96px;padding:18px clamp(20px,5vw,72px);background:#f7f4ec;border-bottom:1px solid rgba(11,13,14,.1)}
+.partner-strip__label{flex:0 0 auto;margin:0;color:#62686c;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.partner-strip__logos{display:flex;align-items:center;justify-content:space-between;gap:clamp(26px,4vw,60px);width:100%;min-width:0;color:#16191b}
+.partner-logo{display:inline-flex;align-items:center;white-space:nowrap;line-height:1;filter:grayscale(1);opacity:.72}
+.partner-logo--beat81{font-size:22px;font-weight:900;letter-spacing:-.06em;font-style:italic}
+.partner-logo--beat81 span{color:#2e70ce}
+.partner-logo--holmes{font-size:15px;font-weight:400;letter-spacing:.04em}
+.partner-logo--holmes b{font-weight:900;margin-left:5px}
+.partner-logo--boulderklub{font-size:15px;font-weight:900;letter-spacing:-.02em}
+.partner-logo--berta{font-size:16px;font-weight:900;letter-spacing:.08em}
+.partner-logo--rocycle{font-size:18px;font-weight:900;letter-spacing:-.05em}
+.partner-logo--rocycle span{font-weight:500}
+
 /* Activities / Week Section */
 .week{position:relative;display:grid;grid-template-columns:minmax(260px,.78fr) minmax(0,1.22fr);gap:clamp(36px,6vw,86px);align-items:center;padding:clamp(70px,8vw,118px) clamp(20px,5vw,72px);background:#fff}
 .week__intro{max-width:430px;position:relative;z-index:2}
@@ -259,6 +273,14 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .hero h1 span,.hero h1 mark{display:inline;margin-bottom:0}
   .hero__line{margin:0 0 20px;font-size:clamp(16px,4.2vw,20px);font-weight:600}
   .button--hero{width:100%;min-height:50px}
+
+  .partner-strip{display:block;min-height:0;padding:14px 0 16px;overflow:hidden}
+  .partner-strip__label{margin:0 20px 13px;font-size:9.5px}
+  .partner-strip__logos{justify-content:flex-start;gap:32px;width:max-content;padding:0 20px;animation:partner-drift 18s linear infinite alternate}
+  .partner-logo--beat81{font-size:19px}
+  .partner-logo--holmes,.partner-logo--boulderklub{font-size:13px}
+  .partner-logo--berta{font-size:14px}
+  .partner-logo--rocycle{font-size:16px}
   
   .week{grid-template-columns:1fr;gap:36px}
   .week__intro{max-width:none}
@@ -326,6 +348,14 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   
   .membership-cta{flex-direction:column;align-items:flex-start;gap:24px;padding:48px 20px}
   .membership-cta .button--dark{width:100%;justify-content:center}
+}
+
+@keyframes partner-drift{to{transform:translateX(calc(-100% + 100vw - 20px))}}
+
+@media(prefers-reduced-motion:reduce){
+  .partner-strip__logos{animation:none}
+  .partner-strip{overflow-x:auto;scrollbar-width:none}
+  .partner-strip::-webkit-scrollbar{display:none}
 }
 
 @media(max-width:560px){
