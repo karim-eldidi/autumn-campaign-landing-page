@@ -262,8 +262,8 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .venues__grid{gap:12px;padding:2px}
   .venues__grid>.venue,.venue-end-card{flex:0 0 72vw;max-width:280px;min-width:220px}
   .venue-toolbar__nav{display:none}
-  .venues__footer{flex-direction:column;align-items:stretch;gap:10px;margin-top:12px;padding-top:12px;text-align:center}
-  .venues__footer-copy{justify-content:center;font-size:12.5px}
+  .venues__footer{border-top:none;margin-top:10px;padding-top:0}
+  .venues__footer-copy{display:none}
   .button--usc-blue{width:100%;justify-content:center;min-height:46px}
   
   .tiers{padding:44px 16px 36px}
