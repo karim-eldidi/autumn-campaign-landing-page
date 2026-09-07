@@ -162,6 +162,7 @@ const cityParam = (urlParams.get('city') || '').toLowerCase();
 let selectedCity = (cityParam && CITY_VENUES[cityParam]) ? cityParam : 'berlin';
 let selectedCategory = 'all';
 let selectedBillingTerm = 'annual'; // 'annual' | 'monthly'
+let selectedPlanId = 'classic';
 
 /* --- Header & Venue City Dropdowns & Language Popover --- */
 const navCityDropdown = document.querySelector('#nav-city-dropdown');
@@ -402,6 +403,7 @@ function selectCity(key) {
   updateCityUI();
   renderCategoryFilters();
   renderVenues();
+  renderTiers();
 }
 
 /* Carousel navigation arrows */
@@ -413,8 +415,14 @@ document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEv
 /* --- Membership tiers: numeral anchor + card rail --- */
 const tiersRail = document.querySelector('#tiers-rail');
 const termButtons = document.querySelectorAll('.term-switch__btn');
+const planContinue = document.querySelector('#plan-continue');
+const selectedPlanSummary = document.querySelector('#selected-plan-summary');
 
 const PRICING_URL = 'https://urbansportsclub.com/en/prices';
+
+function pricingUrl(planId) {
+  return `${PRICING_URL}/${selectedCity}?plan=${planId}`;
+}
 
 const TERM_COPY = {
   monthly:  'Billed monthly',
@@ -450,12 +458,11 @@ function renderTiers() {
   const term = selectedBillingTerm;
 
   tiersRail.replaceChildren(...USC_PLANS.map(plan => {
-    const card = document.createElement('a');
-    card.className = `tier-card${plan.popular ? ' tier-card--pick' : ''}`;
-    card.href = `${PRICING_URL}?plan=${plan.id}`;
-    card.target = '_blank';
-    card.rel = 'noopener noreferrer';
-    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month. See it on the pricing page.`);
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = `tier-card${plan.id === selectedPlanId ? ' is-selected' : ''}`;
+    card.setAttribute('aria-pressed', String(plan.id === selectedPlanId));
+    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month. Select this plan.`);
 
     const specs = (plan.tierInfo || '').split('·').map(s => s.trim()).filter(Boolean).slice(0, 2);
 
@@ -473,26 +480,22 @@ function renderTiers() {
       <ul class="tier-card__specs">
         ${specs.map(spec => `<li>${iconForSpec(spec)}<span>${capitalise(spec)}</span></li>`).join('')}
       </ul>
-      <span class="tier-card__go" aria-hidden="true">&rarr;</span>
+      <span class="tier-card__select" aria-hidden="true">${plan.id === selectedPlanId ? 'Selected' : 'Select'}</span>
     `;
+    card.addEventListener('click', () => {
+      selectedPlanId = plan.id;
+      renderTiers();
+    });
     return card;
   }));
 
-  // Last card in the rail: explore all memberships
-  const ctaCard = document.createElement('a');
-  ctaCard.className = 'tier-card tier-card--cta';
-  ctaCard.href = PRICING_URL;
-  ctaCard.target = '_blank';
-  ctaCard.rel = 'noopener noreferrer';
-  ctaCard.innerHTML = `
-    <div class="tier-card__cta-body">
-      <p class="tier-card__cta-kicker">Not sure which fits?</p>
-      <h3 class="tier-card__cta-title">Compare every membership.</h3>
-      <p class="tier-card__cta-copy">See prices, visits and benefits side by side.</p>
-    </div>
-    <div class="tier-card__cta-action">Explore memberships <span aria-hidden="true">&rarr;</span></div>
-  `;
-  tiersRail.appendChild(ctaCard);
+  const selectedPlan = USC_PLANS.find(plan => plan.id === selectedPlanId) || USC_PLANS[1];
+  const selectedPrice = priceForTerm(selectedPlan, term);
+  if (selectedPlanSummary) selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · ${TERM_COPY[term].replace(/<[^>]+>/g, '')}`;
+  if (planContinue) {
+    planContinue.href = pricingUrl(selectedPlan.id);
+    planContinue.firstChild.textContent = `Continue with ${selectedPlan.name} `;
+  }
 }
 
 function setupTermSwitch() {
@@ -535,7 +538,7 @@ const stickyBottomBar = document.querySelector('#sticky-bottom-bar');
 
 function setupStickyBar() {
   if (!stickyBottomBar) return;
-  const bottomCta = document.querySelector('.membership-cta');
+  const bottomCta = document.querySelector('.tiers__continue');
   const footer = document.querySelector('.site-footer');
 
   let atBottom = false;
@@ -572,5 +575,3 @@ setupTermSwitch();
 renderTiers();
 setupTiersScrollHint();
 setupStickyBar();
-
-
