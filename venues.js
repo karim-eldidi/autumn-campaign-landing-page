@@ -1,0 +1,24 @@
+const CITY_VENUES = {
+  berlin: { name:'Berlin', centre:{lat:52.52,lng:13.405}, directoryUrl:'https://urbansportsclub.com/en/venues/berlin/berlin', venues:[
+    {name:'BOULDERKLUB Kreuzberg',area:'Kreuzberg',type:'Bouldering & training',address:'Ohlauer Str. 38, 10999 Berlin',image:'assets/venue-boulderklub.jpg',sourceUrl:'https://urbansportsclub.com/en/venues/boulderklub-kreuzberg'},
+    {name:'LIQUIDROM',area:'Kreuzberg',type:'Sauna & recovery',address:'Möckernstraße 10, 10963 Berlin',image:'assets/venues/berlin-liquidrom.png',sourceUrl:'https://urbansportsclub.com/en/venues/liquidrom-1'},
+    {name:'Stadtbad Neukölln',area:'Neukölln',type:'Swimming & sauna',address:'Ganghoferstraße 3, 12043 Berlin',image:'assets/venue-stadtbad.jpg',sourceUrl:'https://urbansportsclub.com/en/venues/stadtbad-neukolln'},
+    {name:'Holmes Place Neue Welt',area:'Neukölln',type:'Gym, swimming & sauna',address:'Hasenheide 109 ff., 10967 Berlin',image:'assets/venues/berlin-holmes-neue-welt.png',sourceUrl:'https://urbansportsclub.com/en/venues/holmes-place-neue-welt'},
+    {name:'Holmes Place Gendarmenmarkt',area:'Mitte',type:'Gym, swimming & sauna',address:'Friedrichstraße 68, 10117 Berlin',image:'assets/venues/berlin-holmes-gendarmenmarkt.png',sourceUrl:'https://urbansportsclub.com/en/venues/holmes-place-gendarmenmarkt'},
+    {name:'ANTI SPA',area:'Mitte',type:'Sauna & recovery',address:'Brunnenstraße 9, 10119 Berlin',image:'assets/venues/berlin-anti-spa.png',sourceUrl:'https://urbansportsclub.com/en/venues/oasis'} ]},
+  hamburg: { name:'Hamburg', centre:{lat:53.5511,lng:9.9937}, directoryUrl:'https://urbansportsclub.com/en/venues/hamburg/hamburg', venues:[
+    {name:'Sports Club Hamburg- City',area:'Mitte',type:'Gym, pool & sauna',address:'Poststraße 18, 20354 Hamburg',image:'assets/venues/hamburg-sports-club.png',sourceUrl:'https://urbansportsclub.com/en/venues/sports-club-hamburg-city-gmbh'},
+    {name:'Bäderland Kaifubad (Sauna/Sole)',area:'Eimsbüttel',type:'Sauna & wellness',address:'Hohe Weide 15, 20259 Hamburg',image:'assets/venues/hamburg-kaifubad.png',sourceUrl:'https://urbansportsclub.com/en/venues/baderland-kaifu-bad-sauna'},
+    {name:'Longevity Club by Cryopoint',area:'Mitte',type:'Recovery & wellness',address:'Kaiser-Wilhelm-Straße 9, 20355 Hamburg',image:'assets/venues/hamburg-longevity.png',sourceUrl:'https://urbansportsclub.com/en/venues/longevity-club-by-cryopoint'},
+    {name:'Fitness First Hamburg - Eppendorf Straßenbahnring',area:'Eppendorf',type:'Gym & recovery',address:'Straßenbahnring 8, 20251 Hamburg',image:'assets/venues/hamburg-fitness-first.png',sourceUrl:'https://urbansportsclub.com/en/venues/fitness-first-hamburg-eppendorf-straenbahnring'} ]},
+  munich: { name:'Munich', centre:{lat:48.1351,lng:11.582}, directoryUrl:'https://urbansportsclub.com/en/venues/munchen/munchen', venues:[
+    {name:'MunichGym',area:'Schwabing-West',type:'Gym, sauna & wellness',address:'Kathi-Kobus-Straße 11, 80797 Munich',image:'assets/venues/munich-munichgym.jpg',sourceUrl:'https://urbansportsclub.com/en/venues/munichgym'},
+    {name:'Nordbad - Sauna',area:'Schwabing-West',type:'Sauna',address:'Schleißheimer Straße 142, 80797 Munich',image:'assets/venues/munich-nordbad.png',sourceUrl:'https://urbansportsclub.com/en/venues/nordbad-sauna'},
+    {name:'EVO Fitness Maxvorstadt',area:'Maxvorstadt',type:'Gym & functional training',address:'Brienner Straße 55, 80333 Munich',image:'assets/venues/munich-evo.png',sourceUrl:'https://urbansportsclub.com/en/venues/evo-maxvorstadt'},
+    {name:'Fitness First München - Hofstatt',area:'Altstadt',type:'Gym & sauna',address:'Sendlinger Straße 10, 80331 Munich',image:'assets/venues/munich-fitness-first.png',sourceUrl:'https://urbansportsclub.com/en/venues/fitness-first-mnchen-hofstatt'} ]},
+  cologne: { name:'Cologne', centre:{lat:50.9375,lng:6.9603}, directoryUrl:'https://urbansportsclub.com/en/venues/koln/koln', venues:[
+    {name:'Iron&Soul Köln',area:'Zollstock',type:'Gym, Hyrox & recovery',address:'Weyerstraßerweg 10, 50969 Cologne',image:'assets/venues/cologne-iron-soul.png',sourceUrl:'https://urbansportsclub.com/en/venues/iron-soul-kln'},
+    {name:'Holmes Place Köln am Gürzenich',area:'Altstadt',type:'Gym, pool & sauna',address:'Gürzenichstr. 6, 50667 Cologne',image:'assets/venues/cologne-holmes.png',sourceUrl:'https://urbansportsclub.com/en/venues/holmes-place-am-gurzenich'},
+    {name:'Mauritius Therme',area:'Altstadt',type:'Gym, thermal pools & sauna',address:'Mauritiuskirchplatz 3–11, 50676 Cologne',image:'assets/venues/cologne-mauritius.jpg',sourceUrl:'https://urbansportsclub.com/en/venues/mauritius-therme'},
+    {name:'THE OTHER SPACE',area:'Ehrenfeld',type:'Gym, movement & wellness',address:'Vogelsanger Straße 195A, 50825 Cologne',image:'assets/venues/cologne-other-space.png',sourceUrl:'https://urbansportsclub.com/en/venues/the-other-space-ehrenfeld'} ]}
+};

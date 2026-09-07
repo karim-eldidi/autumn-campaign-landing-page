@@ -11,7 +11,7 @@
 <body>
   <header class="nav">
     <span class="wordmark">Urban Sports Club</span>
-    <span class="place">Berlin</span>
+    <span class="place" id="nav-city">Berlin</span>
   </header>
 
   <main>
@@ -47,23 +47,15 @@
 
     <section class="venues">
       <div class="venues__head">
-        <div><p class="eyebrow eyebrow--light">Berlin</p><h2>Train and recover near you.</h2></div>
-        <p>Real Urban Sports Club partner venues for both sides of your week.</p>
+        <div><p class="eyebrow eyebrow--light" id="venue-city-label">Berlin</p><h2>Train and recover near you.</h2></div>
+        <p>Explore a verified selection of Urban Sports Club partner venues.</p>
       </div>
-      <div class="venue-filter" aria-label="Choose an area of Berlin">
-        <button class="is-active" type="button" data-area="all" aria-pressed="true">All Berlin</button>
-        <button type="button" data-area="kreuzberg" aria-pressed="false">Kreuzberg</button>
-        <button type="button" data-area="neukoelln" aria-pressed="false">Neukölln</button>
-        <button type="button" data-area="mitte" aria-pressed="false">Mitte</button>
-      </div>
-      <div class="venues__grid">
-        <article class="venue" data-venue-area="kreuzberg"><img src="assets/venue-boulderklub.jpg" alt="BOULDERKLUB Kreuzberg"><div><p>Bouldering & training</p><h3>BOULDERKLUB Kreuzberg</h3><span>Kreuzberg</span></div></article>
-        <article class="venue" data-venue-area="kreuzberg"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2FvenueHome_1024x576_qk9djxuobemxalgecbx1_1710844223524229.png?generation=1751984997213163&amp;alt=media" alt="LIQUIDROM"><div><p>Sauna & recovery</p><h3>LIQUIDROM</h3><span>Kreuzberg</span></div></article>
-        <article class="venue" data-venue-area="neukoelln"><img src="assets/venue-stadtbad.jpg" alt="Stadtbad Neukölln"><div><p>Swimming & sauna</p><h3>Stadtbad Neukölln</h3><span>Neukölln</span></div></article>
-        <article class="venue" data-venue-area="neukoelln"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2FvenueHome_1024x576_Berlin%20Neue%20Welt%20(6)_1667394290563246_admin.jpg?generation=1751980018330406&amp;alt=media" alt="Holmes Place Neue Welt"><div><p>Gym, swimming & sauna</p><h3>Holmes Place Neue Welt</h3><span>Neukölln</span></div></article>
-        <article class="venue" data-venue-area="mitte"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2Foriginal_1024x576_Berlin%20Gendarmenmarkt_1667393985223825_admin.png?generation=1751980015800686&amp;alt=media" alt="Holmes Place Gendarmenmarkt"><div><p>Gym, swimming & sauna</p><h3>Holmes Place Gendarmenmarkt</h3><span>Mitte</span></div></article>
-        <article class="venue" data-venue-area="mitte"><img src="https://storage.googleapis.com/download/storage/v1/b/usc-pro-uscweb-live-media/o/venues%2FvenueHome_1024x576_tt5ij0wt6fk9gddwbmvn_1781696306479583.png?generation=1781696307799422&amp;alt=media" alt="ANTI SPA"><div><p>Sauna & recovery</p><h3>ANTI SPA</h3><span>Mitte</span></div></article>
-      </div>
+      <div class="city-picker" aria-labelledby="city-picker-label"><div><p id="city-picker-label">Choose your city</p><div class="city-picker__options" id="city-options"></div></div><button class="detect-location" type="button" id="detect-location"><span aria-hidden="true">⌖</span> Use my location</button></div>
+      <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
+      <div class="venue-filter" id="area-options" aria-label="Choose an area"></div>
+      <div class="venues__grid" id="venue-grid"></div>
+      <div class="venues__more"><a class="button button--light" id="more-venues" target="_blank" rel="noopener">See more venues in Berlin <span aria-hidden="true">↗</span></a></div>
+      <p class="venue-note">Venue information and photography sourced from the linked Urban Sports Club venue pages. Availability and membership limits can change—check the venue page before visiting.</p>
     </section>
 
     <section class="membership" id="membership">
@@ -75,6 +67,7 @@
       <a class="button" href="#week">Find my membership <span aria-hidden="true">→</span></a>
     </section>
   </main>
+  <script src="venues.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

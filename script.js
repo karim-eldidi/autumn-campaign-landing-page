@@ -92,8 +92,71 @@ requestAnimationFrame(() => { layoutJourney(); week?.classList.add('is-drawn'); 
 new ResizeObserver(layoutJourney).observe(week);
 document.querySelectorAll('.week img').forEach(img => { if (!img.complete) img.addEventListener('load',layoutJourney,{once:true}); });
 
-document.querySelectorAll('[data-area]').forEach(button => button.addEventListener('click', () => {
-  const area=button.dataset.area;
-  document.querySelectorAll('[data-area]').forEach(item => { const active=item===button; item.classList.toggle('is-active',active); item.setAttribute('aria-pressed',String(active)); });
-  document.querySelectorAll('[data-venue-area]').forEach(card => { card.hidden=area!=='all'&&card.dataset.venueArea!==area; });
-}));
+const cityOptions = document.querySelector('#city-options');
+const areaOptions = document.querySelector('#area-options');
+const venueGrid = document.querySelector('#venue-grid');
+const cityLabel = document.querySelector('#venue-city-label');
+const navCity = document.querySelector('#nav-city');
+const moreVenues = document.querySelector('#more-venues');
+const locationStatus = document.querySelector('#location-status');
+let selectedCity = 'berlin';
+let selectedArea = 'all';
+
+function renderCityOptions() {
+  cityOptions.replaceChildren(...Object.entries(CITY_VENUES).map(([key, city]) => {
+    const button=document.createElement('button');
+    button.type='button'; button.textContent=city.name;
+    const active=key===selectedCity; button.classList.toggle('is-active',active); button.setAttribute('aria-pressed',String(active));
+    button.addEventListener('click',()=>selectCity(key)); return button;
+  }));
+}
+
+function renderAreas() {
+  const city=CITY_VENUES[selectedCity];
+  const areas=['all',...new Set(city.venues.map(venue=>venue.area))];
+  areaOptions.setAttribute('aria-label',`Choose an area of ${city.name}`);
+  areaOptions.replaceChildren(...areas.map(area => {
+    const button=document.createElement('button');
+    button.type='button'; button.textContent=area==='all'?`All ${city.name}`:area;
+    const active=area===selectedArea; button.classList.toggle('is-active',active); button.setAttribute('aria-pressed',String(active));
+    button.addEventListener('click',()=>{selectedArea=area;renderAreas();renderVenues();}); return button;
+  }));
+}
+
+function renderVenues() {
+  const city=CITY_VENUES[selectedCity];
+  const venues=city.venues.filter(venue=>selectedArea==='all'||venue.area===selectedArea);
+  venueGrid.replaceChildren(...venues.map(venue => {
+    const card=document.createElement('a'); card.className='venue'; card.href=venue.sourceUrl; card.target='_blank'; card.rel='noopener';
+    const img=document.createElement('img'); img.src=venue.image; img.alt=venue.name; img.loading='lazy';
+    const copy=document.createElement('div'), type=document.createElement('p'), name=document.createElement('h3'), address=document.createElement('span'), source=document.createElement('small');
+    type.textContent=venue.type; name.textContent=venue.name; address.textContent=`${venue.area} · ${venue.address}`; source.textContent='View verified venue ↗';
+    copy.append(type,name,address,source); card.append(img,copy); return card;
+  }));
+}
+
+function selectCity(key) {
+  selectedCity=key; selectedArea='all';
+  const city=CITY_VENUES[key]; cityLabel.textContent=city.name; navCity.textContent=city.name;
+  moreVenues.href=city.directoryUrl; moreVenues.firstChild.textContent=`See more venues in ${city.name} `;
+  renderCityOptions(); renderAreas(); renderVenues();
+}
+
+function distanceKm(a,b) {
+  const rad=n=>n*Math.PI/180, earth=6371, dLat=rad(b.lat-a.lat), dLng=rad(b.lng-a.lng);
+  const value=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLng/2)**2;
+  return earth*2*Math.atan2(Math.sqrt(value),Math.sqrt(1-value));
+}
+
+document.querySelector('#detect-location')?.addEventListener('click', () => {
+  if (!navigator.geolocation) { locationStatus.textContent='Location detection is unavailable. Choose a city above.'; return; }
+  locationStatus.textContent='Checking your nearest demo city…';
+  navigator.geolocation.getCurrentPosition(position => {
+    const point={lat:position.coords.latitude,lng:position.coords.longitude};
+    const nearest=Object.entries(CITY_VENUES).map(([key,city])=>({key,city,distance:distanceKm(point,city.centre)})).sort((a,b)=>a.distance-b.distance)[0];
+    if (nearest.distance>120) { locationStatus.textContent='None of the four demo cities appears to be nearby. Choose a city above.'; return; }
+    selectCity(nearest.key); locationStatus.textContent=`Showing ${nearest.city.name}, your nearest demo city. Your location stays in this browser.`;
+  }, () => { locationStatus.textContent='Location was not shared. Choose a city above.'; }, {enableHighAccuracy:false,timeout:8000,maximumAge:300000});
+});
+
+selectCity(selectedCity);
