@@ -320,6 +320,9 @@ function renderVenues() {
     img.src = venue.image;
     img.alt = venue.name;
     img.loading = 'lazy';
+    img.onerror = () => {
+      img.src = 'assets/about-wellness.jpg';
+    };
 
     const badge = document.createElement('span');
     badge.className = 'venue__badge';
