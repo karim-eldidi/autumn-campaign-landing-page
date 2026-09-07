@@ -15,7 +15,7 @@
     </a>
     <div class="nav__controls">
       <div class="nav-dropdown" id="nav-city-dropdown">
-        <button class="nav-dropdown__btn" id="nav-city-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select city">
+        <button class="nav-dropdown__btn nav-dropdown__btn--pill" id="nav-city-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select city">
           <span class="nav-dropdown__icon">📍</span>
           <span class="nav-dropdown__text" id="nav-city-text">Berlin</span>
           <span class="nav-dropdown__chevron" aria-hidden="true">▾</span>
@@ -24,14 +24,18 @@
       </div>
 
       <div class="nav-dropdown" id="nav-lang-dropdown">
-        <button class="nav-dropdown__btn" id="nav-lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+        <button class="nav-dropdown__btn nav-dropdown__btn--pill" id="nav-lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
           <span class="nav-dropdown__icon">🌐</span>
           <span class="nav-dropdown__text" id="nav-lang-text">EN</span>
           <span class="nav-dropdown__chevron" aria-hidden="true">▾</span>
         </button>
-        <div class="nav-dropdown__menu nav-dropdown__menu--right" id="nav-lang-menu" role="menu">
-          <button class="nav-dropdown__item is-active" type="button" data-lang="en" role="menuitem">English (EN)</button>
-          <button class="nav-dropdown__item" type="button" data-lang="de" role="menuitem">Deutsch (DE)</button>
+        <div class="nav-dropdown__menu nav-dropdown__menu--lang" id="nav-lang-menu" role="menu">
+          <button class="nav-dropdown__item is-active" type="button" data-lang="en" role="menuitem">EN</button>
+          <button class="nav-dropdown__item" type="button" data-lang="de" role="menuitem">DE</button>
+          <button class="nav-dropdown__item" type="button" data-lang="fr" role="menuitem">FR</button>
+          <button class="nav-dropdown__item" type="button" data-lang="pt" role="menuitem">PT</button>
+          <button class="nav-dropdown__item" type="button" data-lang="es" role="menuitem">ES</button>
+          <button class="nav-dropdown__item" type="button" data-lang="nl" role="menuitem">NL</button>
         </div>
       </div>
     </div>
@@ -56,8 +60,8 @@
       <svg class="week__journey" aria-hidden="true" preserveAspectRatio="none"><path></path></svg>
       <div class="week__intro">
         <p class="eyebrow">One membership around your life</p>
-        <h2>A week that feels like yours.</h2>
-        <p>Train, move and recover your way. Choose what fits today—and something different tomorrow.</p>
+        <h2>And a week that feels like yours.</h2>
+        <p>Train, move and recover your way. Choose what fits today and something different tomorrow.</p>
         <div class="pass"><span class="pass__mark">U</span><strong>One membership</strong><i aria-hidden="true"></i></div>
         <p class="mechanics">Find a venue <span>→</span> Book or check in</p>
       </div>
@@ -78,18 +82,22 @@
         <p class="venues__subtitle">Switch between high-energy workouts and deep relaxation across 10,000+ partner locations with one membership.</p>
       </div>
 
-      <div class="venues__toolbar">
-        <div class="venues__city-bar">
-          <div class="city-selector-inline">
-            <span class="city-selector-inline__label">City:</span>
-            <div class="city-selector-inline__options" id="city-options"></div>
+      <div class="venue-toolbar" id="venue-toolbar">
+        <div class="venue-toolbar__city-group">
+          <div class="nav-dropdown venue-city-dropdown" id="venue-city-dropdown">
+            <button class="nav-dropdown__btn nav-dropdown__btn--dark" id="venue-city-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select city">
+              <span>📍</span>
+              <span id="venue-city-btn-text">Berlin</span>
+              <span class="nav-dropdown__chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="nav-dropdown__menu" id="venue-city-menu" role="menu"></div>
           </div>
-          <button class="detect-location" type="button" id="detect-location"><span aria-hidden="true">⌖</span> Use my location</button>
+          <button class="detect-location--pill" type="button" id="detect-location"><span aria-hidden="true">⌖</span> Near me</button>
         </div>
-        <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
-        
+        <div class="venue-toolbar__divider" aria-hidden="true"></div>
         <div class="category-filter" id="category-options" aria-label="Filter by sport category"></div>
       </div>
+      <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
 
       <div class="venue-carousel">
         <button class="venue-carousel__nav venue-carousel__nav--prev" type="button" data-scroll-venues="prev" aria-label="Previous venues">←</button>
@@ -97,9 +105,48 @@
         <button class="venue-carousel__nav venue-carousel__nav--next" type="button" data-scroll-venues="next" aria-label="Next venues">→</button>
       </div>
       <div class="venues__more">
-        <a class="button button--usc-blue" id="more-venues" target="_blank" rel="noopener">See more venues in Berlin <span aria-hidden="true">↗</span></a>
+        <a class="button button--usc-blue button--compact" id="more-venues" target="_blank" rel="noopener">Explore all Berlin venues <span aria-hidden="true">↗</span></a>
       </div>
-      <p class="venue-note">Venue information and photography sourced from the linked Urban Sports Club venue pages. Availability and membership limits can change—check the venue page before visiting.</p>
+    </section>
+
+    <section class="comparison" id="comparison">
+      <div class="comparison__container">
+        <div class="comparison__header">
+          <p class="eyebrow eyebrow--light">Smarter Fitness</p>
+          <h2>Why one membership beats multiple contracts.</h2>
+          <p class="comparison__subtitle">Everything you need across strength, cardio, and recovery—without the lock-in of separate studios.</p>
+        </div>
+        <div class="comparison__grid">
+          <div class="comparison-card comparison-card--standard">
+            <div class="comparison-card__head">
+              <span class="comparison-card__tag">Traditional Way</span>
+              <h3>Single Gym / Studio</h3>
+              <p>Fixed routines, multiple fees</p>
+            </div>
+            <ul class="comparison-card__list">
+              <li><span class="comparison-icon is-neg">✕</span> Bound to one single location & vibe</li>
+              <li><span class="comparison-icon is-neg">✕</span> Separate costly contracts for yoga or bouldering</li>
+              <li><span class="comparison-icon is-neg">✕</span> Sauna & wellness usually charged extra or missing</li>
+              <li><span class="comparison-icon is-neg">✕</span> Rigid 12–24 month cancellation lock-ins</li>
+            </ul>
+          </div>
+
+          <div class="comparison-card comparison-card--highlight">
+            <div class="comparison-card__badge">All-in-One Freedom</div>
+            <div class="comparison-card__head">
+              <span class="comparison-card__tag">Urban Sports Club</span>
+              <h3>One Flexible Pass</h3>
+              <p>50+ sports & saunas across Europe</p>
+            </div>
+            <ul class="comparison-card__list">
+              <li><span class="comparison-icon is-pos">✓</span> 10,000+ premium gym, yoga, climbing & pool venues</li>
+              <li><span class="comparison-icon is-pos">✓</span> Seamless app check-in at all partner locations</li>
+              <li><span class="comparison-icon is-pos">✓</span> High-end saunas, spas & recovery included</li>
+              <li><span class="comparison-icon is-pos">✓</span> Pause anytime, flexible monthly or annual choices</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="membership-plans" id="membership">
@@ -123,6 +170,12 @@
 
         <div class="plans-grid" id="plans-grid"></div>
 
+        <div class="plans-bottom-cta">
+          <a class="button button--usc-blue button--large-cta" href="https://urbansportsclub.com/en/prices" target="_blank" rel="noopener noreferrer">
+            Explore all memberships & sign up <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
         <div class="plans-trust">
           <div class="trust-item"><span class="trust-icon">✓</span> <span>Pause anytime</span></div>
           <div class="trust-item"><span class="trust-icon">✓</span> <span>No hidden fees</span></div>
@@ -144,6 +197,6 @@
   </div>
 
   <script src="venues.js?v=autumn-v2"></script>
-  <script src="script.js?v=rotating-hero"></script>
+  <script src="script.js?v=autumn-v2"></script>
 </body>
 </html>

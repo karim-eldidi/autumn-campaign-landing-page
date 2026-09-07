@@ -144,32 +144,40 @@ let selectedCity = 'berlin';
 let selectedCategory = 'all';
 let selectedBillingTerm = 'annual'; // 'annual' | 'monthly'
 
-/* --- Header Controls & Dropdowns --- */
+/* --- Header & Venue City Dropdowns & Language Popover --- */
 const navCityDropdown = document.querySelector('#nav-city-dropdown');
 const navCityBtn = document.querySelector('#nav-city-btn');
 const navCityText = document.querySelector('#nav-city-text');
 const navCityMenu = document.querySelector('#nav-city-menu');
+
+const venueCityDropdown = document.querySelector('#venue-city-dropdown');
+const venueCityBtn = document.querySelector('#venue-city-btn');
+const venueCityText = document.querySelector('#venue-city-btn-text');
+const venueCityMenu = document.querySelector('#venue-city-menu');
 
 const navLangDropdown = document.querySelector('#nav-lang-dropdown');
 const navLangBtn = document.querySelector('#nav-lang-btn');
 const navLangText = document.querySelector('#nav-lang-text');
 const navLangMenu = document.querySelector('#nav-lang-menu');
 
+function populateCityMenu(menuEl, onSelect) {
+  if (!menuEl) return;
+  menuEl.replaceChildren(...Object.entries(CITY_VENUES).map(([key, city]) => {
+    const item = document.createElement('button');
+    item.className = `nav-dropdown__item${key === selectedCity ? ' is-active' : ''}`;
+    item.type = 'button';
+    item.textContent = city.name;
+    item.addEventListener('click', () => {
+      onSelect(key);
+      closeAllDropdowns();
+    });
+    return item;
+  }));
+}
+
 function setupNavDropdowns() {
-  // Populate Nav City Menu
-  if (navCityMenu) {
-    navCityMenu.replaceChildren(...Object.entries(CITY_VENUES).map(([key, city]) => {
-      const item = document.createElement('button');
-      item.className = `nav-dropdown__item${key === selectedCity ? ' is-active' : ''}`;
-      item.type = 'button';
-      item.textContent = city.name;
-      item.addEventListener('click', () => {
-        selectCity(key);
-        closeAllDropdowns();
-      });
-      return item;
-    }));
-  }
+  populateCityMenu(navCityMenu, selectCity);
+  populateCityMenu(venueCityMenu, selectCity);
 
   // Toggle Nav City
   navCityBtn?.addEventListener('click', e => {
@@ -179,6 +187,17 @@ function setupNavDropdowns() {
     if (!isOpen) {
       navCityDropdown.classList.add('is-open');
       navCityBtn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Toggle Venue City
+  venueCityBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = venueCityDropdown.classList.contains('is-open');
+    closeAllDropdowns();
+    if (!isOpen) {
+      venueCityDropdown.classList.add('is-open');
+      venueCityBtn.setAttribute('aria-expanded', 'true');
     }
   });
 
@@ -215,36 +234,25 @@ function closeAllDropdowns() {
   });
 }
 
-function updateNavCityUI() {
-  if (navCityText) navCityText.textContent = CITY_VENUES[selectedCity].name;
-  navCityMenu?.querySelectorAll('.nav-dropdown__item').forEach(item => {
-    const isCurrent = item.textContent.trim() === CITY_VENUES[selectedCity].name;
-    item.classList.toggle('is-active', isCurrent);
+function updateCityUI() {
+  const cityName = CITY_VENUES[selectedCity].name;
+  if (navCityText) navCityText.textContent = cityName;
+  if (venueCityText) venueCityText.textContent = cityName;
+
+  [navCityMenu, venueCityMenu].forEach(menu => {
+    menu?.querySelectorAll('.nav-dropdown__item').forEach(item => {
+      const isCurrent = item.textContent.trim() === cityName;
+      item.classList.toggle('is-active', isCurrent);
+    });
   });
 }
 
 /* --- Venue Section Controls --- */
-const cityOptions = document.querySelector('#city-options');
 const categoryOptions = document.querySelector('#category-options');
 const venueGrid = document.querySelector('#venue-grid');
 const cityLabel = document.querySelector('#venue-city-label');
 const moreVenues = document.querySelector('#more-venues');
 const locationStatus = document.querySelector('#location-status');
-
-function renderCityOptions() {
-  if (!cityOptions) return;
-  cityOptions.replaceChildren(...Object.entries(CITY_VENUES).map(([key, city]) => {
-    const button = document.createElement('button');
-    button.className = 'city-btn';
-    button.type = 'button';
-    button.textContent = city.name;
-    const active = key === selectedCity;
-    button.classList.toggle('is-active', active);
-    button.setAttribute('aria-pressed', String(active));
-    button.addEventListener('click', () => selectCity(key));
-    return button;
-  }));
-}
 
 function renderCategoryFilters() {
   if (!categoryOptions) return;
@@ -280,21 +288,36 @@ function renderVenues() {
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
 
+    // Media Wrapper with Category Badge
+    const media = document.createElement('div');
+    media.className = 'venue__media';
     const img = document.createElement('img');
     img.src = venue.image;
     img.alt = venue.name;
     img.loading = 'lazy';
 
-    const copy = document.createElement('div');
-    const type = document.createElement('p');
-    type.textContent = venue.type;
+    const badge = document.createElement('span');
+    badge.className = 'venue__badge';
+    badge.textContent = venue.type;
+    media.append(img, badge);
+
+    // Card Body
+    const body = document.createElement('div');
+    body.className = 'venue__body';
+
     const name = document.createElement('h3');
     name.textContent = venue.name;
-    const area = document.createElement('span');
-    area.textContent = `${venue.area} · ${venue.address}`;
 
-    copy.append(type, name, area);
-    card.append(img, copy);
+    const meta = document.createElement('p');
+    meta.className = 'venue__meta';
+    meta.textContent = `📍 ${venue.area} · ${city.name}`;
+
+    const tier = document.createElement('span');
+    tier.className = 'venue__tier-tag';
+    tier.textContent = `Included in ${venue.tier || 'Classic'}`;
+
+    body.append(name, meta, tier);
+    card.append(media, body);
     return card;
   });
 
@@ -320,10 +343,9 @@ function selectCity(key) {
   if (cityLabel) cityLabel.textContent = city.name;
   if (moreVenues) {
     moreVenues.href = city.directoryUrl;
-    moreVenues.innerHTML = `See all partner venues in ${city.name} <span aria-hidden="true">↗</span>`;
+    moreVenues.innerHTML = `Explore all ${city.name} venues <span aria-hidden="true">↗</span>`;
   }
-  updateNavCityUI();
-  renderCityOptions();
+  updateCityUI();
   renderVenues();
 }
 
@@ -383,6 +405,16 @@ function renderPlans() {
       card.appendChild(badge);
     }
 
+    const headlineWrap = document.createElement('div');
+    headlineWrap.className = 'plan-card__headline-wrap';
+    const emoji = document.createElement('span');
+    emoji.className = 'plan-card__emoji';
+    emoji.textContent = plan.emoji || '✨';
+    const headline = document.createElement('span');
+    headline.className = 'plan-card__headline';
+    headline.textContent = plan.headline || plan.name;
+    headlineWrap.append(emoji, headline);
+
     const title = document.createElement('h3');
     title.className = 'plan-card__title';
     title.textContent = plan.name;
@@ -410,14 +442,7 @@ function renderPlans() {
       featureList.appendChild(li);
     });
 
-    const ctaBtn = document.createElement('a');
-    ctaBtn.className = 'plan-card__btn';
-    ctaBtn.href = plan.url;
-    ctaBtn.target = '_blank';
-    ctaBtn.rel = 'noopener noreferrer';
-    ctaBtn.innerHTML = `${plan.cta} <span aria-hidden="true">→</span>`;
-
-    card.append(title, summary, pricing, featureList, ctaBtn);
+    card.append(headlineWrap, title, summary, pricing, featureList);
     return card;
   }));
 }
@@ -439,22 +464,13 @@ function setupBillingToggle() {
 
 /* --- Sticky Mobile Bottom Bar Observer --- */
 const stickyBottomBar = document.querySelector('#sticky-bottom-bar');
-const heroSection = document.querySelector('#hero');
-const membershipSection = document.querySelector('#membership');
 
 function setupStickyBar() {
-  if (!stickyBottomBar || !heroSection) return;
+  if (!stickyBottomBar) return;
 
   const handleScroll = () => {
-    const heroRect = heroSection.getBoundingClientRect();
-    const membershipRect = membershipSection?.getBoundingClientRect();
-
-    // Show after scrolling past hero
-    const isPastHero = heroRect.bottom < 120;
-    // Hide when inside membership section so cards are visible without obstruction
-    const isInsideMembership = membershipRect && membershipRect.top < window.innerHeight && membershipRect.bottom > 200;
-
-    if (isPastHero && !isInsideMembership) {
+    // Smoothly visible once scrolling past initial header/top hero
+    if (window.scrollY > 80) {
       stickyBottomBar.classList.add('is-visible');
       stickyBottomBar.setAttribute('aria-hidden', 'false');
     } else {
@@ -469,9 +485,9 @@ function setupStickyBar() {
 
 /* --- Init --- */
 setupNavDropdowns();
-renderCityOptions();
 renderCategoryFilters();
 selectCity(selectedCity);
 setupBillingToggle();
 renderPlans();
 setupStickyBar();
+
