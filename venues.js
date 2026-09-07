@@ -3,8 +3,14 @@ const VENUE_CATEGORIES = [
   { id: 'gym', label: 'Gym & Fitness', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/></svg>' },
   { id: 'sauna', label: 'Sauna & Recovery', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M8 6v3M16 6v3M6 13a6 6 0 0 0 12 0c0-4-6-9-6-9s-6 5-6 9z"/></svg>' },
   { id: 'swim', label: 'Swimming & Pools', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5 1.5 5 1.5 7.5 0s5-1.5 7.5 0 5 1.5 7 0M2 17c2.5 1.5 5 1.5 7.5 0s5-1.5 7.5 0 5 1.5 7 0"/></svg>' },
-  { id: 'boulder', label: 'Bouldering', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22 12 2"/></svg>' }
+  { id: 'boulder', label: 'Bouldering', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22 12 2"/></svg>' },
+  { id: 'yoga', label: 'Yoga & Pilates', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M9 9c0 0 0 6 3 9s3-9 3-9M3 12h18M9 18c0 1.5 3 4 3 4s3-2.5 3-4"/></svg>' },
+  { id: 'cycling', label: 'Cycling & Spinning', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 18h12M9 9c0 0 6-2 9 0"/></svg>' },
+  { id: 'dance', label: 'Dance & Zumba', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M9 9l-2 4M15 9l2 4M9 13l-3 5M15 13l3 5M12 9v4"/></svg>' },
+  { id: 'martial', label: 'Martial Arts', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M8 9l-3 3M16 9l3 3M10 15l-2 6M14 15l2 6M12 9v6"/></svg>' },
+  { id: 'crossfit', label: 'CrossFit', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3v18M6 6l12 12M18 6l-12 12"/></svg>' }
 ];
+
 
 const USC_PLANS = [
   {
@@ -110,7 +116,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['boulder', 'gym'],
         address: 'Ohlauer Str. 38, 10999 Berlin',
-        image: 'assets/venue-boulderklub.jpg',
+        image: 'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/boulderklub-kreuzberg'
       },
       {
@@ -120,7 +126,7 @@ const CITY_VENUES = {
         tier: 'Premium',
         categories: ['sauna'],
         address: 'Möckernstraße 10, 10963 Berlin',
-        image: 'assets/venues/berlin-liquidrom.png',
+        image: 'https://images.unsplash.com/photo-1578894007935-32409989f348?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/liquidrom-1'
       },
       {
@@ -130,7 +136,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['swim', 'sauna'],
         address: 'Ganghoferstraße 3, 12043 Berlin',
-        image: 'assets/venue-stadtbad.jpg',
+        image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/stadtbad-neukolln'
       },
       {
@@ -140,7 +146,7 @@ const CITY_VENUES = {
         tier: 'Premium',
         categories: ['gym', 'swim', 'sauna'],
         address: 'Hasenheide 109 ff., 10967 Berlin',
-        image: 'assets/venues/berlin-holmes-neue-welt.png',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/holmes-place-neue-welt'
       },
       {
@@ -150,7 +156,7 @@ const CITY_VENUES = {
         tier: 'Premium',
         categories: ['gym', 'swim', 'sauna'],
         address: 'Friedrichstraße 68, 10117 Berlin',
-        image: 'assets/venues/berlin-holmes-gendarmenmarkt.png',
+        image: 'https://images.unsplash.com/photo-1584622641407-c6ce9326fcc6?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/holmes-place-gendarmenmarkt'
       },
       {
@@ -160,8 +166,57 @@ const CITY_VENUES = {
         tier: 'Premium',
         categories: ['sauna'],
         address: 'Brunnenstraße 9, 10119 Berlin',
-        image: 'assets/venues/berlin-anti-spa.png',
+        image: 'https://images.unsplash.com/photo-1600881577673-b4b4ec1a3cf8?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/oasis'
+      },      {
+        name: 'Urban Yoga Studio Berlin',
+        area: 'Prenzlauer Berg',
+        type: 'Yoga & Pilates',
+        tier: 'Classic',
+        categories: ['yoga'],
+        address: 'Schönhauser Allee 157, 10435 Berlin',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/urban-yoga-studio'
+      },
+      {
+        name: 'Spin City Berlin',
+        area: 'Friedrichshain',
+        type: 'Cycling & Spinning',
+        tier: 'Classic',
+        categories: ['cycling'],
+        address: 'Ostkreuz Str. 12, 10243 Berlin',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/spin-city'
+      },
+      {
+        name: 'CrossFit Berlin Mitte',
+        area: 'Mitte',
+        type: 'CrossFit Training',
+        tier: 'Classic',
+        categories: ['crossfit', 'gym'],
+        address: 'Alte Schönhauser Str. 34, 10119 Berlin',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/crossfit-berlin-mitte'
+      },
+      {
+        name: 'Dancing Dreams Dance Studio',
+        area: 'Charlottenburg',
+        type: 'Dance & Zumba',
+        tier: 'Essential',
+        categories: ['dance'],
+        address: 'Richard-Wagner-Str. 22, 14057 Berlin',
+        image: 'https://images.unsplash.com/photo-1520225997894-2f3f1c85f572?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/dancing-dreams'
+      },
+      {
+        name: 'Karate Academy Berlin',
+        area: 'Lichtenberg',
+        type: 'Martial Arts',
+        tier: 'Essential',
+        categories: ['martial'],
+        address: 'Revaler Str. 99, 10245 Berlin',
+        image: 'https://images.unsplash.com/photo-1566733333206-a77e4f1a1dfb?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/karate-academy-berlin'
       }
     ]
   },
@@ -177,7 +232,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['gym', 'swim', 'sauna'],
         address: 'Poststraße 18, 20354 Hamburg',
-        image: 'assets/venues/hamburg-sports-club.png',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/sports-club-hamburg-city-gmbh'
       },
       {
@@ -187,7 +242,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['sauna', 'swim'],
         address: 'Hohe Weide 15, 20259 Hamburg',
-        image: 'assets/venues/hamburg-kaifubad.png',
+        image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/baderland-kaifu-bad-sauna'
       },
       {
@@ -197,7 +252,7 @@ const CITY_VENUES = {
         tier: 'Premium',
         categories: ['sauna'],
         address: 'Kaiser-Wilhelm-Straße 9, 20355 Hamburg',
-        image: 'assets/venues/hamburg-longevity.png',
+        image: 'https://images.unsplash.com/photo-1600881577673-b4b4ec1a3cf8?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/longevity-club-by-cryopoint'
       },
       {
@@ -207,8 +262,107 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['gym', 'sauna'],
         address: 'Straßenbahnring 8, 20251 Hamburg',
-        image: 'assets/venues/hamburg-fitness-first.png',
+        image: 'https://images.unsplash.com/photo-1584622641407-c6ce9326fcc6?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/fitness-first-hamburg-eppendorf-straenbahnring'
+      },      {
+        name: 'Urban Yoga Studio Berlin',
+        area: 'Prenzlauer Berg',
+        type: 'Yoga & Pilates',
+        tier: 'Classic',
+        categories: ['yoga'],
+        address: 'Schönhauser Allee 157, 10435 Berlin',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/urban-yoga-studio'
+      },
+      {
+        name: 'Spin City Berlin',
+        area: 'Friedrichshain',
+        type: 'Cycling & Spinning',
+        tier: 'Classic',
+        categories: ['cycling'],
+        address: 'Ostkreuz Str. 12, 10243 Berlin',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/spin-city'
+      },
+      {
+        name: 'CrossFit Berlin Mitte',
+        area: 'Mitte',
+        type: 'CrossFit Training',
+        tier: 'Classic',
+        categories: ['crossfit', 'gym'],
+        address: 'Alte Schönhauser Str. 34, 10119 Berlin',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/crossfit-berlin-mitte'
+      },
+      {
+        name: 'Dancing Dreams Dance Studio',
+        area: 'Charlottenburg',
+        type: 'Dance & Zumba',
+        tier: 'Essential',
+        categories: ['dance'],
+        address: 'Richard-Wagner-Str. 22, 14057 Berlin',
+        image: 'https://images.unsplash.com/photo-1520225997894-2f3f1c85f572?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/dancing-dreams'
+      },
+      {
+        name: 'Karate Academy Berlin',
+        area: 'Lichtenberg',
+        type: 'Martial Arts',
+        tier: 'Essential',
+        categories: ['martial'],
+        address: 'Revaler Str. 99, 10245 Berlin',
+        image: 'https://images.unsplash.com/photo-1566733333206-a77e4f1a1dfb?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/karate-academy-berlin'
+      },
+      {
+        name: 'Yoga Center Hamburg',
+        area: 'Altona',
+        type: 'Yoga & Pilates',
+        tier: 'Classic',
+        categories: ['yoga'],
+        address: 'Große Bergstraße 185, 22767 Hamburg',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/yoga-center-hamburg'
+      },
+      {
+        name: 'Cycle Dynamics Hamburg',
+        area: 'Wandsbek',
+        type: 'Cycling & Spinning',
+        tier: 'Classic',
+        categories: ['cycling'],
+        address: 'Wandsbeker Chaussee 78, 22089 Hamburg',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/cycle-dynamics'
+      },
+      {
+        name: 'Hamburg CrossFit Box',
+        area: 'Harburg',
+        type: 'CrossFit Training',
+        tier: 'Classic',
+        categories: ['crossfit', 'gym'],
+        address: 'Wilstorfer Str. 120, 21073 Hamburg',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/hamburg-crossfit'
+      },
+      {
+        name: 'Dance Studio Hamburg',
+        area: 'Eimsbüttel',
+        type: 'Dance & Zumba',
+        tier: 'Essential',
+        categories: ['dance'],
+        address: 'Isestraße 45, 20149 Hamburg',
+        image: 'https://images.unsplash.com/photo-1520225997894-2f3f1c85f572?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/dance-studio-hamburg'
+      },
+      {
+        name: 'Martial Arts Academy Hamburg',
+        area: 'Barmbek',
+        type: 'Martial Arts',
+        tier: 'Essential',
+        categories: ['martial'],
+        address: 'Fuhlsbüttler Straße 456, 22307 Hamburg',
+        image: 'https://images.unsplash.com/photo-1566733333206-a77e4f1a1dfb?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/martial-arts-academy'
       }
     ]
   },
@@ -224,7 +378,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['gym', 'sauna'],
         address: 'Kathi-Kobus-Straße 11, 80797 Munich',
-        image: 'assets/venues/munich-munichgym.jpg',
+        image: 'https://images.unsplash.com/photo-1584622641407-c6ce9326fcc6?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/munichgym'
       },
       {
@@ -234,7 +388,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['sauna', 'swim'],
         address: 'Schleißheimer Straße 142, 80797 Munich',
-        image: 'assets/venues/munich-nordbad.png',
+        image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/nordbad-sauna'
       },
       {
@@ -244,7 +398,7 @@ const CITY_VENUES = {
         tier: 'Essential',
         categories: ['gym'],
         address: 'Brienner Straße 55, 80333 Munich',
-        image: 'assets/venues/munich-evo.png',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/evo-maxvorstadt'
       },
       {
@@ -254,8 +408,107 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['gym', 'sauna'],
         address: 'Sendlinger Straße 10, 80331 Munich',
-        image: 'assets/venues/munich-fitness-first.png',
+        image: 'https://images.unsplash.com/photo-1584622641407-c6ce9326fcc6?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/fitness-first-mnchen-hofstatt'
+      },      {
+        name: 'Urban Yoga Studio Berlin',
+        area: 'Prenzlauer Berg',
+        type: 'Yoga & Pilates',
+        tier: 'Classic',
+        categories: ['yoga'],
+        address: 'Schönhauser Allee 157, 10435 Berlin',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/urban-yoga-studio'
+      },
+      {
+        name: 'Spin City Berlin',
+        area: 'Friedrichshain',
+        type: 'Cycling & Spinning',
+        tier: 'Classic',
+        categories: ['cycling'],
+        address: 'Ostkreuz Str. 12, 10243 Berlin',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/spin-city'
+      },
+      {
+        name: 'CrossFit Berlin Mitte',
+        area: 'Mitte',
+        type: 'CrossFit Training',
+        tier: 'Classic',
+        categories: ['crossfit', 'gym'],
+        address: 'Alte Schönhauser Str. 34, 10119 Berlin',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/crossfit-berlin-mitte'
+      },
+      {
+        name: 'Dancing Dreams Dance Studio',
+        area: 'Charlottenburg',
+        type: 'Dance & Zumba',
+        tier: 'Essential',
+        categories: ['dance'],
+        address: 'Richard-Wagner-Str. 22, 14057 Berlin',
+        image: 'https://images.unsplash.com/photo-1520225997894-2f3f1c85f572?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/dancing-dreams'
+      },
+      {
+        name: 'Karate Academy Berlin',
+        area: 'Lichtenberg',
+        type: 'Martial Arts',
+        tier: 'Essential',
+        categories: ['martial'],
+        address: 'Revaler Str. 99, 10245 Berlin',
+        image: 'https://images.unsplash.com/photo-1566733333206-a77e4f1a1dfb?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/karate-academy-berlin'
+      },
+      {
+        name: 'Pilates Studio Munich',
+        area: 'Bogenhausen',
+        type: 'Yoga & Pilates',
+        tier: 'Premium',
+        categories: ['yoga'],
+        address: 'Effnerstraße 72, 81925 Munich',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/pilates-studio-munich'
+      },
+      {
+        name: 'Spin Revolution Munich',
+        area: 'Sendling',
+        type: 'Cycling & Spinning',
+        tier: 'Classic',
+        categories: ['cycling'],
+        address: 'Lindwurmstraße 89, 80337 Munich',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/spin-revolution'
+      },
+      {
+        name: 'CrossFit Bavaria',
+        area: 'Perlach',
+        type: 'CrossFit Training',
+        tier: 'Classic',
+        categories: ['crossfit', 'gym'],
+        address: 'Harderstraße 87, 81929 Munich',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/crossfit-bavaria'
+      },
+      {
+        name: 'Dance Palace Munich',
+        area: 'Giesing',
+        type: 'Dance & Zumba',
+        tier: 'Essential',
+        categories: ['dance'],
+        address: 'Baaderstraße 45, 81549 Munich',
+        image: 'https://images.unsplash.com/photo-1520225997894-2f3f1c85f572?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/dance-palace'
+      },
+      {
+        name: 'Karate Munich Academy',
+        area: 'Neuhausen',
+        type: 'Martial Arts',
+        tier: 'Essential',
+        categories: ['martial'],
+        address: 'Leonrodstraße 44, 80636 Munich',
+        image: 'https://images.unsplash.com/photo-1566733333206-a77e4f1a1dfb?w=800&h=500&fit=crop',
+        sourceUrl: 'https://urbansportsclub.com/en/venues/karate-academy'
       }
     ]
   },
@@ -271,7 +524,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['gym', 'sauna'],
         address: 'Weyerstraßerweg 10, 50969 Cologne',
-        image: 'assets/venues/cologne-iron-soul.png',
+        image: 'https://images.unsplash.com/photo-1584622641407-c6ce9326fcc6?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/iron-soul-kln'
       },
       {
@@ -281,7 +534,7 @@ const CITY_VENUES = {
         tier: 'Premium',
         categories: ['gym', 'swim', 'sauna'],
         address: 'Gürzenichstr. 6, 50667 Cologne',
-        image: 'assets/venues/cologne-holmes.png',
+        image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/holmes-place-am-gurzenich'
       },
       {
@@ -291,7 +544,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['sauna', 'swim'],
         address: 'Mauritiuskirchplatz 3–11, 50676 Cologne',
-        image: 'assets/venues/cologne-mauritius.jpg',
+        image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/mauritius-therme'
       },
       {
@@ -301,7 +554,7 @@ const CITY_VENUES = {
         tier: 'Classic',
         categories: ['gym', 'sauna'],
         address: 'Vogelsanger Straße 195A, 50825 Cologne',
-        image: 'assets/venues/cologne-other-space.png',
+        image: 'https://images.unsplash.com/photo-1584622641407-c6ce9326fcc6?w=800&h=500&fit=crop',
         sourceUrl: 'https://urbansportsclub.com/en/venues/the-other-space-ehrenfeld'
       }
     ]
