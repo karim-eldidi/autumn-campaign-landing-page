@@ -265,11 +265,12 @@ function updateCityUI() {
 const categoryOptions = document.querySelector('#category-options');
 const venueGrid = document.querySelector('#venue-grid');
 const cityLabel = document.querySelector('#venue-city-label');
-const moreVenuesHeader = document.querySelector('#more-venues-header');
 
 function renderCategoryFilters() {
   if (!categoryOptions) return;
-  categoryOptions.replaceChildren(...VENUE_CATEGORIES.map(cat => {
+  const city = CITY_VENUES[selectedCity];
+
+  const categoryButtons = VENUE_CATEGORIES.map(cat => {
     const button = document.createElement('button');
     button.className = 'category-btn';
     button.type = 'button';
@@ -283,7 +284,16 @@ function renderCategoryFilters() {
       renderVenues();
     });
     return button;
-  }));
+  });
+
+  const browsePill = document.createElement('a');
+  browsePill.className = 'category-btn category-btn--browse';
+  browsePill.href = city.directoryUrl;
+  browsePill.target = '_blank';
+  browsePill.rel = 'noopener noreferrer';
+  browsePill.innerHTML = `<span>Browse all ${city.name} venues</span> <span class="category-btn__arrow" aria-hidden="true">↗</span>`;
+
+  categoryOptions.replaceChildren(...categoryButtons, browsePill);
 }
 
 function renderVenues() {
@@ -354,11 +364,8 @@ function selectCity(key) {
   selectedCity = key;
   const city = CITY_VENUES[key];
   if (cityLabel) cityLabel.textContent = city.name;
-  if (moreVenuesHeader) {
-    moreVenuesHeader.href = city.directoryUrl;
-    moreVenuesHeader.innerHTML = `Browse all ${city.name} venues <span aria-hidden="true">↗</span>`;
-  }
   updateCityUI();
+  renderCategoryFilters();
   renderVenues();
 }
 
