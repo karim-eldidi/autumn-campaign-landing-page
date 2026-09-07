@@ -384,67 +384,115 @@ document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEv
   venueGrid?.scrollBy({ left: direction * Math.max(280, venueGrid.clientWidth * .72), behavior: 'smooth' });
 }));
 
-/* --- Plans & Pricing Section --- */
-const plansGrid = document.querySelector('#plans-grid');
+/* --- Find My Fit Interactive Membership Plans Section --- */
+let selectedPlanId = 'classic';
+const plansRows = document.querySelector('#plans-rows');
+const planPreviewCard = document.querySelector('#plan-preview-card');
 const billingButtons = document.querySelectorAll('.billing-toggle__btn');
 
-function renderPlans() {
-  if (!plansGrid) return;
-  plansGrid.replaceChildren(...USC_PLANS.map(plan => {
-    const isPopular = plan.popular;
-    const price = selectedBillingTerm === 'annual' ? plan.annualPrice : plan.monthlyPrice;
-    const periodLabel = selectedBillingTerm === 'annual' ? '/mo (12M)' : '/mo (Flex)';
+function renderFindMyFitPlans() {
+  const activePlan = USC_PLANS.find(p => p.id === selectedPlanId) || USC_PLANS[1];
+  const isAnnual = selectedBillingTerm === 'annual';
 
-    const card = document.createElement('article');
-    card.className = `plan-card${isPopular ? ' plan-card--popular' : ''}`;
+  // Render Left Rows
+  if (plansRows) {
+    plansRows.replaceChildren(...USC_PLANS.map(plan => {
+      const isSelected = plan.id === selectedPlanId;
+      const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
 
-    if (isPopular && plan.badge) {
-      const badge = document.createElement('span');
-      badge.className = 'plan-card__badge';
-      badge.textContent = plan.badge;
-      card.appendChild(badge);
-    }
+      const row = document.createElement('div');
+      row.className = `plan-row${isSelected ? ' is-selected' : ''}`;
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+      row.setAttribute('aria-pressed', String(isSelected));
 
-    const headlineWrap = document.createElement('div');
-    headlineWrap.className = 'plan-card__headline-wrap';
-    const emoji = document.createElement('span');
-    emoji.className = 'plan-card__emoji';
-    emoji.textContent = plan.emoji || '✨';
-    const headline = document.createElement('span');
-    headline.className = 'plan-card__headline';
-    headline.textContent = plan.headline || plan.name;
-    headlineWrap.append(emoji, headline);
+      if (plan.popular && plan.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'plan-row__popular-badge';
+        badge.textContent = plan.badge;
+        row.appendChild(badge);
+      }
 
-    const title = document.createElement('h3');
-    title.className = 'plan-card__title';
-    title.textContent = plan.name;
+      const iconWrap = document.createElement('div');
+      iconWrap.className = 'plan-row__icon-wrap';
+      iconWrap.textContent = plan.emoji || '✨';
 
-    const summary = document.createElement('p');
-    summary.className = 'plan-card__summary';
-    summary.textContent = plan.summary;
+      const main = document.createElement('div');
+      main.className = 'plan-row__main';
+      main.innerHTML = `
+        <span class="plan-row__headline">${plan.headline}</span>
+        <span class="plan-row__tier"><strong>${plan.name}</strong> · ${plan.tierInfo}</span>
+      `;
 
-    const pricing = document.createElement('div');
-    pricing.className = 'plan-card__pricing';
-    pricing.innerHTML = `
-      <div>
-        <span class="plan-card__amount">€${price}</span>
-        <span class="plan-card__period">${periodLabel}</span>
+      const pricing = document.createElement('div');
+      pricing.className = 'plan-row__pricing';
+      pricing.innerHTML = `
+        <div class="plan-row__amount">${price} €</div>
+        <div class="plan-row__period">/ month</div>
+      `;
+
+      const chevron = document.createElement('div');
+      chevron.className = 'plan-row__chevron';
+      chevron.innerHTML = `<svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+      row.append(iconWrap, main, pricing, chevron);
+
+      const selectThisPlan = () => {
+        selectedPlanId = plan.id;
+        renderFindMyFitPlans();
+      };
+
+      row.addEventListener('click', selectThisPlan);
+      row.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectThisPlan();
+        }
+      });
+
+      return row;
+    }));
+  }
+
+  // Render Right Dynamic Preview Card
+  if (planPreviewCard) {
+    const activePrice = isAnnual ? activePlan.annualPrice : activePlan.monthlyPrice;
+    const activePeriodBadge = isAnnual ? '12 months (Save 15%)' : 'Flexible Monthly';
+
+    const featureItems = activePlan.features.map(feat => `<li>${feat}</li>`).join('');
+
+    planPreviewCard.innerHTML = `
+      <div class="plan-preview-card__head">
+        <div class="plan-preview-card__title-wrap">
+          <span class="plan-preview-card__emoji">${activePlan.emoji}</span>
+          <h3 class="plan-preview-card__title">${activePlan.name}</h3>
+        </div>
+        <div class="plan-preview-card__price-wrap">
+          <div class="plan-preview-card__amount">${activePrice} € <span style="font-size:16px;font-weight:600;color:#6b7280;">/ mo</span></div>
+          <span class="plan-preview-card__period">${activePeriodBadge}</span>
+        </div>
       </div>
-      <div class="plan-card__checkins">${plan.checkIns}</div>
+
+      <p class="plan-preview-card__desc">${activePlan.description}</p>
+
+      <ul class="plan-preview-card__features">
+        ${featureItems}
+      </ul>
+
+      <a class="plan-preview-card__btn" href="${activePlan.url}" target="_blank" rel="noopener noreferrer">
+        Choose ${activePlan.name} and continue <span aria-hidden="true">→</span>
+      </a>
+
+      <a class="plan-preview-card__secondary-link" href="#venues">
+        Get a personalized routine →
+      </a>
+
+      <div class="plan-preview-card__save-note">
+        <span>🔖</span>
+        <span><strong>Save for later:</strong> Keeps your selection and brings you back here.</span>
+      </div>
     `;
-
-    const featureList = document.createElement('ul');
-    featureList.className = 'plan-card__features';
-    plan.features.forEach(feat => {
-      const li = document.createElement('li');
-      li.className = 'plan-card__feature';
-      li.textContent = feat;
-      featureList.appendChild(li);
-    });
-
-    card.append(headlineWrap, title, summary, pricing, featureList);
-    return card;
-  }));
+  }
 }
 
 function setupBillingToggle() {
@@ -457,7 +505,7 @@ function setupBillingToggle() {
         b.classList.toggle('is-active', isActive);
         b.setAttribute('aria-checked', String(isActive));
       });
-      renderPlans();
+      renderFindMyFitPlans();
     });
   });
 }
@@ -469,7 +517,6 @@ function setupStickyBar() {
   if (!stickyBottomBar) return;
 
   const handleScroll = () => {
-    // Smoothly visible once scrolling past initial header/top hero
     if (window.scrollY > 80) {
       stickyBottomBar.classList.add('is-visible');
       stickyBottomBar.setAttribute('aria-hidden', 'false');
@@ -488,6 +535,7 @@ setupNavDropdowns();
 renderCategoryFilters();
 selectCity(selectedCity);
 setupBillingToggle();
-renderPlans();
+renderFindMyFitPlans();
 setupStickyBar();
+
 
