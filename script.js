@@ -382,131 +382,105 @@ document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEv
   venueGrid?.scrollBy({ left: direction * Math.max(280, venueGrid.clientWidth * .72), behavior: 'smooth' });
 }));
 
-/* --- Find My Fit Interactive Membership Plans Section --- */
-let selectedPlanId = 'classic';
-const plansRows = document.querySelector('#plans-rows');
-const planPreviewCard = document.querySelector('#plan-preview-card');
-const billingButtons = document.querySelectorAll('.billing-toggle__btn');
+/* --- Membership tiers: numeral anchor + card rail --- */
+const tiersRail = document.querySelector('#tiers-rail');
+const termButtons = document.querySelectorAll('.term-switch__btn');
 
-function renderFindMyFitPlans() {
-  const activePlan = USC_PLANS.find(p => p.id === selectedPlanId) || USC_PLANS[1];
-  const isAnnual = selectedBillingTerm === 'annual';
+const PRICING_URL = 'https://urbansportsclub.com/en/prices';
 
-  // Render Left Rows
-  if (plansRows) {
-    plansRows.replaceChildren(...USC_PLANS.map(plan => {
-      const isSelected = plan.id === selectedPlanId;
-      const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
+const TERM_COPY = {
+  monthly:  'Billed monthly',
+  annual:   'On a 12-month term · <b>save 15%</b>',
+  biennial: 'On a 24-month term · <b>save 20%</b>'
+};
 
-      const row = document.createElement('div');
-      row.className = `plan-row${isSelected ? ' is-selected' : ''}`;
-      row.setAttribute('role', 'button');
-      row.setAttribute('tabindex', '0');
-      row.setAttribute('aria-pressed', String(isSelected));
+const SPEC_ICONS = {
+  calendar: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+  pin:      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+  spa:      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-5 3-8 8-8 0 5-3 8-8 8Zm0 0c0-5-3-8-8-8 0 5 3 8 8 8Zm0 0c0-6 2-9 2-12a6 6 0 0 0-4 0c0 3 2 6 2 12Z"/></svg>'
+};
 
-      if (plan.popular && plan.badge) {
-        const badge = document.createElement('span');
-        badge.className = 'plan-row__popular-badge';
-        badge.textContent = plan.badge;
-        row.appendChild(badge);
-      }
-
-      const iconWrap = document.createElement('div');
-      iconWrap.className = 'plan-row__icon-wrap';
-      iconWrap.textContent = plan.emoji || '✨';
-
-      const main = document.createElement('div');
-      main.className = 'plan-row__main';
-      main.innerHTML = `
-        <span class="plan-row__headline">${plan.headline}</span>
-        <span class="plan-row__tier"><strong>${plan.name}</strong> · ${plan.tierInfo}</span>
-      `;
-
-      const pricing = document.createElement('div');
-      pricing.className = 'plan-row__pricing';
-      pricing.innerHTML = `
-        <div class="plan-row__amount">${price} €</div>
-        <div class="plan-row__period">/ month</div>
-      `;
-
-      const chevron = document.createElement('div');
-      chevron.className = 'plan-row__chevron';
-      chevron.innerHTML = `<svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-      row.append(iconWrap, main, pricing, chevron);
-
-      const selectThisPlan = () => {
-        selectedPlanId = plan.id;
-        renderFindMyFitPlans();
-      };
-
-      row.addEventListener('click', selectThisPlan);
-      row.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          selectThisPlan();
-        }
-      });
-
-      return row;
-    }));
-  }
-
-  // Render Right Dynamic Preview Card
-  if (planPreviewCard) {
-    const activePrice = isAnnual ? activePlan.annualPrice : activePlan.monthlyPrice;
-    const activePeriodBadge = isAnnual ? '12 months (Save 15%)' : 'Flexible Monthly';
-
-    const featureItems = activePlan.features.map(feat => `<li>${feat}</li>`).join('');
-
-    planPreviewCard.innerHTML = `
-      <div class="plan-preview-card__head">
-        <div class="plan-preview-card__title-wrap">
-          <span class="plan-preview-card__emoji">${activePlan.emoji}</span>
-          <h3 class="plan-preview-card__title">${activePlan.name}</h3>
-        </div>
-        <div class="plan-preview-card__price-wrap">
-          <div class="plan-preview-card__amount">${activePrice} € <span style="font-size:16px;font-weight:600;color:#6b7280;">/ mo</span></div>
-          <span class="plan-preview-card__period">${activePeriodBadge}</span>
-        </div>
-      </div>
-
-      <p class="plan-preview-card__desc">${activePlan.description}</p>
-
-      <ul class="plan-preview-card__features">
-        ${featureItems}
-      </ul>
-
-      <a class="plan-preview-card__btn" href="${activePlan.url}" target="_blank" rel="noopener noreferrer">
-        Choose ${activePlan.name} and continue <span aria-hidden="true">→</span>
-      </a>
-
-      <a class="plan-preview-card__secondary-link" href="#venues">
-        Get a personalized routine →
-      </a>
-
-      <div class="plan-preview-card__save-note">
-        <span>🔖</span>
-        <span><strong>Save for later:</strong> Keeps your selection and brings you back here.</span>
-      </div>
-    `;
-  }
+function iconForSpec(text) {
+  const t = text.toLowerCase();
+  if (t.includes('venue')) return SPEC_ICONS.pin;
+  if (t.includes('massage') || t.includes('spa') || t.includes('sauna')) return SPEC_ICONS.spa;
+  return SPEC_ICONS.calendar;
 }
 
-function setupBillingToggle() {
-  billingButtons.forEach(btn => {
+function priceForTerm(plan, term) {
+  if (term === 'monthly') return plan.monthlyPrice;
+  if (term === 'annual') return plan.annualPrice;
+  return Math.round(plan.monthlyPrice * 0.8);
+}
+
+function capitalise(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function renderTiers() {
+  if (!tiersRail) return;
+  const term = selectedBillingTerm;
+
+  tiersRail.replaceChildren(...USC_PLANS.map(plan => {
+    const card = document.createElement('a');
+    card.className = `tier-card${plan.popular ? ' tier-card--pick' : ''}`;
+    card.href = PRICING_URL;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month. See it on the pricing page.`);
+
+    const specs = (plan.tierInfo || '').split('·').map(s => s.trim()).filter(Boolean).slice(0, 2);
+
+    card.innerHTML = `
+      ${plan.popular && plan.badge ? `<span class="tier-card__badge">${plan.badge}</span>` : ''}
+      <div>
+        <h3 class="tier-card__name">${plan.name}</h3>
+        <p class="tier-card__for">${plan.headline}</p>
+      </div>
+      <div class="tier-card__price">
+        <span class="tier-card__amount">${priceForTerm(plan, term)}&thinsp;&euro;</span>
+        <span class="tier-card__per">/ month</span>
+      </div>
+      <p class="tier-card__billed">${TERM_COPY[term] || ''}</p>
+      <ul class="tier-card__specs">
+        ${specs.map(spec => `<li>${iconForSpec(spec)}<span>${capitalise(spec)}</span></li>`).join('')}
+      </ul>
+      <span class="tier-card__go" aria-hidden="true">&rarr;</span>
+    `;
+    return card;
+  }));
+
+  // Last card in the rail carries the only CTA, and hands the yellow campaign over to the blue site
+  const ctaCard = document.createElement('a');
+  ctaCard.className = 'tier-card tier-card--cta';
+  ctaCard.href = PRICING_URL;
+  ctaCard.target = '_blank';
+  ctaCard.rel = 'noopener noreferrer';
+  ctaCard.innerHTML = `
+    <div class="tier-card__cta-body">
+      <p class="tier-card__cta-kicker">Not sure which fits?</p>
+      <h3 class="tier-card__cta-title">Compare every membership.</h3>
+      <p class="tier-card__cta-copy">See prices, visits and benefits side by side.</p>
+    </div>
+    <div class="tier-card__cta-action">Explore memberships <span aria-hidden="true">&rarr;</span></div>
+  `;
+  tiersRail.appendChild(ctaCard);
+}
+
+function setupTermSwitch() {
+  termButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const term = btn.getAttribute('data-term');
-      selectedBillingTerm = term;
-      billingButtons.forEach(b => {
+      selectedBillingTerm = btn.getAttribute('data-term');
+      termButtons.forEach(b => {
         const isActive = b === btn;
         b.classList.toggle('is-active', isActive);
         b.setAttribute('aria-checked', String(isActive));
       });
-      renderFindMyFitPlans();
+      renderTiers();
     });
   });
 }
+
 
 /* --- Sticky Mobile Bottom Bar Observer --- */
 const stickyBottomBar = document.querySelector('#sticky-bottom-bar');
@@ -532,8 +506,8 @@ function setupStickyBar() {
 setupNavDropdowns();
 renderCategoryFilters();
 selectCity(selectedCity);
-setupBillingToggle();
-renderFindMyFitPlans();
+setupTermSwitch();
+renderTiers();
 setupStickyBar();
 
 

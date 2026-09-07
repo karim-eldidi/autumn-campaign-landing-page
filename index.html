@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Urban Sports Club Autumn 2026 campaign landing-page concept.">
   <title>Gym. And sauna. | Urban Sports Club</title>
-  <link rel="stylesheet" href="styles.css?v=autumn-v4">
+  <link rel="stylesheet" href="styles.css?v=autumn-v5">
 </head>
 <body>
   <header class="nav">
@@ -115,57 +115,29 @@
       </div>
     </section>
 
-    <section class="membership-plans" id="membership">
-      <div class="plans-container">
-        <div class="plans-header">
-          <h2>Choose your membership</h2>
-          <div class="billing-toggle-wrap">
-            <div class="billing-toggle" role="radiogroup" aria-label="Billing frequency">
-              <button class="billing-toggle__btn" type="button" data-term="monthly" aria-checked="false" role="radio">
-                Monthly
-              </button>
-              <button class="billing-toggle__btn is-active" type="button" data-term="annual" aria-checked="true" role="radio">
-                12 months <span class="billing-toggle__badge">Save 15%</span>
-              </button>
+    <section class="tiers" id="membership">
+      <div class="tiers__inner">
+        <!-- Header: numeral anchors the left, the copy column carries the full hierarchy -->
+        <div class="tiers__head">
+          <div class="tiers__anchor">
+            <span class="tiers__numeral" aria-hidden="true">4</span>
+            <span class="tiers__numeral-label">ways to join</span>
+          </div>
+          <div class="tiers__copy">
+            <p class="tiers__eyebrow">Membership for every routine</p>
+            <h2>Choose how you<br>want to move.</h2>
+            <p class="tiers__lede">From once a week to daily movement and recovery. Gym and sauna are in every one of them.</p>
+            <div class="term-switch" role="radiogroup" aria-label="Membership duration">
+              <button class="term-switch__btn" type="button" data-term="monthly" role="radio" aria-checked="false">Monthly</button>
+              <button class="term-switch__btn is-active" type="button" data-term="annual" role="radio" aria-checked="true">12 months <i>&minus;15%</i></button>
+              <button class="term-switch__btn" type="button" data-term="biennial" role="radio" aria-checked="false">24 months <i>&minus;20%</i></button>
             </div>
+            <p class="tiers__fine">Every membership includes online classes, video on demand and pausing anytime.</p>
           </div>
         </div>
 
-        <!-- Advisor Banner -->
-        <div class="plans-advisor-banner">
-          <div class="plans-advisor-banner__copy">
-            <span class="plans-advisor-badge">✦ Urby</span>
-            <span><strong>Not sure which to choose?</strong> Find the best membership for your routine.</span>
-          </div>
-          <a class="plans-advisor-btn" href="#venues">Find your fit <span aria-hidden="true">→</span></a>
-        </div>
+        <div class="tiers__rail" id="tiers-rail" role="region" aria-label="Membership options" tabindex="0"></div>
 
-        <!-- 2-Column Find My Fit Layout -->
-        <div class="plans-selector-layout">
-          <!-- Left: Selectable Lifestyle Rows -->
-          <div class="plans-selector-list">
-            <div class="plans-rows" id="plans-rows"></div>
-            
-            <!-- Included amenities footer strip -->
-            <div class="plans-included-strip">
-              <div class="plans-included-strip__head">
-                <span class="sparkle-icon">✦</span>
-                <span><strong>Always included in all memberships:</strong> on-site activities · online classes · video on demand · pausing</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: Dynamic Plan Preview Card -->
-          <div class="plan-preview-card" id="plan-preview-card"></div>
-        </div>
-
-        <!-- Trust Badges -->
-        <div class="plans-trust">
-          <div class="trust-item"><span class="trust-icon">✓</span> <span>Pause anytime</span></div>
-          <div class="trust-item"><span class="trust-icon">✓</span> <span>No hidden fees</span></div>
-          <div class="trust-item"><span class="trust-icon">✓</span> <span>50+ sports & wellbeing apps</span></div>
-          <div class="trust-item"><span class="trust-icon">✓</span> <span>Valid across 7+ countries</span></div>
-        </div>
       </div>
     </section>
 
@@ -189,8 +161,8 @@
     </div>
   </div>
 
-  <script src="venues.js?v=autumn-v4"></script>
-  <script src="script.js?v=autumn-v4"></script>
+  <script src="venues.js?v=autumn-v5"></script>
+  <script src="script.js?v=autumn-v5"></script>
 </body>
 </html>
 
