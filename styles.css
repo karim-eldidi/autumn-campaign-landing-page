@@ -240,8 +240,11 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .week__intro{max-width:none}
   .week__journey path,.week.is-drawn .week__journey path{stroke-dashoffset:0;transition:none}
   
-  .venues__grid{margin-right:-16px;padding-right:16px}
-  .venues__grid>.venue,.venue-end-card{flex-basis:82vw}
+  .venues{padding:clamp(48px,6vw,72px) 16px}
+  .venues__header-action{display:none}
+  .venue-carousel-wrap{padding:12px;border-radius:14px}
+  .venues__grid{gap:12px;padding:2px}
+  .venues__grid>.venue,.venue-end-card{flex:0 0 72vw;max-width:280px;min-width:220px}
   .venue-toolbar__nav{display:none}
   
   .button--usc-blue{width:100%}
@@ -249,6 +252,15 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 }
 
 @media(max-width:560px){
+  .venues{padding:40px 14px}
+  .venue-carousel-wrap{padding:10px;border-radius:14px}
+  .venues__grid{gap:10px}
+  .venues__grid>.venue,.venue-end-card{flex:0 0 68vw;max-width:250px}
+  .venue__body{padding:12px 14px}
+  .venue__body h3{font-size:15px;margin-bottom:4px}
+  .venue__meta{font-size:12px;margin-bottom:8px}
+  .venue__tier-tag{font-size:10.5px;padding:3px 7px}
+  
   .plans-trust{flex-direction:column;align-items:flex-start;gap:12px}
   .nav__controls{gap:6px}
   .nav-dropdown__btn{padding:6px 10px;font-size:12.5px}
