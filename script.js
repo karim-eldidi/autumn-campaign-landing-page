@@ -19,23 +19,37 @@ HERO_SLIDES.forEach(slide => [slide.desktop, slide.mobile].forEach(src => {
   image.src = src;
 }));
 
+function getHeroSource(slide) {
+  const isMobile = window.matchMedia('(max-width: 800px)').matches;
+  return isMobile ? slide.mobile : slide.desktop;
+}
+
 function showHero(index, animate = false) {
   const apply = () => {
     const slide = HERO_SLIDES[index];
-    heroSource.srcset = slide.mobile;
-    heroImage.src = slide.desktop;
-    heroImage.alt = slide.alt;
-    heroFirst.textContent = slide.first;
-    heroSecond.textContent = slide.second;
-    heroLine.textContent = slide.line;
-    heroMedia.classList.remove('is-changing');
+    const src = getHeroSource(slide);
+    if (heroSource) heroSource.srcset = slide.mobile;
+    if (heroImage) {
+      heroImage.src = src;
+      heroImage.alt = slide.alt;
+    }
+    if (heroFirst) heroFirst.textContent = slide.first;
+    if (heroSecond) heroSecond.textContent = slide.second;
+    if (heroLine) heroLine.textContent = slide.line;
+    if (heroMedia) heroMedia.classList.remove('is-changing');
   };
   if (!animate) { apply(); return; }
-  heroMedia.classList.add('is-changing');
+  if (heroMedia) heroMedia.classList.add('is-changing');
   setTimeout(apply, 240);
 }
 
 showHero(heroIndex);
+
+const mobileHeroMql = window.matchMedia('(max-width: 800px)');
+mobileHeroMql.addEventListener('change', () => {
+  showHero(heroIndex, false);
+});
+
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   setInterval(() => {
     heroIndex = (heroIndex + 1) % HERO_SLIDES.length;
