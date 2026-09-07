@@ -15,12 +15,16 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .nav-dropdown__chevron{transition:transform .15s ease;color:#6b7280}
 .nav-dropdown.is-open .nav-dropdown__chevron{transform:rotate(180deg)}
 
-.nav-dropdown__menu{position:absolute;top:calc(100% + 6px);right:0;min-width:130px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);padding:4px;display:none;z-index:100}
+.nav-dropdown__menu{position:absolute;top:calc(100% + 6px);right:0;min-width:160px;max-height:340px;overflow-y:auto;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);padding:4px;display:none;z-index:100;-webkit-overflow-scrolling:touch}
 .nav-dropdown.is-open .nav-dropdown__menu{display:block}
 
+/* Group titles for multi-country dropdowns */
+.nav-dropdown__group-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#8b959e;padding:8px 12px 3px;margin-top:4px;border-top:1px solid #f0f2f4}
+.nav-dropdown__group-title:first-child{border-top:none;margin-top:0;padding-top:4px}
+
 /* Language popover pointer notch & active indicator */
-.nav-dropdown__menu--lang{min-width:76px;padding:4px 0}
-.nav-dropdown__item{width:100%;text-align:left;border:none;background:transparent;padding:8px 12px;font:inherit;font-size:13px;font-weight:600;color:#374151;cursor:pointer;display:flex;align-items:center;transition:all .12s ease;border-left:3px solid transparent}
+.nav-dropdown__menu--lang{min-width:76px;max-height:none;padding:4px 0}
+.nav-dropdown__item{width:100%;text-align:left;border:none;background:transparent;padding:7px 12px;font:inherit;font-size:13px;font-weight:600;color:#374151;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .12s ease;border-left:3px solid transparent}
 .nav-dropdown__item:hover{background:#f3f4f6;color:#111}
 .nav-dropdown__item.is-active{background:#f9fafb;color:#111;font-weight:800;border-left-color:#2e70ce}
 

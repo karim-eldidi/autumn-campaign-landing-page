@@ -102,6 +102,51 @@ const USC_PLANS = [
   }
 ];
 
+const COUNTRIES_CITIES = [
+  {
+    country: 'Germany',
+    flag: '🇩🇪',
+    cities: [
+      { key: 'berlin', name: 'Berlin' },
+      { key: 'hamburg', name: 'Hamburg' },
+      { key: 'munich', name: 'Munich' },
+      { key: 'cologne', name: 'Cologne' }
+    ]
+  },
+  {
+    country: 'France',
+    flag: '🇫🇷',
+    cities: [
+      { key: 'paris', name: 'Paris', externalUrl: 'https://urbansportsclub.com/fr/venues/paris' },
+      { key: 'lyon', name: 'Lyon', externalUrl: 'https://urbansportsclub.com/fr/venues/lyon' }
+    ]
+  },
+  {
+    country: 'Spain',
+    flag: '🇪🇸',
+    cities: [
+      { key: 'madrid', name: 'Madrid', externalUrl: 'https://urbansportsclub.com/es/venues/madrid' },
+      { key: 'barcelona', name: 'Barcelona', externalUrl: 'https://urbansportsclub.com/es/venues/barcelona' }
+    ]
+  },
+  {
+    country: 'Portugal',
+    flag: '🇵🇹',
+    cities: [
+      { key: 'lisbon', name: 'Lisbon', externalUrl: 'https://urbansportsclub.com/pt/venues/lisboa' },
+      { key: 'porto', name: 'Porto', externalUrl: 'https://urbansportsclub.com/pt/venues/porto' }
+    ]
+  },
+  {
+    country: 'Belgium & Netherlands',
+    flag: '🇧🇪',
+    cities: [
+      { key: 'brussels', name: 'Brussels', externalUrl: 'https://urbansportsclub.com/fr/venues/bruxelles' },
+      { key: 'amsterdam', name: 'Amsterdam', externalUrl: 'https://urbansportsclub.com/nl/venues/amsterdam' }
+    ]
+  }
+];
+
 const CITY_VENUES = {
   berlin: {
     name: 'Berlin',

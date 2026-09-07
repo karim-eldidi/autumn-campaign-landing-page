@@ -1,10 +1,22 @@
 const round = n => Math.round(n * 10) / 10;
 
 const HERO_SLIDES = [
-  { desktop: 'assets/banner-variants/gym-sauna-desktop.png', mobile: 'assets/banner-variants/gym-sauna-mobile.png', first: 'GYM.', second: 'SAUNA.', line: 'Train. Recover. Same membership.', alt: 'The same member training at the gym and recovering in a sauna' },
-  { desktop: 'assets/banner-variants/bouldering-yoga-desktop.png', mobile: 'assets/banner-variants/bouldering-yoga-mobile.png', first: 'BOULDER.', second: 'YOGA.', line: 'Climb. Reset. Same membership.', alt: 'The same member bouldering and practising yoga' },
-  { desktop: 'assets/banner-variants/swimming-cycling-desktop.png', mobile: 'assets/banner-variants/swimming-cycling-mobile.png', first: 'SWIM.', second: 'RIDE.', line: 'Two ways to move. Same membership.', alt: 'The same member swimming and training on an indoor bike' }
+  { id: 'gym-sauna', desktop: 'assets/banner-variants/gym-sauna-desktop.png', mobile: 'assets/banner-variants/gym-sauna-mobile.png', first: 'GYM.', second: 'SAUNA.', line: 'Train. Recover. Same membership.', alt: 'The same member training at the gym and recovering in a sauna' },
+  { id: 'boulder-yoga', desktop: 'assets/banner-variants/bouldering-yoga-desktop.png', mobile: 'assets/banner-variants/bouldering-yoga-mobile.png', first: 'BOULDER.', second: 'YOGA.', line: 'Climb. Reset. Same membership.', alt: 'The same member bouldering and practising yoga' },
+  { id: 'swim-ride', desktop: 'assets/banner-variants/swimming-cycling-desktop.png', mobile: 'assets/banner-variants/swimming-cycling-mobile.png', first: 'SWIM.', second: 'RIDE.', line: 'Two ways to move. Same membership.', alt: 'The same member swimming and training on an indoor bike' }
 ];
+
+const urlParams = new URLSearchParams(window.location.search);
+const themeParam = (urlParams.get('theme') || urlParams.get('variant') || '').toLowerCase();
+let heroIndex = 0; // Default signature hero
+
+if (themeParam.includes('boulder') || themeParam.includes('yoga') || themeParam.includes('climb')) {
+  heroIndex = 1;
+} else if (themeParam.includes('swim') || themeParam.includes('ride') || themeParam.includes('cycl')) {
+  heroIndex = 2;
+} else if (themeParam.includes('gym') || themeParam.includes('sauna') || themeParam.includes('fit')) {
+  heroIndex = 0;
+}
 
 const heroMedia = document.querySelector('#hero-media');
 const heroImage = document.querySelector('#hero-image');
@@ -12,7 +24,6 @@ const heroSource = document.querySelector('#hero-source');
 const heroFirst = document.querySelector('#hero-first');
 const heroSecond = document.querySelector('#hero-second');
 const heroLine = document.querySelector('#hero-line');
-let heroIndex = Math.floor(Math.random() * HERO_SLIDES.length);
 
 HERO_SLIDES.forEach(slide => [slide.desktop, slide.mobile].forEach(src => {
   const image = new Image();
@@ -49,13 +60,6 @@ const mobileHeroMql = window.matchMedia('(max-width: 800px)');
 mobileHeroMql.addEventListener('change', () => {
   showHero(heroIndex, false);
 });
-
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  setInterval(() => {
-    heroIndex = (heroIndex + 1) % HERO_SLIDES.length;
-    showHero(heroIndex, true);
-  }, 7000);
-}
 
 /* --- Week Activity Bezier Curve --- */
 function roundedCorners(points, radius) {
@@ -154,7 +158,8 @@ new ResizeObserver(layoutJourney).observe(week);
 document.querySelectorAll('.week img').forEach(img => { if (!img.complete) img.addEventListener('load',layoutJourney,{once:true}); });
 
 /* --- State Management --- */
-let selectedCity = 'berlin';
+const cityParam = (urlParams.get('city') || '').toLowerCase();
+let selectedCity = (cityParam && CITY_VENUES[cityParam]) ? cityParam : 'berlin';
 let selectedCategory = 'all';
 let selectedBillingTerm = 'annual'; // 'annual' | 'monthly'
 
@@ -176,17 +181,40 @@ const navLangMenu = document.querySelector('#nav-lang-menu');
 
 function populateCityMenu(menuEl, onSelect) {
   if (!menuEl) return;
-  menuEl.replaceChildren(...Object.entries(CITY_VENUES).map(([key, city]) => {
-    const item = document.createElement('button');
-    item.className = `nav-dropdown__item${key === selectedCity ? ' is-active' : ''}`;
-    item.type = 'button';
-    item.textContent = city.name;
-    item.addEventListener('click', () => {
-      onSelect(key);
-      closeAllDropdowns();
+  const groups = (typeof COUNTRIES_CITIES !== 'undefined' && Array.isArray(COUNTRIES_CITIES)) ? COUNTRIES_CITIES : [
+    {
+      country: 'Germany',
+      flag: '🇩🇪',
+      cities: Object.keys(CITY_VENUES).map(k => ({ key: k, name: CITY_VENUES[k].name }))
+    }
+  ];
+
+  const frag = document.createDocumentFragment();
+
+  groups.forEach(group => {
+    const title = document.createElement('div');
+    title.className = 'nav-dropdown__group-title';
+    title.textContent = `${group.flag} ${group.country}`;
+    frag.appendChild(title);
+
+    group.cities.forEach(city => {
+      const item = document.createElement('button');
+      item.className = `nav-dropdown__item${city.key === selectedCity ? ' is-active' : ''}`;
+      item.type = 'button';
+      item.textContent = city.name;
+      item.addEventListener('click', () => {
+        if (city.externalUrl && !CITY_VENUES[city.key]) {
+          window.open(city.externalUrl, '_blank');
+        } else {
+          onSelect(city.key);
+        }
+        closeAllDropdowns();
+      });
+      frag.appendChild(item);
     });
-    return item;
-  }));
+  });
+
+  menuEl.replaceChildren(frag);
 }
 
 function setupNavDropdowns() {
