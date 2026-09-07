@@ -1,9 +1,9 @@
 const VENUE_CATEGORIES = [
-  { id: 'all', label: 'All Activities' },
-  { id: 'gym', label: 'Gym & Fitness', icon: '🏋️' },
-  { id: 'sauna', label: 'Sauna & Recovery', icon: '🧖' },
-  { id: 'swim', label: 'Swimming & Pools', icon: '🏊' },
-  { id: 'boulder', label: 'Bouldering', icon: '🧗' }
+  { id: 'all', label: 'All Activities', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>' },
+  { id: 'gym', label: 'Gym & Fitness', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/></svg>' },
+  { id: 'sauna', label: 'Sauna & Recovery', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M8 6v3M16 6v3M6 13a6 6 0 0 0 12 0c0-4-6-9-6-9s-6 5-6 9z"/></svg>' },
+  { id: 'swim', label: 'Swimming & Pools', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5 1.5 5 1.5 7.5 0s5-1.5 7.5 0 5 1.5 7 0M2 17c2.5 1.5 5 1.5 7.5 0s5-1.5 7.5 0 5 1.5 7 0"/></svg>' },
+  { id: 'boulder', label: 'Bouldering', iconSvg: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22 12 2"/></svg>' }
 ];
 
 const USC_PLANS = [
@@ -58,16 +58,16 @@ const USC_PLANS = [
     emoji: '🪷',
     tierInfo: 'Daily + 4 Plus visits · includes 1 massage',
     monthlyPrice: 115,
-    annualPrice: 109,
-    checkIns: 'Daily + 4 Plus visits',
-    summary: 'Boutique studios & thermal spas + massage',
-    description: 'Boutique fitness, high-end thermal saunas, and 1 premium massage included every month.',
+    annualPrice: 99,
+    checkIns: 'Daily + 4 Plus/mo',
+    summary: 'Daily fitness + premium spas & massage',
+    description: 'Premium fitness, boutique studios, hotel spas, plus 1 monthly 30-min massage or PLUS check-in.',
     features: [
-      '17,700+ partner venues across Europe',
-      'Daily check-ins across Europe',
-      '4 Plus visits for boutique spas & 1 massage/month',
-      'Full thermal bath & sauna coverage',
-      'All live classes & premium partner apps'
+      '14,800+ partner venues across Europe',
+      'Daily gym, pool & partner sauna access',
+      '4 Plus check-ins for high-end boutique studios & spas',
+      '1 free massage (30 min) per month',
+      'Pause membership anytime'
     ],
     popular: false,
     cta: 'Choose Premium and continue',
@@ -76,20 +76,20 @@ const USC_PLANS = [
   {
     id: 'max',
     name: 'Max',
-    headline: 'Live exceptionally',
-    emoji: '💛',
-    tierInfo: 'Daily + 8 Plus visits · includes 2 massages',
-    monthlyPrice: 165,
-    annualPrice: 149,
-    checkIns: 'Daily + 8 Plus visits',
-    summary: 'Ultimate all-inclusive access + 2 massages',
-    description: 'Ultimate luxury wellness, premium boutique clubs, and 2 massages included every month.',
+    headline: 'Everything unlimited',
+    emoji: '⚡',
+    tierInfo: 'Daily + 8 Plus visits · 2 massages',
+    monthlyPrice: 169,
+    annualPrice: 145,
+    checkIns: 'Daily + 8 Plus/mo',
+    summary: 'Maximum access + 2 monthly massages',
+    description: 'Ultimate wellbeing and fitness freedom. Includes 8 Plus check-ins and 2 monthly massages.',
     features: [
-      '17,800+ partner venues everywhere',
-      'Daily check-ins across all countries',
-      '8 Plus visits for luxury spas & 2 massages/month',
-      'Exclusive top-tier wellness & padel clubs',
-      'Ultimate flexibility across 7 countries'
+      '14,800+ partner venues across Europe',
+      'Unlimited daily fitness & wellness access',
+      '8 Plus check-ins for boutique studios & day spas',
+      '2 free massages (30 min) per month',
+      'Pause membership anytime'
     ],
     popular: false,
     cta: 'Choose Max and continue',
@@ -104,7 +104,7 @@ const CITY_VENUES = {
     directoryUrl: 'https://urbansportsclub.com/en/venues/berlin/berlin',
     venues: [
       {
-        name: 'BOULDERKLUB Kreuzberg',
+        name: 'Boulderklub Kreuzberg',
         area: 'Kreuzberg',
         type: 'Bouldering & training',
         tier: 'Classic',
@@ -114,7 +114,7 @@ const CITY_VENUES = {
         sourceUrl: 'https://urbansportsclub.com/en/venues/boulderklub-kreuzberg'
       },
       {
-        name: 'LIQUIDROM',
+        name: 'Liquidrom',
         area: 'Kreuzberg',
         type: 'Sauna & recovery',
         tier: 'Premium',
@@ -154,7 +154,7 @@ const CITY_VENUES = {
         sourceUrl: 'https://urbansportsclub.com/en/venues/holmes-place-gendarmenmarkt'
       },
       {
-        name: 'ANTI SPA',
+        name: 'Anti Spa & Wellness',
         area: 'Mitte',
         type: 'Sauna & recovery',
         tier: 'Premium',
@@ -171,7 +171,7 @@ const CITY_VENUES = {
     directoryUrl: 'https://urbansportsclub.com/en/venues/hamburg/hamburg',
     venues: [
       {
-        name: 'Sports Club Hamburg- City',
+        name: 'Sports Club Hamburg City',
         area: 'Mitte',
         type: 'Gym, pool & sauna',
         tier: 'Classic',
@@ -181,7 +181,7 @@ const CITY_VENUES = {
         sourceUrl: 'https://urbansportsclub.com/en/venues/sports-club-hamburg-city-gmbh'
       },
       {
-        name: 'Bäderland Kaifubad (Sauna/Sole)',
+        name: 'Bäderland Kaifubad',
         area: 'Eimsbüttel',
         type: 'Sauna & wellness',
         tier: 'Classic',
@@ -228,7 +228,7 @@ const CITY_VENUES = {
         sourceUrl: 'https://urbansportsclub.com/en/venues/munichgym'
       },
       {
-        name: 'Nordbad - Sauna',
+        name: 'Nordbad Sauna & Pool',
         area: 'Schwabing-West',
         type: 'Sauna & pool',
         tier: 'Classic',
@@ -265,7 +265,7 @@ const CITY_VENUES = {
     directoryUrl: 'https://urbansportsclub.com/en/venues/koln/koln',
     venues: [
       {
-        name: 'Iron&Soul Köln',
+        name: 'Iron & Soul Köln',
         area: 'Zollstock',
         type: 'Gym, Hyrox & recovery',
         tier: 'Classic',
@@ -295,7 +295,7 @@ const CITY_VENUES = {
         sourceUrl: 'https://urbansportsclub.com/en/venues/mauritius-therme'
       },
       {
-        name: 'THE OTHER SPACE',
+        name: 'The Other Space',
         area: 'Ehrenfeld',
         type: 'Gym, movement & wellness',
         tier: 'Classic',

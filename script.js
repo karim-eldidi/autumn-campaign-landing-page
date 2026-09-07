@@ -266,7 +266,6 @@ const categoryOptions = document.querySelector('#category-options');
 const venueGrid = document.querySelector('#venue-grid');
 const cityLabel = document.querySelector('#venue-city-label');
 const moreVenues = document.querySelector('#more-venues');
-const locationStatus = document.querySelector('#location-status');
 
 function renderCategoryFilters() {
   if (!categoryOptions) return;
@@ -274,7 +273,7 @@ function renderCategoryFilters() {
     const button = document.createElement('button');
     button.className = 'category-btn';
     button.type = 'button';
-    button.innerHTML = `${cat.icon ? `<span>${cat.icon}</span> ` : ''}${cat.label}`;
+    button.innerHTML = `${cat.iconSvg ? `<span class="category-icon">${cat.iconSvg}</span>` : ''}<span>${cat.label}</span>`;
     const active = cat.id === selectedCategory;
     button.classList.toggle('is-active', active);
     button.setAttribute('aria-pressed', String(active));
@@ -362,35 +361,6 @@ function selectCity(key) {
   updateCityUI();
   renderVenues();
 }
-
-/* Geolocation Nearest City Finder */
-function distanceKm(a, b) {
-  const rad = n => n * Math.PI / 180, earth = 6371, dLat = rad(b.lat - a.lat), dLng = rad(b.lng - a.lng);
-  const value = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLng / 2) ** 2;
-  return earth * 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
-}
-
-document.querySelector('#detect-location')?.addEventListener('click', () => {
-  if (!navigator.geolocation) {
-    if (locationStatus) locationStatus.textContent = 'Location detection is unavailable. Choose a city above.';
-    return;
-  }
-  if (locationStatus) locationStatus.textContent = 'Checking your nearest demo city…';
-  navigator.geolocation.getCurrentPosition(position => {
-    const point = { lat: position.coords.latitude, lng: position.coords.longitude };
-    const nearest = Object.entries(CITY_VENUES)
-      .map(([key, city]) => ({ key, city, distance: distanceKm(point, city.centre) }))
-      .sort((a, b) => a.distance - b.distance)[0];
-    if (nearest.distance > 120) {
-      if (locationStatus) locationStatus.textContent = 'None of the four demo cities appears to be nearby. Choose a city above.';
-      return;
-    }
-    selectCity(nearest.key);
-    if (locationStatus) locationStatus.textContent = `Showing ${nearest.city.name}, your nearest demo city. Your location stays in this browser.`;
-  }, () => {
-    if (locationStatus) locationStatus.textContent = 'Location was not shared. Choose a city above.';
-  }, { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 });
-});
 
 /* Carousel navigation arrows */
 document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEventListener('click', () => {
