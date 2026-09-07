@@ -66,26 +66,6 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .week__node{position:absolute;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;background:#fff;border:3.5px solid #fedb00;box-shadow:0 1px 6px rgba(8,9,10,.22)}
 .week__node--end{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border:0;background:#fedb00;box-shadow:0 0 0 4px rgba(254,219,0,.3)}
 
-/* Comparison Table Section (Traditional Gym vs Urban Sports Club) */
-.comparison{padding:clamp(60px,7vw,96px) clamp(20px,5vw,72px);background:#fdfbf7;border-top:1px solid #eeece5}
-.comparison__header{text-align:center;max-width:600px;margin:0 auto 36px}
-.comparison__header h2{margin:8px 0 0;font-size:clamp(30px,4.2vw,48px);line-height:1.05;letter-spacing:-.04em;color:#111}
-
-.comparison__table-wrap{max-width:920px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.04)}
-.comparison__table{width:100%;border-collapse:collapse;text-align:left}
-.comparison__table th{padding:18px 22px;font-size:14.5px;font-weight:800;border-bottom:2px solid #e5e7eb;background:#f9fafb;color:#111}
-.comparison__table th.comparison__col-usc{background:#111;color:#f6df79;font-weight:900;font-size:15px;letter-spacing:.02em}
-.comparison__table td{padding:16px 22px;font-size:14px;border-bottom:1px solid #f0ede6;vertical-align:middle;color:#374151}
-.comparison__table tr:last-child td{border-bottom:none}
-
-.comparison__feature-label{font-weight:800;color:#111;width:22%;white-space:nowrap}
-.comparison__cell-trad{color:#6b7280;width:33%}
-.comparison__cell-usc{background:rgba(246,223,121,.08);color:#111;width:45%}
-.comparison__cell-usc strong{color:#111;font-weight:800}
-
-.check{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#dcfce7;color:#16a34a;font-weight:900;font-size:11px;margin-right:8px;flex-shrink:0;vertical-align:middle}
-.cross{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#fee2e2;color:#dc2626;font-weight:900;font-size:11px;margin-right:8px;flex-shrink:0;vertical-align:middle}
-
 /* Venues Section (Refined Compact Carousel Container) */
 .venues{padding:clamp(60px,7vw,104px) clamp(20px,5vw,72px);background:#172027;color:#fff}
 .venues__header{max-width:760px;margin-bottom:24px}
@@ -255,10 +235,6 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .week{grid-template-columns:1fr;gap:36px}
   .week__intro{max-width:none}
   .week__journey path,.week.is-drawn .week__journey path{stroke-dashoffset:0;transition:none}
-  
-  .comparison__table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
-  .comparison__table{min-width:540px}
-  .comparison__table th,.comparison__table td{padding:14px 16px;font-size:13px}
   
   .venues__grid{margin-right:-20px;padding-right:20px}
   .venues__grid>.venue,.venue-end-card{flex-basis:82vw}
