@@ -1,5 +1,48 @@
 const round = n => Math.round(n * 10) / 10;
 
+const HERO_SLIDES = [
+  { desktop: 'assets/banner-variants/gym-sauna-desktop.png', mobile: 'assets/banner-variants/gym-sauna-mobile.png', first: 'GYM.', second: 'SAUNA.', line: 'Train. Recover. Same membership.', alt: 'The same member training at the gym and recovering in a sauna' },
+  { desktop: 'assets/banner-variants/bouldering-yoga-desktop.png', mobile: 'assets/banner-variants/bouldering-yoga-mobile.png', first: 'BOULDER.', second: 'YOGA.', line: 'Climb. Reset. Same membership.', alt: 'The same member bouldering and practising yoga' },
+  { desktop: 'assets/banner-variants/swimming-cycling-desktop.png', mobile: 'assets/banner-variants/swimming-cycling-mobile.png', first: 'SWIM.', second: 'RIDE.', line: 'Two ways to move. Same membership.', alt: 'The same member swimming and training on an indoor bike' }
+];
+
+const heroMedia = document.querySelector('#hero-media');
+const heroImage = document.querySelector('#hero-image');
+const heroSource = document.querySelector('#hero-source');
+const heroFirst = document.querySelector('#hero-first');
+const heroSecond = document.querySelector('#hero-second');
+const heroLine = document.querySelector('#hero-line');
+let heroIndex = Math.floor(Math.random() * HERO_SLIDES.length);
+
+HERO_SLIDES.forEach(slide => [slide.desktop, slide.mobile].forEach(src => {
+  const image = new Image();
+  image.src = src;
+}));
+
+function showHero(index, animate = false) {
+  const apply = () => {
+    const slide = HERO_SLIDES[index];
+    heroSource.srcset = slide.mobile;
+    heroImage.src = slide.desktop;
+    heroImage.alt = slide.alt;
+    heroFirst.textContent = slide.first;
+    heroSecond.textContent = slide.second;
+    heroLine.textContent = slide.line;
+    heroMedia.classList.remove('is-changing');
+  };
+  if (!animate) { apply(); return; }
+  heroMedia.classList.add('is-changing');
+  setTimeout(apply, 240);
+}
+
+showHero(heroIndex);
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  setInterval(() => {
+    heroIndex = (heroIndex + 1) % HERO_SLIDES.length;
+    showHero(heroIndex, true);
+  }, 7000);
+}
+
 /* --- Week Activity Bezier Curve --- */
 function roundedCorners(points, radius) {
   if (!points.length) return '';

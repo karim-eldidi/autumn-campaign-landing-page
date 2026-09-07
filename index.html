@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Urban Sports Club Autumn 2026 campaign landing-page concept.">
   <title>Gym. And sauna. | Urban Sports Club</title>
-  <link rel="stylesheet" href="styles.css?v=autumn-v2">
+  <link rel="stylesheet" href="styles.css?v=rotating-hero">
 </head>
 <body>
   <header class="nav">
@@ -39,12 +39,15 @@
 
   <main>
     <section class="hero" id="hero">
-      <img src="assets/campaign-gym-sauna.png" alt="The same member training at the gym and recovering in a sauna">
+      <picture class="hero__media" id="hero-media">
+        <source id="hero-source" media="(max-width: 800px)" srcset="assets/banner-variants/gym-sauna-mobile.png">
+        <img id="hero-image" src="assets/banner-variants/gym-sauna-desktop.png" alt="The same member training at the gym and recovering in a sauna">
+      </picture>
       <div class="hero__shade"></div>
       <div class="hero__copy">
         <p class="eyebrow eyebrow--light">50+ sports. One membership.</p>
-        <h1><span>GYM.</span> <mark>AND</mark> <span>SAUNA.</span></h1>
-        <p class="hero__line">Train. Recover. Same membership.</p>
+        <h1><span id="hero-first">GYM.</span> <mark>AND</mark> <span id="hero-second">SAUNA.</span></h1>
+        <p class="hero__line" id="hero-line">Train. Recover. Same membership.</p>
         <a class="button button--hero" href="#week">Learn more <span aria-hidden="true">↓</span></a>
       </div>
     </section>
@@ -141,6 +144,6 @@
   </div>
 
   <script src="venues.js?v=autumn-v2"></script>
-  <script src="script.js?v=autumn-v2"></script>
+  <script src="script.js?v=rotating-hero"></script>
 </body>
 </html>
