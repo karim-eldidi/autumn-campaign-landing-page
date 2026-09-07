@@ -127,6 +127,12 @@
             <h2>Choose how you<br>want to move.</h2>
             <p class="tiers__lede">From once a week to daily movement and recovery. Gym and sauna are in every one of them.</p>
           </div>
+        <div class="term-switch-wrap">
+          <div class="term-switch" role="radiogroup" aria-label="Membership duration">
+            <button class="term-switch__btn" type="button" data-term="monthly" role="radio" aria-checked="false">Monthly</button>
+            <button class="term-switch__btn is-active" type="button" data-term="annual" role="radio" aria-checked="true">12 months <i>&minus;15%</i></button>
+            <button class="term-switch__btn" type="button" data-term="biennial" role="radio" aria-checked="false">24 months <i>&minus;20%</i></button>
+          </div>
         </div>
 
         <div class="tiers__rail-wrap">
@@ -136,12 +142,9 @@
           </button>
         </div>
 
-        <div class="term-switch-wrap">
-          <div class="term-switch" role="radiogroup" aria-label="Membership duration">
-            <button class="term-switch__btn" type="button" data-term="monthly" role="radio" aria-checked="false">Monthly</button>
-            <button class="term-switch__btn is-active" type="button" data-term="annual" role="radio" aria-checked="true">12 months <i>&minus;15%</i></button>
-            <button class="term-switch__btn" type="button" data-term="biennial" role="radio" aria-checked="false">24 months <i>&minus;20%</i></button>
-          </div>
+        <div class="tiers__action-dock" id="tiers-action-dock">
+          <a class="button button--tiers-cta" id="tiers-selected-cta" href="https://urbansportsclub.com/en/prices" target="_blank" rel="noopener noreferrer">Continue with Classic <span aria-hidden="true">→</span></a>
+          <a class="tiers__compare-link" href="https://urbansportsclub.com/en/prices" target="_blank" rel="noopener noreferrer">Compare all memberships ↗</a>
         </div>
       </div>
     </section>
@@ -152,7 +155,7 @@
         <h2>One membership for both.</h2>
         <p>Find the membership that covers the places you want to use.</p>
       </div>
-      <a class="button button--dark" href="#membership">Find my membership <span aria-hidden="true">→</span></a>
+      <a class="button button--dark" href="#membership">Choose your membership <span aria-hidden="true">→</span></a>
     </section>
   </main>
 
@@ -173,12 +176,12 @@
         <strong>Gym & sauna in one pass</strong>
         <span>From €29/mo · Pause anytime</span>
       </div>
-      <a class="button button--sticky" href="https://urbansportsclub.com/en/prices" target="_blank" rel="noopener noreferrer">Choose plan <span aria-hidden="true">→</span></a>
+      <a class="button button--sticky" href="#membership">Choose your membership <span aria-hidden="true">→</span></a>
     </div>
   </div>
 
-  <script src="venues.js?v=autumn-v12"></script>
-  <script src="script.js?v=autumn-v12"></script>
+  <script src="venues.js?v=autumn-v13"></script>
+  <script src="script.js?v=autumn-v13"></script>
 </body>
 </html>
 

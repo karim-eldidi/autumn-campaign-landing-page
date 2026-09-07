@@ -4,7 +4,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-serif;-webkit-font-smoothing:antialiased}
 
 /* Header & Nav Controls */
-.nav{height:72px;padding:0 clamp(20px,5vw,72px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:90}
+.nav{height:72px;padding:0 clamp(20px,5vw,72px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);position:relative;z-index:90}
 .nav__brand{text-decoration:none;color:#0b0d0e;display:flex;align-items:center}
 .wordmark{text-transform:uppercase;font-size:14px;font-weight:800;letter-spacing:.055em}
 .nav__controls{display:flex;align-items:center;gap:10px}
@@ -113,11 +113,9 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .venues__grid::-webkit-scrollbar{display:none}
 .venues__grid>.venue,.venue-end-card{flex:0 0 clamp(270px,27vw,320px);scroll-snap-align:start}
 
-.venue{background:#fff;color:#111;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 4px 18px rgba(0,0,0,.22)}
-.venue:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.32)}
+.venue{background:#fff;color:#111;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;cursor:default;transition:box-shadow .2s ease;box-shadow:0 4px 18px rgba(0,0,0,.22)}
 .venue__media{position:relative;aspect-ratio:4/3;width:100%;overflow:hidden;background:#222}
-.venue__media img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
-.venue:hover .venue__media img{transform:scale(1.05)}
+.venue__media img{width:100%;height:100%;object-fit:cover}
 .venue__badge{position:absolute;top:10px;left:10px;padding:4px 9px;border-radius:6px;background:rgba(11,13,14,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:11.5px;font-weight:700}
 
 .venue__body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1 1 auto}
@@ -141,14 +139,13 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .button--usc-blue:hover{background:#2457a0;transform:translateY(-1px);box-shadow:0 8px 20px rgba(46,112,206,.38)}
 
 /* ============================================================
-/* ============================================================
-   Membership tiers — numeral anchor + card rail + bottom term switcher
+   Membership tiers — numeral anchor + card rail + price selector
    ============================================================ */
 .tiers{position:relative;padding:clamp(60px,7.5vw,100px) clamp(20px,5vw,72px);background:#0b0d0e;color:#fff;border-top:1px solid rgba(255,255,255,.07)}
 .tiers__inner{max-width:1240px;margin:0 auto}
 
 /* Header — tight lockup of numeral "4" and copy block */
-.tiers__head{display:flex;align-items:flex-start;gap:clamp(24px,3.6vw,44px);max-width:860px;margin-bottom:36px}
+.tiers__head{display:flex;align-items:flex-start;gap:clamp(24px,3.6vw,44px);max-width:860px;margin-bottom:28px}
 .tiers__anchor{display:flex;flex-direction:column;align-items:flex-start;flex-shrink:0}
 .tiers__eyebrow{margin:0 0 10px;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;font-weight:800;color:#868e95}
 .tiers__numeral{font-size:clamp(96px,10vw,144px);line-height:.8;font-weight:900;letter-spacing:-.075em;color:#fedb00}
@@ -157,8 +154,8 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tiers h2{margin:0 0 12px;font-size:clamp(30px,3.4vw,46px);line-height:1.04;letter-spacing:-.038em;font-weight:900}
 .tiers__lede{margin:0;font-size:clamp(14.5px,1.15vw,16.5px);line-height:1.45;color:#a4acb2;max-width:48ch}
 
-/* Term switch — centered below cards on desktop */
-.term-switch-wrap{display:flex;justify-content:center;margin-top:32px}
+/* Term switch — centered above cards */
+.term-switch-wrap{display:flex;justify-content:center;margin:0 0 24px}
 .term-switch{display:inline-flex;gap:2px;padding:4px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
 .term-switch__btn{border:none;background:transparent;padding:9px 18px;border-radius:9px;font:inherit;font-size:13px;font-weight:700;color:#9aa2a8;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background .16s ease,color .16s ease}
 .term-switch__btn:hover{color:#fff}
@@ -166,42 +163,42 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .term-switch__btn.is-active{background:#fff;color:#0b0d0e;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .term-switch__btn.is-active i{color:#2457a0}
 
-/* Rail — perfectly aligned horizontal baseline across all cards */
+/* Rail — aligned horizontal baseline across all cards */
 .tiers__rail-wrap{position:relative}
-.tiers__rail{display:flex;align-items:stretch;gap:clamp(12px,1.2vw,16px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px 4px 14px}
+.tiers__rail{display:flex;align-items:stretch;gap:clamp(12px,1.2vw,16px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:12px 4px 16px}
 .tiers__rail::-webkit-scrollbar{display:none}
 .tiers-scroll-hint{display:none}
 
-/* Card — fixed rows so dividers and CTAs align across all four */
-.tier-card{flex:0 0 clamp(220px,18.4vw,238px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);transition:transform .18s ease,box-shadow .18s ease;text-decoration:none}
-.tier-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(0,0,0,.46)}
-.tier-card__go{position:absolute;right:16px;top:20px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#2e70ce;color:#fff;font-size:14px;font-weight:900;opacity:0;transform:translateX(-4px);transition:opacity .16s ease,transform .16s ease}
-.tier-card:hover .tier-card__go{opacity:1;transform:translateX(0)}
-.tier-card--pick .tier-card__go{top:24px}
-.tier-card:hover .tier-card__name{text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:#fedb00;text-underline-offset:3px}
+/* Selectable Cards */
+.tier-card{flex:0 0 clamp(220px,18.4vw,238px);scroll-snap-align:start;position:relative;display:grid;grid-template-rows:auto auto auto 1fr;padding:22px 20px 22px;border-radius:16px;background:#f2eee3;color:#0b0d0e;box-shadow:0 10px 30px rgba(0,0,0,.34);cursor:pointer;user-select:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;border:2.5px solid transparent}
+.tier-card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.46)}
+.tier-card.is-selected{border-color:#fedb00;box-shadow:0 16px 44px rgba(254,219,0,.32);background:#fff}
 
-/* The recommendation is the only card that differs */
+.tier-card__select-pill{position:absolute;top:16px;right:16px;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:800;background:rgba(11,13,14,.08);color:#5d666d;letter-spacing:.02em;transition:all .15s ease}
+.tier-card.is-selected .tier-card__select-pill{background:#0b0d0e;color:#fedb00}
+
+/* The recommendation card */
 .tier-card--pick{background:#fff;box-shadow:0 16px 42px rgba(0,0,0,.46)}
-.tier-card--pick::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;border-radius:16px 16px 0 0;background:#fedb00}
+.tier-card--pick::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;border-radius:14px 14px 0 0;background:#fedb00}
 .tier-card__badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:4px 12px;border-radius:999px;background:#0b0d0e;color:#fedb00;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.5)}
 
 .tier-card__name{margin:0;font-size:19.5px;font-weight:900;letter-spacing:-.028em}
 .tier-card__for{margin:3px 0 0;min-height:19px;font-size:13px;font-weight:600;color:#5d666d}
 
-/* Price is the anchor, and it sits high in the card */
+/* Price block */
 .tier-card__price{display:flex;align-items:baseline;gap:7px;margin-top:18px}
 .tier-card__amount{font-size:clamp(34px,3.3vw,42px);font-weight:900;letter-spacing:-.05em;line-height:1;color:#2e70ce}
 .tier-card__per{font-size:13.5px;font-weight:700;color:#5d666d}
 .tier-card__billed{margin:7px 0 0;min-height:17px;font-size:11.5px;font-weight:700;color:#5d666d}
 .tier-card__billed b{color:#2457a0;font-weight:800}
 
-/* Monochrome specs — yellow stays the only accent */
+/* Monochrome specs */
 .tier-card__specs{list-style:none;margin:17px 0 0;padding:17px 0 0;border-top:1px solid rgba(11,13,14,.12);display:flex;flex-direction:column;gap:10px}
 .tier-card__specs li{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:#2b3237}
 .tier-card__specs svg{flex:0 0 16px;color:#2e70ce}
 
-/* Last card in the rail: the single CTA, and the yellow-campaign → blue-site handover */
-.tier-card--cta{flex:0 0 clamp(204px,17vw,222px);display:grid;grid-template-rows:1fr auto;padding:0;overflow:hidden;background:#f2eee3;text-decoration:none;color:#0b0d0e}
+/* 5th card in the rail: compare card */
+.tier-card--cta{flex:0 0 clamp(204px,17vw,222px);display:grid;grid-template-rows:1fr auto;padding:0;overflow:hidden;background:#f2eee3;text-decoration:none;color:#0b0d0e;border:2.5px solid transparent}
 .tier-card--cta:hover{transform:translateY(-3px)}
 .tier-card__cta-body{padding:22px 20px 20px}
 .tier-card__cta-kicker{margin:0 0 10px;text-transform:uppercase;letter-spacing:.09em;font-size:10.5px;font-weight:900;color:#2e70ce}
@@ -212,7 +209,12 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
 .tier-card--cta:hover .tier-card__cta-action{background:#2457a0}
 .tier-card--cta:hover .tier-card__cta-action span{transform:translateX(4px)}
 
-/* Footer — compare is a link, not a competing card */
+/* Decisive CTA Dock below membership cards */
+.tiers__action-dock{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+.button--tiers-cta{background:#fedb00;color:#0b0d0e;min-height:54px;padding:0 36px;font-size:16px;font-weight:800;border-radius:10px;box-shadow:0 8px 24px rgba(254,219,0,.3);transition:all .18s ease;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.button--tiers-cta:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,255,255,.3)}
+.tiers__compare-link{color:#9aa2a8;font-size:13.5px;font-weight:700;text-decoration:none;transition:color .15s ease}
+.tiers__compare-link:hover{color:#fff;text-decoration:underline}
 
 
 /* Bottom Yellow CTA Banner */
