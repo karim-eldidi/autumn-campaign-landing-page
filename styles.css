@@ -214,17 +214,21 @@ body{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  vertical-align:0.03em;
+  vertical-align:0.04em;
   background:var(--usc-yellow);
   color:var(--usc-black);
-  padding:0.02em 0.16em 0.08em;
-  line-height:.86;
+  padding:0.10em 0.16em 0.01em;
+  line-height:.76;
   border-radius:8px;
 }
 .hero__line{
   margin:24px 0 22px;
   font-size:clamp(20px,2vw,29px);
   font-weight:700;
+}
+.hero__action{
+  display:block;
+  margin-top:6px;
 }
 .button{
   display:inline-flex;
@@ -256,12 +260,12 @@ body{
   color:var(--usc-black);
 }
 .campaign-offer{
-  display:inline-flex;
+  display:flex;
   align-items:center;
   gap:10px;
   width:fit-content;
   max-width:100%;
-  margin:0 0 20px;
+  margin:0 0 16px;
   padding:8px 14px 8px 10px;
   border:1px solid rgba(246,240,168,.6);
   border-radius:10px;
@@ -1159,11 +1163,24 @@ body{
 .tier-card__price{
   display:flex;
   align-items:baseline;
-  gap:7px;
+  gap:6px;
   margin-top:18px;
+  flex-wrap:wrap;
+}
+.tier-card__original{
+  font-size:clamp(19px,2vw,24px);
+  font-weight:700;
+  color:#8b959e;
+  line-height:1;
+  align-self:baseline;
+}
+.tier-card__original del{
+  text-decoration:line-through;
+  text-decoration-thickness:2px;
+  color:#8b959e;
 }
 .tier-card__amount{
-  font-size:clamp(34px,3.3vw,42px);
+  font-size:clamp(32px,3.1vw,40px);
   font-weight:900;
   letter-spacing:-.05em;
   line-height:1;
@@ -1180,6 +1197,7 @@ body{
   font-size:11.5px;
   font-weight:700;
   color:#5d666d;
+  line-height:1.35;
 }
 .tier-card__billed b{
   color:var(--usc-blue);
@@ -1494,7 +1512,7 @@ body{
   }
   .hero h1 mark{
     display:inline-block;
-    padding:2px 7px;
+    padding:3px 7px 1px;
     border-radius:5px;
     margin-left:2px;
     vertical-align:baseline;
@@ -1509,6 +1527,10 @@ body{
     font-weight:600;
     color:#e5e7eb;
   }
+  .hero__action{
+    display:block;
+    width:100%;
+  }
   .button--hero{
     width:100%;
     min-height:44px;
@@ -1517,10 +1539,10 @@ body{
     padding:0 16px;
   }
   .campaign-offer{
-    display:inline-flex;
+    display:flex;
     align-items:flex-start;
     width:100%;
-    margin-bottom:14px;
+    margin-bottom:12px;
     font-size:12px;
     padding:7px 10px;
     gap:8px;
@@ -1661,7 +1683,8 @@ body{
   .tier-card--cta{padding:0}
   .tier-card__cta-body{padding:18px 15px 16px}
   .tier-card__cta-action{padding:15px}
-  .tier-card__amount{font-size:32px}
+  .tier-card__amount{font-size:28px}
+  .tier-card__original{font-size:18px}
   .tier-card__name{font-size:18px}
   .tier-card__for{font-size:12px}
   .tier-card__specs{margin-top:14px;padding-top:14px;gap:8px}

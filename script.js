@@ -377,7 +377,9 @@ function renderVenues() {
 
   const endCard = document.createElement('a');
   endCard.className = 'venue-end-card';
-  endCard.href = '#membership';
+  endCard.href = pricingUrl();
+  endCard.target = '_blank';
+  endCard.rel = 'noopener noreferrer';
   const kicker = document.createElement('span');
   kicker.textContent = 'Ready to explore?';
   const title = document.createElement('strong');
@@ -428,7 +430,7 @@ function pricingUrl() {
 }
 
 const TERM_COPY = {
-  monthly:  'Billed monthly',
+  monthly:  'First 3 months with MOVE20 · then standard rate',
   annual:   'On a 12-month term · <b>save 15%</b>',
   biennial: 'On a 24-month term · <b>save 20%</b>'
 };
@@ -447,9 +449,13 @@ function iconForSpec(text) {
 }
 
 function priceForTerm(plan, term) {
-  if (term === 'monthly') return plan.monthlyPrice;
+  if (term === 'monthly') return Math.round(plan.monthlyPrice * 0.8);
   if (term === 'annual') return plan.annualPrice;
   return plan.biennialPrice;
+}
+
+function basePrice(plan) {
+  return plan.monthlyPrice;
 }
 
 function capitalise(text) {
@@ -465,9 +471,16 @@ function renderTiers() {
     card.type = 'button';
     card.className = `tier-card${plan.id === selectedPlanId ? ' is-selected' : ''}`;
     card.setAttribute('aria-pressed', String(plan.id === selectedPlanId));
-    card.setAttribute('aria-label', `${plan.name} — ${priceForTerm(plan, term)} euro per month. Select this plan.`);
+    
+    const activePrice = priceForTerm(plan, term);
+    const origPrice = basePrice(plan);
+    card.setAttribute('aria-label', `${plan.name} — ${activePrice} euro per month (regular ${origPrice} euro). Select this plan.`);
 
     const specs = (plan.tierInfo || '').split('·').map(s => s.trim()).filter(Boolean).slice(0, 2);
+
+    const billedText = term === 'monthly'
+      ? `First 3 months with MOVE20 · then ${origPrice}&thinsp;€`
+      : (TERM_COPY[term] || '');
 
     card.innerHTML = `
       ${plan.popular && plan.badge ? `<span class="tier-card__badge">${plan.badge}</span>` : ''}
@@ -476,10 +489,11 @@ function renderTiers() {
         <p class="tier-card__for">${plan.headline}</p>
       </div>
       <div class="tier-card__price">
-        <span class="tier-card__amount">${priceForTerm(plan, term)}&thinsp;&euro;</span>
+        <span class="tier-card__original"><del>${origPrice}&thinsp;&euro;</del></span>
+        <span class="tier-card__amount">${activePrice}&thinsp;&euro;</span>
         <span class="tier-card__per">/ month</span>
       </div>
-      <p class="tier-card__billed">${TERM_COPY[term] || ''}</p>
+      <p class="tier-card__billed">${billedText}</p>
       <ul class="tier-card__specs">
         ${specs.map(spec => `<li>${iconForSpec(spec)}<span>${capitalise(spec)}</span></li>`).join('')}
       </ul>
@@ -494,10 +508,16 @@ function renderTiers() {
 
   const selectedPlan = USC_PLANS.find(plan => plan.id === selectedPlanId) || USC_PLANS[1];
   const selectedPrice = priceForTerm(selectedPlan, term);
-  if (selectedPlanSummary) selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · ${TERM_COPY[term].replace(/<[^>]+>/g, '')}`;
+  if (selectedPlanSummary) {
+    if (term === 'monthly') {
+      selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month (first 3 months with MOVE20) · then ${selectedPlan.monthlyPrice} € / month`;
+    } else {
+      selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · ${TERM_COPY[term].replace(/<[^>]+>/g, '')}`;
+    }
+  }
   if (planContinue) {
     planContinue.href = pricingUrl();
-    planContinue.innerHTML = `Continue with ${selectedPlan.name} <span aria-hidden="true">→</span>`;
+    planContinue.innerHTML = `Continue with offer <span aria-hidden="true">→</span>`;
   }
 }
 
