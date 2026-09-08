@@ -400,6 +400,7 @@ function selectCity(key) {
     moreVenues.href = city.directoryUrl;
     moreVenues.innerHTML = `Browse all ${city.name} venues <span aria-hidden="true">↗</span>`;
   }
+  if (finalMembershipCta) finalMembershipCta.href = `https://urbansportsclub.com/en/prices/${key}`;
   updateCityUI();
   renderCategoryFilters();
   renderVenues();
@@ -417,6 +418,7 @@ const tiersRail = document.querySelector('#tiers-rail');
 const termButtons = document.querySelectorAll('.term-switch__btn');
 const planContinue = document.querySelector('#plan-continue');
 const selectedPlanSummary = document.querySelector('#selected-plan-summary');
+const finalMembershipCta = document.querySelector('#final-membership-cta');
 
 const PRICING_URL = 'https://urbansportsclub.com/en/prices';
 
@@ -537,7 +539,7 @@ const stickyBottomBar = document.querySelector('#sticky-bottom-bar');
 
 function setupStickyBar() {
   if (!stickyBottomBar) return;
-  const bottomCta = document.querySelector('.tiers__continue');
+  const bottomCta = document.querySelector('.membership-cta');
   const footer = document.querySelector('.site-footer');
 
   let atBottom = false;
