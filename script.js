@@ -416,6 +416,7 @@ document.querySelectorAll('[data-scroll-venues]').forEach(button => button.addEv
 /* --- Membership tiers: numeral anchor + card rail --- */
 const tiersRail = document.querySelector('#tiers-rail');
 const termButtons = document.querySelectorAll('.term-switch__btn');
+const termAppBenefit = document.querySelector('#term-app-benefit');
 const planContinue = document.querySelector('#plan-continue');
 const selectedPlanSummary = document.querySelector('#selected-plan-summary');
 const finalMembershipCta = document.querySelector('#final-membership-cta');
@@ -509,6 +510,11 @@ function setupTermSwitch() {
         b.setAttribute('aria-checked', String(isActive));
       });
       renderTiers();
+      if (termAppBenefit) {
+        termAppBenefit.textContent = selectedBillingTerm === 'monthly'
+          ? '✦ Choose 12 or 24 months to include access to selected wellbeing apps'
+          : '✦ Included with this term: access to selected wellbeing apps';
+      }
     });
   });
 }
