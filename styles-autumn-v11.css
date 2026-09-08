@@ -345,22 +345,28 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
   .partner-strip{
     display:block;
     min-height:0;
-    padding:10px 0 12px;
+    padding:12px 0 14px;
     overflow:hidden;
-    background:#08090a;
-    border-top:1px solid rgba(255,255,255,.06);
+    background:#f7f4ec;
+    border-bottom:1px solid rgba(11,13,14,.12);
   }
   .partner-strip__label{
     margin:0 18px 8px;
     font-size:9.5px;
     letter-spacing:.12em;
+    color:#62686c;
   }
   .partner-strip__logos{
     justify-content:flex-start;
     gap:28px;
     width:max-content;
     padding:0 18px;
+    color:#111;
     animation:partner-drift 18s linear infinite alternate;
+  }
+  .partner-strip .partner-logo{
+    color:#111;
+    opacity:.85;
   }
   .partner-logo--beat81{font-size:19px}
   .partner-logo--holmes,.partner-logo--boulderklub{font-size:13px}
