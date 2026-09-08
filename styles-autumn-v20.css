@@ -1914,10 +1914,24 @@ body{
   grid-column:1/-1;
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:10px;
+  justify-content:space-between;
+  gap:12px;
   min-width:0;
-  padding-top:0;
+  padding-top:32px;
+  position:relative;
+}
+.week__app-flow::before{
+  content:"How to use your membership";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  color:var(--usc-dark-grey);
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.13em;
+  text-align:center;
+  text-transform:uppercase;
 }
 .week__app-flow-label{
   margin-right:8px;
@@ -1928,7 +1942,7 @@ body{
   text-transform:uppercase;
   white-space:nowrap;
 }
-.week__app-flow-step{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:750;white-space:nowrap}
+.week__app-flow-step{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:650;white-space:nowrap}
 .week__app-flow-icon{
   display:grid;
   width:38px;
@@ -1938,19 +1952,20 @@ body{
   background:var(--usc-yellow);
   color:var(--usc-black);
 }
-.week__app-flow-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.week__app-flow-arrow{color:#968B2E;font-size:15px;font-weight:800}
+.week__app-flow-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
+.week__app-flow-arrow{flex:1 1 70px;max-width:100px;height:1px;background:#C8BB42;font-size:0}
 .week__app-flow-mobile{display:none}
 
 @media(max-width:800px){
   .week{row-gap:8px}
-  .week__app-flow{grid-column:1;justify-content:space-between;gap:3px;padding-top:0}
+  .week__app-flow{grid-column:1;justify-content:space-between;gap:7px;padding-top:27px}
+  .week__app-flow::before{font-size:9px;letter-spacing:.11em}
   .week__app-flow-label,.week__app-flow-desktop{display:none}
   .week__app-flow-mobile{display:inline}
-  .week__app-flow-step{flex:1;flex-direction:column;gap:5px;font-size:12px;line-height:1}
+  .week__app-flow-step{flex:0 0 auto;flex-direction:column;gap:6px;font-size:11px;font-weight:650;line-height:1}
   .week__app-flow-icon{width:36px;height:36px}
   .week__app-flow-icon svg{width:19px;height:19px}
-  .week__app-flow-arrow{flex:0 0 auto;font-size:12px}
+  .week__app-flow-arrow{flex:1 1 20px;max-width:38px;height:1px}
 }
 
 /* Restore the week section to its pre-ribbon layout. */
@@ -2120,5 +2135,5 @@ body{
 }
 
 /* Keep the inline app journey attached to the weekly image story. */
-.week{row-gap:16px}
-@media(max-width:800px){.week{row-gap:16px}}
+.week{row-gap:28px}
+@media(max-width:800px){.week{row-gap:24px}}
