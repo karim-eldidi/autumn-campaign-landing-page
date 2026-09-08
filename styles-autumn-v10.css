@@ -67,7 +67,7 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
 .week__intro{max-width:430px;position:relative;z-index:2}
 .week h2,.venues h2{margin:0;font-size:clamp(34px,4.5vw,62px);line-height:.96;letter-spacing:-.045em}
 .week__intro>p:not(.eyebrow){margin:20px 0 28px;max-width:38ch;font-size:18px;line-height:1.5;color:#465058}
-.pass{display:inline-flex;align-items:center;height:56px;border-radius:10px;overflow:hidden;background:#F6F0A8;box-shadow:0 8px 22px rgba(0,0,0,.12)}
+.pass{display:inline-flex;align-items:center;height:56px;border-radius:10px;overflow:hidden;background:#fedb00;box-shadow:0 8px 22px rgba(0,0,0,.12)}
 .pass__mark{display:grid;place-items:center;width:56px;height:56px;background:#111;color:#fff;font-size:22px;font-weight:800}
 .pass strong{padding:0 18px;text-transform:uppercase;font-size:13px;letter-spacing:.06em;color:#111}
 .pass i{width:34px;height:24px;margin-right:18px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 5px)}
@@ -80,12 +80,12 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
 .week__grid b{position:absolute;top:9px;left:9px;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.94);font-size:clamp(9px,.8vw,12px)}
 .week__end{align-self:center;margin:0;padding-left:22px;font-weight:800;line-height:1.25}
 .week__journey{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
-.week__journey path{fill:none;stroke:#F6F0A8;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:var(--journey-length,4000px);stroke-dashoffset:var(--journey-length,4000px)}
+.week__journey path{fill:none;stroke:#fedb00;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:var(--journey-length,4000px);stroke-dashoffset:var(--journey-length,4000px)}
 .week.is-drawn .week__journey path{stroke-dashoffset:0;transition:stroke-dashoffset 1.5s cubic-bezier(.32,.9,.38,1)}
 .week__nodes{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0}
 .week.is-drawn .week__nodes{opacity:1;transition:opacity .45s ease .8s}
-.week__node{position:absolute;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;background:#fff;border:3.5px solid #F6F0A8;box-shadow:0 1px 6px rgba(8,9,10,.22)}
-.week__node--end{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border:0;background:#F6F0A8;box-shadow:0 0 0 4px rgba(246,240,168,.35)}
+.week__node{position:absolute;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;background:#fff;border:3.5px solid #fedb00;box-shadow:0 1px 6px rgba(8,9,10,.22)}
+.week__node--end{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border:0;background:#fedb00;box-shadow:0 0 0 4px rgba(254,219,0,.35)}
 
 /* Venues Section (Refined Compact Carousel Container) */
 .venues{padding:clamp(60px,7vw,104px) clamp(20px,5vw,72px);background:#172027;color:#fff}
@@ -218,8 +218,9 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
 .tier-card.is-selected .tier-card__select{background:#2e70ce;color:#fff}
 .tiers__continue{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:22px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);width:100%;max-width:1060px}
 .tiers__continue p{margin:0;color:#a4acb2;font-size:13.5px;font-weight:650}
-.button--plan{min-width:230px;background:#2e70ce;box-shadow:none}
-.button--plan:hover{background:#2457a0}
+.button--plan{min-width:230px;background:#2e70ce;color:#fff;box-shadow:none;transition:background .16s ease,transform .16s ease}
+.button--plan:hover{background:#2457a0;color:#fff}
+.button--plan:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
 /* Last card in the rail: the single CTA, and the yellow-campaign → blue-site handover */
 .tier-card--cta{flex:0 0 clamp(204px,17vw,222px);display:grid;grid-template-rows:1fr auto;padding:0;overflow:hidden;background:#f2eee3;text-decoration:none;color:#0b0d0e}
@@ -229,17 +230,21 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
 .tier-card__cta-title{margin:0;font-size:clamp(22px,1.9vw,25px);line-height:1.02;letter-spacing:-.04em;font-weight:900}
 .tier-card__cta-copy{margin:12px 0 0;font-size:13.5px;line-height:1.4;font-weight:600;color:#5d666d}
 .tier-card__cta-action{display:flex;align-items:center;justify-content:flex-start;gap:9px;padding:19px 20px;background:#2e70ce;color:#fff;font-size:14px;font-weight:800;white-space:nowrap;transition:background .16s ease}
-.tier-card__cta-action span{color:#F6F0A8;font-size:17px;transition:transform .16s ease}
+.tier-card__cta-action span{color:#fedb00;font-size:17px;transition:transform .16s ease}
 .tier-card--cta:hover .tier-card__cta-action{background:#2457a0}
-.tier-card--cta:hover .tier-card__cta-action span{transform:translateX(4px)}
+.tier-card--cta:focus-visible .tier-card__cta-action{background:#2457a0}
 
 /* Bottom Yellow CTA Banner */
 .membership-cta{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:clamp(64px,8vw,110px) clamp(20px,6vw,96px);background:#F6F0A8;color:#0b0d0e}
 .membership-cta__copy{max-width:680px}
 .membership-cta h2{margin:0 0 12px;font-size:clamp(36px,4.8vw,64px);line-height:.95;letter-spacing:-.05em;font-weight:900}
 .membership-cta p:not(.eyebrow){margin:0;font-size:clamp(16px,1.2vw,19px);color:#24282c;line-height:1.4}
-.button--dark{background:#0b0d0e;color:#fff;flex-shrink:0;padding:0 28px;min-height:56px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.18);transition:all .18s ease}
-.button--dark:hover{background:#222;transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.membership-cta .button--blue,
+.membership-cta .button--dark{background:#2e70ce;color:#fff;flex-shrink:0;padding:0 28px;min-height:56px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(46,112,206,.28);transition:all .18s ease}
+.membership-cta .button--blue:hover,
+.membership-cta .button--dark:hover{background:#2457a0;transform:translateY(-2px);box-shadow:0 10px 26px rgba(36,87,160,.38)}
+.membership-cta .button--blue:focus-visible,
+.membership-cta .button--dark:focus-visible{outline:2px solid #0b0d0e;outline-offset:2px}
 
 /* Tiny black legal footer at very bottom */
 .site-footer{background:#0b0d0e;border-top:1px solid rgba(255,255,255,.08);padding:28px 20px;color:#737b82;font-size:12px}
@@ -256,7 +261,9 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
 .sticky-bottom-bar__copy{display:flex;flex-direction:column;color:#fff;min-width:0}
 .sticky-bottom-bar__copy strong{font-size:14.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sticky-bottom-bar__copy span{font-size:12px;color:#b8c0c5;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.button--sticky{min-height:42px;padding:0 18px;font-size:13.5px;font-weight:800;background:#F6F0A8;color:#111;border-radius:8px;border:none;white-space:nowrap;flex-shrink:0;text-decoration:none;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.button--sticky{min-height:42px;padding:0 18px;font-size:13.5px;font-weight:800;background:#2e70ce;color:#fff;border-radius:8px;border:none;white-space:nowrap;flex-shrink:0;text-decoration:none;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(46,112,206,.38);transition:all .18s ease}
+.button--sticky:hover{background:#2457a0;color:#fff}
+.button--sticky:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
 /* Responsive Layout */
 @media(max-width:1080px){
@@ -438,6 +445,9 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
   .tiers__continue{order:4;flex-direction:column;align-items:stretch;gap:12px;margin-top:14px;padding-top:18px}
   .tiers__continue p{text-align:center;font-size:12px}
   .button--plan{width:100%;min-width:0}
+  .membership-cta{flex-direction:column;align-items:flex-start;gap:24px;padding:48px 20px}
+  .membership-cta .button--blue,
+  .membership-cta .button--dark{width:100%;justify-content:center}
 }
 
 @keyframes partner-drift{to{transform:translateX(calc(-100% + 100vw - 20px))}}
