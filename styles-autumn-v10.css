@@ -273,21 +273,95 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:'Apercu','Aktiv Grote
 }
 
 @media(max-width:800px){
-  .nav{height:60px}
-  .hero{min-height:calc(100svh - 60px);max-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:#0b0d0e}
+  .nav{height:56px}
+  .hero{
+    min-height:440px;
+    height:min(580px, calc(100svh - 95px));
+    max-height:none;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    position:relative;
+    overflow:hidden;
+    background:#0b0d0e;
+  }
   .hero__media{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
-  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
-  .hero__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.15) 25%,rgba(0,0,0,.7) 55%,rgba(0,0,0,.95) 100%);display:block;z-index:1;pointer-events:none}
-  .hero__copy{position:relative;z-index:2;padding:16px 20px 24px;width:100%;box-sizing:border-box}
-  .hero h1{font-size:clamp(34px,10vw,54px);line-height:.92;letter-spacing:-.05em;max-width:100%;margin:0 0 8px}
-  .hero h1 span,.hero h1 mark{display:inline;margin-bottom:0}
-  .hero h1 mark{display:inline-block;padding:2px 8px;border-radius:6px}
-  .hero__line{margin:0 0 16px;font-size:clamp(14.5px,3.8vw,17px);font-weight:600;color:#e5e7eb}
-  .button--hero{width:100%;min-height:46px;font-size:15px;border-radius:10px;padding:0 18px}
+  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 12%}
+  .hero__shade{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.08) 20%,rgba(0,0,0,.62) 50%,rgba(0,0,0,.96) 78%);
+    display:block;
+    z-index:1;
+    pointer-events:none;
+  }
+  .hero__copy{
+    position:relative;
+    z-index:2;
+    padding:12px 18px 18px;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .hero .eyebrow{
+    margin:0 0 6px;
+    font-size:11px;
+    letter-spacing:.1em;
+  }
+  .hero h1{
+    font-size:clamp(32px,9.5vw,46px);
+    line-height:.95;
+    letter-spacing:-.05em;
+    max-width:100%;
+    margin:0 0 6px;
+  }
+  .hero h1 #hero-first{
+    display:inline;
+  }
+  .hero h1 mark{
+    display:inline-block;
+    padding:2px 7px;
+    border-radius:5px;
+    margin-left:2px;
+    vertical-align:baseline;
+  }
+  .hero h1 #hero-second{
+    display:block;
+    margin-top:2px;
+  }
+  .hero__line{
+    margin:0 0 14px;
+    font-size:clamp(13.5px,3.6vw,15.5px);
+    font-weight:600;
+    color:#e5e7eb;
+  }
+  .button--hero{
+    width:100%;
+    min-height:44px;
+    font-size:14.5px;
+    border-radius:9px;
+    padding:0 16px;
+  }
 
-  .partner-strip{display:block;min-height:0;padding:14px 0 16px;overflow:hidden}
-  .partner-strip__label{margin:0 20px 13px;font-size:9.5px}
-  .partner-strip__logos{justify-content:flex-start;gap:32px;width:max-content;padding:0 20px;animation:partner-drift 18s linear infinite alternate}
+  .partner-strip{
+    display:block;
+    min-height:0;
+    padding:10px 0 12px;
+    overflow:hidden;
+    background:#08090a;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .partner-strip__label{
+    margin:0 18px 8px;
+    font-size:9.5px;
+    letter-spacing:.12em;
+  }
+  .partner-strip__logos{
+    justify-content:flex-start;
+    gap:28px;
+    width:max-content;
+    padding:0 18px;
+    animation:partner-drift 18s linear infinite alternate;
+  }
   .partner-logo--beat81{font-size:19px}
   .partner-logo--holmes,.partner-logo--boulderklub{font-size:13px}
   .partner-logo--berta{font-size:14px}
