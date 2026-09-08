@@ -430,7 +430,7 @@ function pricingUrl() {
 }
 
 const TERM_COPY = {
-  monthly:  'First 3 months with MOVE20 · then standard rate',
+  monthly:  '20% off your first 3 months',
   annual:   'On a 12-month term · <b>save 15%</b>',
   biennial: 'On a 24-month term · <b>save 20%</b>'
 };
@@ -478,9 +478,7 @@ function renderTiers() {
 
     const specs = (plan.tierInfo || '').split('·').map(s => s.trim()).filter(Boolean).slice(0, 2);
 
-    const billedText = term === 'monthly'
-      ? `First 3 months with MOVE20 · then ${origPrice}&thinsp;€`
-      : (TERM_COPY[term] || '');
+    const billedText = TERM_COPY[term] || '';
 
     card.innerHTML = `
       ${plan.popular && plan.badge ? `<span class="tier-card__badge">${plan.badge}</span>` : ''}
@@ -510,14 +508,14 @@ function renderTiers() {
   const selectedPrice = priceForTerm(selectedPlan, term);
   if (selectedPlanSummary) {
     if (term === 'monthly') {
-      selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month (first 3 months with MOVE20) · then ${selectedPlan.monthlyPrice} € / month`;
+      selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · 20% off your first 3 months`;
     } else {
       selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · ${TERM_COPY[term].replace(/<[^>]+>/g, '')}`;
     }
   }
   if (planContinue) {
     planContinue.href = pricingUrl();
-    planContinue.innerHTML = `Continue with offer <span aria-hidden="true">→</span>`;
+    planContinue.innerHTML = `Claim 20% off <span aria-hidden="true">→</span>`;
   }
 }
 

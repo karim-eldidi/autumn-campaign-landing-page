@@ -230,6 +230,20 @@ body{
   display:block;
   margin-top:6px;
 }
+.hero__offer-note{
+  margin:12px 0 0;
+  font-size:14px;
+  color:#e5e7eb;
+  font-weight:500;
+  line-height:1.35;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.hero__offer-note strong{
+  color:var(--usc-yellow);
+  font-weight:800;
+}
 .button{
   display:inline-flex;
   align-items:center;
@@ -258,37 +272,6 @@ body{
 .button--hero:hover{
   background:#ede697;
   color:var(--usc-black);
-}
-.campaign-offer{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  width:fit-content;
-  max-width:100%;
-  margin:0 0 16px;
-  padding:8px 14px 8px 10px;
-  border:1px solid rgba(246,240,168,.6);
-  border-radius:10px;
-  background:rgba(10,13,15,.76);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  color:#fff;
-  font-size:13.5px;
-  line-height:1.35;
-}
-.campaign-offer__badge{
-  flex:0 0 auto;
-  padding:4px 8px;
-  border-radius:6px;
-  background:var(--usc-yellow);
-  color:var(--usc-black);
-  font-size:10.5px;
-  font-weight:800;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
-.campaign-offer strong{
-  font-weight:800;
 }
 
 /* Compact partner trust strip — deliberately non-clickable to avoid extra exits */
@@ -1538,18 +1521,10 @@ body{
     border-radius:9px;
     padding:0 16px;
   }
-  .campaign-offer{
-    display:flex;
-    align-items:flex-start;
-    width:100%;
-    margin-bottom:12px;
+  .hero__offer-note{
     font-size:12px;
-    padding:7px 10px;
-    gap:8px;
-  }
-  .campaign-offer__badge{
-    font-size:9.5px;
-    padding:3px 6px;
+    margin-top:8px;
+    justify-content:center;
   }
 
   .partner-strip{
@@ -1602,11 +1577,58 @@ body{
   
   .tiers{padding:44px 16px 36px}
   .tiers__inner{display:flex;flex-direction:column}
-  .tiers__head{flex-direction:column;gap:12px;margin-bottom:0}
-  .tiers__anchor{display:none}
+  .tiers__head{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:16px;
+    align-items:flex-start;
+    margin-bottom:18px;
+    width:100%;
+  }
+  .tiers__anchor{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    flex-shrink:0;
+  }
+  .tiers__numeral{
+    font-size:clamp(68px,16vw,84px);
+    line-height:.82;
+    font-weight:900;
+    color:var(--usc-yellow);
+    letter-spacing:-.06em;
+  }
+  .tiers__numeral-label{
+    margin-top:8px;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#fff;
+    white-space:nowrap;
+  }
   .tiers__copy{margin-top:0}
-  .tiers h2{font-size:clamp(26px,7.2vw,34px);margin:6px 0 10px}
-  .tiers__lede{font-size:14px;line-height:1.4}
+  .tiers__eyebrow{
+    font-size:10px;
+    letter-spacing:.12em;
+    margin-bottom:6px;
+    color:#868e95;
+    text-transform:uppercase;
+    font-weight:800;
+  }
+  .tiers h2{
+    font-size:clamp(22px,5.5vw,28px);
+    line-height:1.05;
+    margin:0 0 8px;
+    letter-spacing:-.03em;
+    font-weight:900;
+  }
+  .tiers__lede{
+    font-size:12.5px;
+    line-height:1.4;
+    color:#a4acb2;
+    margin:0;
+  }
   
   .term-switch-wrap{order:2;margin:18px 0 16px;justify-content:center;width:100%}
   .term-switch{overflow-x:auto;scrollbar-width:none;max-width:100%}
