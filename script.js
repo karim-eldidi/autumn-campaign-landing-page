@@ -497,6 +497,7 @@ function renderTiers() {
   if (selectedPlanSummary) selectedPlanSummary.textContent = `${selectedPlan.name} selected · ${selectedPrice} € / month · ${TERM_COPY[term].replace(/<[^>]+>/g, '')}`;
   if (planContinue) {
     planContinue.href = pricingUrl();
+    planContinue.innerHTML = `Continue with ${selectedPlan.name} <span aria-hidden="true">→</span>`;
   }
 }
 
