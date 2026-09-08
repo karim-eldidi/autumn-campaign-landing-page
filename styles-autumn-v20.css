@@ -1921,13 +1921,13 @@ body{
   position:relative;
 }
 .week__app-flow::before{
-  content:"How to use your membership";
+  content:"From app to activity";
   position:absolute;
   top:0;
   left:0;
   width:100%;
   color:var(--usc-dark-grey);
-  font-size:10px;
+  font-size:12px;
   font-weight:750;
   letter-spacing:.13em;
   text-align:center;
@@ -1959,7 +1959,7 @@ body{
 @media(max-width:800px){
   .week{row-gap:8px}
   .week__app-flow{grid-column:1;justify-content:space-between;gap:7px;padding-top:27px}
-  .week__app-flow::before{font-size:9px;letter-spacing:.11em}
+  .week__app-flow::before{font-size:10px;letter-spacing:.11em}
   .week__app-flow-label,.week__app-flow-desktop{display:none}
   .week__app-flow-mobile{display:inline}
   .week__app-flow-step{flex:0 0 auto;flex-direction:column;gap:6px;font-size:11px;font-weight:650;line-height:1}
