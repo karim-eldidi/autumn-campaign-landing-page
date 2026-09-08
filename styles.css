@@ -308,10 +308,8 @@ body{margin:0;background:#f7f4ec;color:#0b0d0e;font-family:Figtree,Arial,sans-se
   .tiers{padding:44px 16px 36px}
   .tiers__inner{display:flex;flex-direction:column}
   .tiers__head{flex-direction:column;gap:12px;margin-bottom:0}
-  .tiers__anchor{align-items:flex-start}
-  .tiers__numeral{font-size:clamp(76px,19vw,96px);line-height:.85}
-  .tiers__numeral-label{margin-top:8px;font-size:10.5px}
-  .tiers__copy{margin-top:4px}
+  .tiers__anchor{display:none}
+  .tiers__copy{margin-top:0}
   .tiers h2{font-size:clamp(26px,7.2vw,34px);margin:6px 0 10px}
   .tiers__lede{font-size:14px;line-height:1.4}
   
