@@ -274,7 +274,7 @@ body{
   color:var(--usc-black);
 }
 
-/* Compact partner trust strip — deliberately non-clickable to avoid extra exits */
+/* Compact partner trust strip */
 .partner-strip{
   display:flex;
   align-items:center;
@@ -336,8 +336,14 @@ body{
 .partner-logo--evo{font-size:17px;font-weight:900;font-style:italic;letter-spacing:-.04em}
 .partner-logo--fitness-first{font-size:15px;font-weight:900;letter-spacing:.03em}
 
-/* Activities / Week Section */
+/* Activities / Week Section (Full-bleed white background) */
 .week{
+  position:relative;
+  width:100%;
+  background:#fff;
+  overflow:hidden;
+}
+.week__inner{
   position:relative;
   display:grid;
   grid-template-columns:minmax(260px,.78fr) minmax(0,1.22fr);
@@ -346,7 +352,6 @@ body{
   max-width:1240px;
   margin:0 auto;
   padding:clamp(70px,8vw,118px) clamp(20px,4vw,64px);
-  background:#fff;
 }
 .week__intro{
   max-width:430px;
@@ -496,6 +501,80 @@ body{
   border:0;
   background:#fedb00;
   box-shadow:0 0 0 4px rgba(254,219,0,.35);
+}
+
+/* Ribbon 1: Find. Book. Scan. Go. (Dark Ribbon) */
+.flow-ribbon{
+  width:100%;
+  background:#0A0D0F;
+  color:#fff;
+  padding:clamp(36px,4.5vw,54px) clamp(20px,4vw,64px);
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.flow-ribbon__inner{
+  max-width:1240px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(24px,4vw,64px);
+}
+.flow-ribbon__copy{
+  max-width:440px;
+}
+.flow-ribbon__eyebrow{
+  margin:0 0 6px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--usc-yellow);
+}
+.flow-ribbon__title{
+  margin:0 0 8px;
+  font-size:clamp(28px,3.2vw,40px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+  font-weight:900;
+}
+.flow-ribbon__lede{
+  margin:0;
+  font-size:14.5px;
+  line-height:1.45;
+  color:#9aa2a8;
+}
+.flow-ribbon__steps{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.flow-step{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+.flow-step__icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  color:var(--usc-yellow);
+}
+.flow-step__label{
+  font-size:13.5px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-.01em;
+}
+.flow-step__line{
+  width:clamp(24px,3vw,48px);
+  height:2px;
+  background:var(--usc-yellow);
+  opacity:.85;
+  margin-bottom:24px;
 }
 
 /* Venues Section */
@@ -883,6 +962,100 @@ body{
   font-size:12px;
 }
 
+/* Ribbon 2: Wellbeing, wherever you are (Light Cream Ribbon) */
+.apps-ribbon{
+  width:100%;
+  background:var(--usc-cream);
+  color:var(--usc-black);
+  padding:clamp(38px,4.5vw,56px) clamp(20px,4vw,64px);
+  border-top:1px solid var(--usc-light-grey);
+  border-bottom:1px solid var(--usc-light-grey);
+}
+.apps-ribbon__inner{
+  max-width:1240px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(24px,4vw,56px);
+}
+.apps-ribbon__copy{
+  max-width:380px;
+}
+.apps-ribbon__eyebrow{
+  margin:0 0 6px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#62686c;
+}
+.apps-ribbon__title{
+  margin:0 0 8px;
+  font-size:clamp(26px,3vw,38px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+  font-weight:900;
+  color:#0A0D0F;
+}
+.apps-ribbon__lede{
+  margin:0;
+  font-size:14px;
+  line-height:1.45;
+  color:#4D5561;
+}
+.apps-ribbon__grid{
+  display:flex;
+  align-items:flex-start;
+  gap:clamp(12px,1.8vw,22px);
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding:4px 2px;
+}
+.apps-ribbon__grid::-webkit-scrollbar{
+  display:none;
+}
+.app-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  min-width:68px;
+  flex-shrink:0;
+}
+.app-card__icon{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  margin-bottom:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  transition:transform .18s ease;
+}
+.app-card:hover .app-card__icon{
+  transform:translateY(-2px);
+}
+.app-card__icon--yogaeasy{background:#E1F4EE}
+.app-card__icon--asana{background:#181A1B}
+.app-card__icon--raum{background:#FDE8E4}
+.app-card__icon--joggo{background:#2B73EB}
+.app-card__icon--sleep{background:#F06E35}
+.app-card__icon--endel{background:#0E1012}
+.app-card__name{
+  font-size:12px;
+  font-weight:800;
+  color:#111;
+  white-space:nowrap;
+  letter-spacing:-.01em;
+}
+.app-card__cat{
+  font-size:11px;
+  color:#737b82;
+  font-weight:500;
+  margin-top:2px;
+}
+
 /* Membership Tiers */
 .tiers{
   position:relative;
@@ -897,21 +1070,25 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
+  width:100%;
 }
 .tiers__head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:stretch;
+  justify-content:flex-start;
   gap:clamp(24px,3.6vw,44px);
-  max-width:860px;
-  margin-bottom:28px;
+  max-width:1100px;
+  margin-bottom:30px;
   width:100%;
 }
 .tiers__anchor{
   display:flex;
   flex-direction:column;
+  justify-content:space-between;
   align-items:flex-start;
   flex-shrink:0;
+  min-width:clamp(100px,9vw,130px);
 }
 .tiers__eyebrow{
   margin:0 0 10px;
@@ -922,22 +1099,28 @@ body{
   color:#868e95;
 }
 .tiers__numeral{
-  font-size:clamp(96px,10vw,144px);
-  line-height:.8;
+  font-size:clamp(120px,11vw,156px);
+  line-height:.74;
   font-weight:900;
   letter-spacing:-.075em;
   color:var(--usc-yellow);
+  display:block;
 }
 .tiers__numeral-label{
-  margin-top:12px;
+  margin-top:auto;
+  padding-top:10px;
   text-transform:uppercase;
   letter-spacing:.12em;
   font-size:11px;
   font-weight:800;
   color:#fff;
+  white-space:nowrap;
 }
 .tiers__copy{
-  max-width:560px;
+  max-width:620px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 .tiers h2{
   margin:0 0 12px;
@@ -951,7 +1134,7 @@ body{
   font-size:clamp(14.5px,1.15vw,16.5px);
   line-height:1.45;
   color:#a4acb2;
-  max-width:48ch;
+  max-width:52ch;
 }
 .term-switch-wrap{
   display:flex;
@@ -1562,10 +1745,19 @@ body{
   .partner-logo--berta{font-size:14px}
   .partner-logo--rocycle{font-size:16px}
   
-  .week{grid-template-columns:1fr;gap:36px;padding:54px 20px}
+  .week{width:100%}
+  .week__inner{grid-template-columns:1fr;gap:36px;padding:54px 20px}
   .week__intro{max-width:none}
   .week__journey path,.week.is-drawn .week__journey path{stroke-dashoffset:0;transition:none}
   
+  .flow-ribbon{padding:36px 20px}
+  .flow-ribbon__inner{flex-direction:column;align-items:flex-start;gap:24px}
+  .flow-ribbon__steps{width:100%;justify-content:space-between;gap:4px}
+  .flow-step__icon{width:40px;height:40px}
+  .flow-step__icon svg{width:22px;height:22px}
+  .flow-step__label{font-size:11.5px}
+  .flow-step__line{width:clamp(12px,4vw,24px);margin-bottom:20px}
+
   .venues{padding:clamp(48px,6vw,72px) 16px}
   .venue-carousel-wrap{padding:12px;border-radius:14px}
   .venues__grid{gap:12px;padding:2px}
@@ -1575,6 +1767,10 @@ body{
   .venues__footer-copy{display:none}
   .venues__browse-link{width:100%;justify-content:center;padding:10px 0;font-size:12.5px}
   
+  .apps-ribbon{padding:36px 20px}
+  .apps-ribbon__inner{flex-direction:column;align-items:flex-start;gap:20px}
+  .apps-ribbon__grid{width:100%;overflow-x:auto;padding-bottom:8px}
+
   .tiers{padding:44px 16px 36px}
   .tiers__inner{display:flex;flex-direction:column}
   .tiers__head{

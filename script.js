@@ -81,7 +81,7 @@ function roundedCorners(points, radius) {
 }
 
 function layoutJourney() {
-  const section = document.querySelector('.week');
+  const section = document.querySelector('.week__inner') || document.querySelector('.week');
   const svg = section?.querySelector('.week__journey');
   const path = svg?.querySelector('path');
   const pass = section?.querySelector('.pass');
