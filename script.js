@@ -379,9 +379,9 @@ function renderVenues() {
   endCard.className = 'venue-end-card';
   endCard.href = '#membership';
   const kicker = document.createElement('span');
-  kicker.textContent = 'Seen enough?';
+  kicker.textContent = 'Ready to explore?';
   const title = document.createElement('strong');
-  title.textContent = 'Choose your membership';
+  title.textContent = 'View memberships';
   const copy = document.createElement('p');
   copy.textContent = 'Find the right plan for your routine.';
   const arrow = document.createElement('b');
@@ -448,7 +448,7 @@ function iconForSpec(text) {
 function priceForTerm(plan, term) {
   if (term === 'monthly') return plan.monthlyPrice;
   if (term === 'annual') return plan.annualPrice;
-  return Math.round(plan.monthlyPrice * 0.8);
+  return plan.biennialPrice;
 }
 
 function capitalise(text) {
