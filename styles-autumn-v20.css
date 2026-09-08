@@ -1928,18 +1928,18 @@ body{
   text-transform:uppercase;
   white-space:nowrap;
 }
-.week__app-flow-step{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:750;white-space:nowrap}
+.week__app-flow-step{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:750;white-space:nowrap}
 .week__app-flow-icon{
   display:grid;
-  width:30px;
-  height:30px;
+  width:38px;
+  height:38px;
   place-items:center;
   border-radius:50%;
   background:var(--usc-yellow);
   color:var(--usc-black);
 }
-.week__app-flow-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.week__app-flow-arrow{color:#968B2E;font-size:13px;font-weight:800}
+.week__app-flow-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.week__app-flow-arrow{color:#968B2E;font-size:15px;font-weight:800}
 .week__app-flow-mobile{display:none}
 
 @media(max-width:800px){
@@ -1947,10 +1947,10 @@ body{
   .week__app-flow{grid-column:1;justify-content:space-between;gap:3px;padding-top:0}
   .week__app-flow-label,.week__app-flow-desktop{display:none}
   .week__app-flow-mobile{display:inline}
-  .week__app-flow-step{flex:1;flex-direction:column;gap:4px;font-size:10px;line-height:1}
-  .week__app-flow-icon{width:28px;height:28px}
-  .week__app-flow-icon svg{width:15px;height:15px}
-  .week__app-flow-arrow{flex:0 0 auto;font-size:10px}
+  .week__app-flow-step{flex:1;flex-direction:column;gap:5px;font-size:12px;line-height:1}
+  .week__app-flow-icon{width:36px;height:36px}
+  .week__app-flow-icon svg{width:19px;height:19px}
+  .week__app-flow-arrow{flex:0 0 auto;font-size:12px}
 }
 
 /* Restore the week section to its pre-ribbon layout. */
@@ -2120,5 +2120,5 @@ body{
 }
 
 /* Keep the inline app journey attached to the weekly image story. */
-.week{row-gap:8px}
-@media(max-width:800px){.week{row-gap:8px}}
+.week{row-gap:16px}
+@media(max-width:800px){.week{row-gap:16px}}
